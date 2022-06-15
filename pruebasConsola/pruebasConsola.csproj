@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4F0765EF-9574-4207-A005-D78034A8FEE8}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TurnosNegocio</RootNamespace>
-    <AssemblyName>TurnosNegocio</AssemblyName>
+    <ProjectGuid>{E5AB978E-AB6C-430C-A433-7EA87A3D30AB}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>pruebasConsola</RootNamespace>
+    <AssemblyName>pruebasConsola</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,12 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccesoDatos.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="script_db\TurnosApp_DB.sql" />
-    <Content Include="script_db\TurnosApp_Datos.sql" />
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TurnosDominio\TurnosDominio.csproj">
+      <Project>{6972fac3-e6dd-46a4-86c0-5d97c569bb0f}</Project>
+      <Name>TurnosDominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TurnosNegocio\TurnosNegocio.csproj">
+      <Project>{4f0765ef-9574-4207-a005-d78034a8fee8}</Project>
+      <Name>TurnosNegocio</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
