@@ -8,9 +8,9 @@ namespace TurnosDominio
 {
     public class Profesional:Persona
     {
-        public int id { get; set; }
+        public int idProfesional { get; set; }
         public decimal costoConsulta { get; set; }
-        public bool activo { get; set; }
+        public bool habilitado { get; set; }
 
     }
 }

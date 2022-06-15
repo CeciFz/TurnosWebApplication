@@ -8,9 +8,9 @@ namespace TurnosDominio
 {
     public class Paciente:Persona   
     {
-        public int id { get; set; }
+        public int idPaciente { get; set; }
         public ObraSocial obraSocial { get; set; }
-        public bool activo { get; set; }
+        public bool habilitado { get; set; }
 
     }
 }

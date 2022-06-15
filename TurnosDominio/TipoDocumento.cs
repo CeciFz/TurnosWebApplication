@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TurnosDominio
 {
-    public class PerfilUsuario
+    public class TipoDocumento
     {
         public int id { get; set; }
         public string descripcion { get; set; }
