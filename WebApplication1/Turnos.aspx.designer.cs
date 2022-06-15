@@ -11,7 +11,7 @@ namespace TurnosApp
 {
 
 
-    public partial class iniciar_sesion
+    public partial class Contact
     {
     }
 }

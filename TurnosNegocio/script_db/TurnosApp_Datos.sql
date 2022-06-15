@@ -177,12 +177,3 @@ INSERT [dbo].[Perfiles_Usuarios] ([Id], [Descripcion]) VALUES (2, N'Gestión')
 INSERT [dbo].[Perfiles_Usuarios] ([Id], [Descripcion]) VALUES (3, N'Paciente')
 INSERT [dbo].[Perfiles_Usuarios] ([Id], [Descripcion]) VALUES (4, N'Profesional')
 SET IDENTITY_INSERT [dbo].[Perfiles_Usuarios] OFF
-
-/* PERFILES USUARIOS */
-SET IDENTITY_INSERT [dbo].[Perfiles_Usuarios] ON 
-INSERT [dbo].[Perfiles_Usuarios] ([Id], [Descripcion]) VALUES (1, N'Admin')
-INSERT [dbo].[Perfiles_Usuarios] ([Id], [Descripcion]) VALUES (2, N'Gestión')
-INSERT [dbo].[Perfiles_Usuarios] ([Id], [Descripcion]) VALUES (3, N'Paciente')
-INSERT [dbo].[Perfiles_Usuarios] ([Id], [Descripcion]) VALUES (4, N'Profesional')
-SET IDENTITY_INSERT [dbo].[Perfiles_Usuarios] OFF
-

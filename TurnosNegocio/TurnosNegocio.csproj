@@ -42,11 +42,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccesoDatos.cs" />
+    <Compile Include="EspecialidadesNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="script_db\TurnosApp_DB.sql" />
     <Content Include="script_db\TurnosApp_Datos.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TurnosDominio\TurnosDominio.csproj">
+      <Project>{6972fac3-e6dd-46a4-86c0-5d97c569bb0f}</Project>
+      <Name>TurnosDominio</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

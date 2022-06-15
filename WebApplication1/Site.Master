@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="WebApplication1.SiteMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="TurnosApp.SiteMaster" %>
 
 <!DOCTYPE html>
 
@@ -54,8 +54,8 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">INICIO</a></li>
-                        <li><a runat="server" href="~/About">ESPECIALIDADES</a></li>
-                        <li><a runat="server" href="~/Contact">CONTACTOS</a></li>
+                        <li><a runat="server" href="~/Servicios">SERVICIOS MEDICOS</a></li>
+                        <li><a runat="server" href="~/Turnos">TURNOS</a></li>
                     </ul>
                 </div>
             </div>

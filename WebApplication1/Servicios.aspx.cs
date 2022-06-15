@@ -4,13 +4,18 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using TurnosDominio;
+using TurnosNegocio;
 
-namespace WebApplication1
+namespace TurnosApp
 {
     public partial class About : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            EspecialidadesNegocio especialidades = new EspecialidadesNegocio();
+            dgvEspecialidades.DataSource = especialidades.listarEspecialidades();
+            dgvEspecialidades.DataBind();
 
         }
     }

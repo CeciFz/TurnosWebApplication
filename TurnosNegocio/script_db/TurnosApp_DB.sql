@@ -35,7 +35,7 @@ Create Table Obras_Sociales(
 )
 go
 
-Create Table Pacientes(
+create Table Pacientes(
 	Id bigint not null primary key identity(1,1),
 	IdObraSocial int null Foreign Key References Obras_Sociales(Id),
 	Habilitado bit not null default(1)
@@ -50,7 +50,7 @@ Create Table Profesionales(
 go
 
 Create Table Especialidades(
-	Id smallint not null primary key identity(1,1),
+	Id int not null primary key identity(1,1),
 	Descripcion varchar(100) not null,
 	Activo bit not null default(1)
 )
@@ -58,7 +58,7 @@ go
 
 Create Table Profesionales_X_Especialidad(
 	IdProfesional bigint not null Foreign Key References Profesionales(Id),
-	IdEspecialidad smallint not null Foreign Key References Especialidades(Id),
+	IdEspecialidad int not null Foreign Key References Especialidades(Id),
 	Activo bit not null default(1), 
 	primary key (IdProfesional,IdEspecialidad)
 )

@@ -16,10 +16,10 @@ namespace TurnosNegocio
         public SqlDataReader Lector { get { return lector; } }
 
 
-        public AccesoDatos()
+        public AccesoDatos()  
         {
-            conexion = new SqlConnection("server=.\\SQLEXPRESS; database = TurnosApp_DB; integrated security = true");
-            //conexion = new SqlConnection("server =ZUMSTEIND; database = TurnosApp_DB; integrated security = true");
+            conexion = new SqlConnection("server=.\\SQLEXPRESS; database = TurnosApp; integrated security = true");
+            //conexion = new SqlConnection("server =ZUMSTEIND; database = TurnosApp; integrated security = true");
 
             comando = new SqlCommand();
 

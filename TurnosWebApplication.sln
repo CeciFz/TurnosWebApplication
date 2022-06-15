@@ -1,15 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32228.343
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurnosApp", "TurnosApp\TurnosApp.csproj", "{5FCB2ECF-489E-4507-8E81-DEBBEBA22242}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurnosDominio", "TurnosDominio\TurnosDominio.csproj", "{6972FAC3-E6DD-46A4-86C0-5D97C569BB0F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurnosNegocio", "TurnosNegocio\TurnosNegocio.csproj", "{4F0765EF-9574-4207-A005-D78034A8FEE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{1798E350-AF19-49A2-BE48-6E7A743B51DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurnosApp", "WebApplication1\TurnosApp.csproj", "{1798E350-AF19-49A2-BE48-6E7A743B51DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5FCB2ECF-489E-4507-8E81-DEBBEBA22242}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5FCB2ECF-489E-4507-8E81-DEBBEBA22242}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5FCB2ECF-489E-4507-8E81-DEBBEBA22242}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5FCB2ECF-489E-4507-8E81-DEBBEBA22242}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6972FAC3-E6DD-46A4-86C0-5D97C569BB0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6972FAC3-E6DD-46A4-86C0-5D97C569BB0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6972FAC3-E6DD-46A4-86C0-5D97C569BB0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -29,6 +23,10 @@ Global
 		{4F0765EF-9574-4207-A005-D78034A8FEE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F0765EF-9574-4207-A005-D78034A8FEE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F0765EF-9574-4207-A005-D78034A8FEE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1798E350-AF19-49A2-BE48-6E7A743B51DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1798E350-AF19-49A2-BE48-6E7A743B51DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1798E350-AF19-49A2-BE48-6E7A743B51DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1798E350-AF19-49A2-BE48-6E7A743B51DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
