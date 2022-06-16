@@ -19,6 +19,7 @@ namespace TurnosNegocio
                 datos.setearConsulta("select Id, Descripcion from Especialidades");
                 datos.lecturaDatos();
 
+                //desplaza al siguiente registro mientras sea true
                 while (datos.Lector.Read())
                 {
                     Especialidad aux = new Especialidad();

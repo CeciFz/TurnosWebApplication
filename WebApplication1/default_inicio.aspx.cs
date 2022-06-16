@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace TurnosApp
+namespace WebApplication1
 {
-    public partial class Contact : Page
+    public partial class default_inicio : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
