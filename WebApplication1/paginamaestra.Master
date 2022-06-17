@@ -14,14 +14,15 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
+        
 
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="default_inicio.aspx">Home</a>
+            <div style="border:solid 1px;border-top-color:black" >
+            <ul class="nav nav-tabs  "style="background-color:lightgray;color:black">
+                <li class="nav-item" style="background-color:lightgray;color:black">
+                    <a class="nav-link active" style="background-color:lightgray;color:black" aria-current="page" href="default_inicio.aspx">Home</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Administración</a>
+                    <a class="nav-link active dropdown-toggle"style="background-color:lightgray;color:black;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Administración</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Agregar turno</a></li>
                         <li><a class="dropdown-item" href="#">Modificar turno</a></li>
@@ -40,19 +41,26 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Especialidades.aspx">Especialidades</a>
+                    <a class="nav-link active" href="Especialidades.aspx"style="background-color:lightgray;color:black">Especialidades</a>
                 </li>
+                 <li class="nav-item">
+                    <a class="nav-link active" href="contactos.aspx"style="background-color:lightgray;color:black">Contacto</a>
+                </li>
+
+
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Contacto</a>
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">AppTurnosMedicos</a>
                 </li>
             </ul>
+
+                </div>
 
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
 
             </asp:ContentPlaceHolder>
 
-            <footer><hr />@AppTurnosMedicos</footer>
-        </div>
+            <footer style="background-color:lightgray;color:black"><hr />@AppTurnosMedicos</footer>
+        
     </form>
 </body>
 </html>
