@@ -12,7 +12,7 @@ namespace WebApplication1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            personanegocio negocio = new personanegocio();
+            PersonaNegocio negocio = new PersonaNegocio();
             listacontactos.DataSource = negocio.listarpersonas();
             listacontactos.DataBind();
         }

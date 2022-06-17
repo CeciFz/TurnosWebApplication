@@ -7,7 +7,7 @@ using TurnosDominio;
 
 namespace TurnosNegocio
 {
-    public class personanegocio
+    public class PersonaNegocio
     {
         public List<Persona> listarpersonas()
         {

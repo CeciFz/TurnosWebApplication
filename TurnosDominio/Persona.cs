@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace TurnosDominio
 {
-    public class Persona    
-    {
+    public class Persona         // TODO: Ver como agregarle la lista para asociarle costo y profesion
+    {                            // si es un profesional
         public Int64 id { get; set; }
         public string apellidos { get; set; }
         public string nombres { get; set; }        
@@ -15,6 +15,7 @@ namespace TurnosDominio
         public string sexo { get; set; }
         public TipoDocumento tipoDocumento { get; set; }
         public Int64 nroDocumento { get; set; }
+        public ObraSocial obraSocial { get; set; }
         public DateTime fechaAlta { get; set; }
         public bool activo { get; set; }
 
