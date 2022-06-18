@@ -8,11 +8,11 @@ namespace TurnosDominio
 {
     public class Turno
     {
-        public int id { get; set; }
+        public Int64 id { get; set; }
         public DateTime fecha { get; set; }
         public DateTime hora { get; set; }
         //public Profesional profesional { get; set; }
-        //public Paciente paciente { get; set; }
+        public Persona paciente { get; set; }
         public string observaciones { get; set; }
         public EstadoTurno estado { get; set; }
 

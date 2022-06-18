@@ -8,7 +8,7 @@ namespace TurnosDominio
 {
     public class ObraSocial
     {
-        public int id { get; set; }
+        public Int32 id { get; set; }
         public string descripcion { get; set; }
         public bool activo { get; set; }
         public override string ToString()

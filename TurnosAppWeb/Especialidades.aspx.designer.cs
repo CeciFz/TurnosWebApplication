@@ -11,7 +11,7 @@ namespace TurnosAppWeb
 {
 
 
-    public partial class PreviousEspecialidades
+    public partial class Especialidades
     {
 
         /// <summary>

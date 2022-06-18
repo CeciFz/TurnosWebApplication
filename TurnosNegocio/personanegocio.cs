@@ -16,7 +16,7 @@ namespace TurnosNegocio
 
             try
             {
-                datos.setearConsulta("select Id,Apellidos,Nombres,FechaNacimiento,Sexo,IdTipoDocumento,NroDocumento,FechaAlta,Activo from Personas");
+                datos.setearConsulta("select Apellidos,Nombres,FechaNacimiento,Sexo,TipoDoc,NroDocumento,Obra_Social,FechaAlta from VW_Personas");
                 datos.lecturaDatos();
 
                 while (datos.Lector.Read())
@@ -24,15 +24,21 @@ namespace TurnosNegocio
 
                     Persona aux = new Persona();
 
-                    aux.id = (Int64)datos.Lector["Id"];
                     aux.apellidos = (string)datos.Lector["Apellidos"];
                     aux.nombres = (string)datos.Lector["Nombres"];
                     aux.fechaNacimiento = (DateTime)datos.Lector["FechaNacimiento"];
                     aux.sexo = (string)datos.Lector["Sexo"];
-                   //aux.tipoDocumento = (TipoDocumento)datos.Lector["IdTipoDocumento"];
+
+                    aux.tipoDocumento = new TipoDocumento();
+                    //aux.tipoDocumento.id = (Int16)datos.Lector["Id"];
+                    aux.tipoDocumento.descripcion = (string)datos.Lector["TipoDoc"];
                     aux.nroDocumento = (Int64)datos.Lector["NroDocumento"];
-                    //aux.fechaAlta = (DateTime)datos.Lector["FechaAlta"];
-                   // aux.activo = (bool)datos.Lector["Activo"];
+                   
+                    aux.obraSocial = new ObraSocial();
+                    //aux.obraSocial.id = (Int32)datos.Lector["Id"];
+                    aux.obraSocial.descripcion = (string)datos.Lector["Obra_Social"];
+
+                    aux.fechaAlta = (DateTime)datos.Lector["FechaAlta"];
 
                     lista.Add(aux);
                 }

@@ -1,26 +1,6 @@
 Use turnosApp
 go
 
-Select * from Tipos_Documentos
-go
-Select * from Personas
-go
-Select * from Obras_Sociales
-go
-Select * from Especialidades
-go
-Select * from Profesionales_X_Especialidad   
-go
-Select * from Estados_Turnos
-go
-Select * from Turnos   -----------
-go
-Select * from Perfiles_Usuarios
-go
-Select * from Perfil_X_Persona   
-go
-
-
 /* VISTA PACIENTES */
 Create View VW_Pacientes AS
 	Select p.Apellidos, p.Nombres, p.FechaNacimiento, p.Sexo, p.IdTipoDocumento,
@@ -32,8 +12,8 @@ go
 
 
 /* VISTA PROFESIONALES */
-create View VW_Profesionales AS
-	Select p.Apellidos, p.Nombres, p.FechaNacimiento, p.Sexo, p.IdTipoDocumento,
+Create View VW_Profesionales AS
+	Select p.Id, p.Apellidos, p.Nombres, p.FechaNacimiento, p.Sexo, p.IdTipoDocumento,
 	p.IdObraSocial, p.FechaAlta, pp.IdPerfilUsuario, pxe.CostoConsulta
 	from Personas p
 	inner join Perfil_X_Persona pp on p.Id = pp.IdPersona
@@ -62,15 +42,27 @@ Create View VW_Gestores AS
 go
 
 
+/* VISTA PERSONAS */
+create View VW_Personas AS
+	Select p.Apellidos, p.Nombres, p.FechaNacimiento, p.Sexo, td.Descripcion as 'TipoDoc', p.NroDocumento, 
+	os.Descripcion as 'Obra_Social', p.FechaAlta
+	from Personas p
+	inner join Tipos_Documentos td on p.IdTipoDocumento = td.Id
+	inner join Obras_Sociales os on p.IdObraSocial = os.Id
+go
 
+select Apellidos,Nombres,FechaNacimiento,Sexo,TipoDoc,NroDocumento,Obra_Social,FechaAlta from VW_Personas
+
+
+Select * from VW_Personas
+go
 Select * from VW_Pacientes  
 go
-
 Select * from VW_Profesionales  
 go
-
 Select * from VW_Admins  
 go
-
 Select * from VW_Gestores  
 go
+
+

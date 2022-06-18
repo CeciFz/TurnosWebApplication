@@ -1,0 +1,34 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using TurnosDominio;
+using TurnosNegocio;
+
+namespace TurnosAppWeb
+{
+    public partial class listados : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            TipoDocumentoNegocio tipoDoc = new TipoDocumentoNegocio();
+            listaTiposDocumentos.DataSource = tipoDoc.listarTiposDeDocumento();
+            listaTiposDocumentos.DataBind();
+
+            ObraSocialNegocio obraSoc = new ObraSocialNegocio();
+            listaObrasSociales.DataSource = obraSoc.listarObrasSociales();
+            listaObrasSociales.DataBind();
+
+            PerfilUsuarioNegocio perfilUs = new PerfilUsuarioNegocio();
+            listaPerfilesUsuarios.DataSource = perfilUs.listarPerfilesUsuarios();
+            listaPerfilesUsuarios.DataBind();
+
+            EstadoTurnosNegocio estadoTurno = new EstadoTurnosNegocio();
+            listaEstadosTurnos.DataSource = estadoTurno.listarEstadosTurnos();
+            listaEstadosTurnos.DataBind();
+
+        }
+    }
+}

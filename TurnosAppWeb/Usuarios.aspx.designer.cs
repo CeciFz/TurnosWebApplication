@@ -11,7 +11,7 @@ namespace TurnosAppWeb
 {
 
 
-    public partial class PreviousContactos
+    public partial class Usuarios
     {
 
         /// <summary>

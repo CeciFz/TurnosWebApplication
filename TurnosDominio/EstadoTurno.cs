@@ -8,7 +8,7 @@ namespace TurnosDominio
 {
     public class EstadoTurno
     {
-        public int id { get; set; }
+        public Int16 id { get; set; }
         public string descripcion { get; set; }
         public bool activo { get; set; }
         public override string ToString()

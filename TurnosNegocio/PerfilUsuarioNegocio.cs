@@ -7,30 +7,28 @@ using TurnosDominio;
 
 namespace TurnosNegocio
 {
-    public class EspecialidadesNegocio
+    public class PerfilUsuarioNegocio
     {
-        public List<Especialidad> listarEspecialidades()
+        public List<PerfilUsuario> listarPerfilesUsuarios()
         {
-            List<Especialidad> lista = new List<Especialidad>();
+            List<PerfilUsuario> lista = new List<PerfilUsuario>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("select Id, Descripcion from Especialidades");
+                datos.setearConsulta("Select Id, Descripcion from Perfiles_Usuarios");
                 datos.lecturaDatos();
 
-                //desplaza al siguiente registro mientras sea true
                 while (datos.Lector.Read())
                 {
-                    Especialidad aux = new Especialidad();
-                    aux.id = (int)datos.Lector["Id"];
+                    PerfilUsuario aux = new PerfilUsuario();
+                    aux.id = (Int16)datos.Lector["Id"];
                     aux.descripcion = (string)datos.Lector["Descripcion"];
 
                     lista.Add(aux);
                 }
 
                 return lista;
-
             }
             catch (Exception ex)
             {
