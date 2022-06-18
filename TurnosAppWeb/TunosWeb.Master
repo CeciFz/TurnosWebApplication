@@ -37,15 +37,18 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Administración</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Agregar turno</a></li>
-                                <li><a class="dropdown-item" href="#">Modificar turno</a></li>
-                                <li><a class="dropdown-item" href="#">Eliminar turno</a></li>
-                                <li><a class="dropdown-item" href="#">Agregar paciente</a></li>
+                                <li><a class="dropdown-item" href="AdministrarUsuarios.aspx">Alta Usuarios</a></li>
+                                <li><a class="dropdown-item" href="#">Modificar Usuarios</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Agregar médico</a></li>
-                                <li><a class="dropdown-item" href="#">Eliminar médico</a></li>
+                                <li><a class="dropdown-item" href="#">Alta Obra Social</a></li>
+                                <li><a class="dropdown-item" href="#">Modificar Obra Social</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Nuevo Turno</a></li>
+                                <li><a class="dropdown-item" href="#">Modificar Turno</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>

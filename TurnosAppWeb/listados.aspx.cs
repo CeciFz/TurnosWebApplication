@@ -25,7 +25,7 @@ namespace TurnosAppWeb
             listaPerfilesUsuarios.DataSource = perfilUs.listarPerfilesUsuarios();
             listaPerfilesUsuarios.DataBind();
 
-            EstadoTurnosNegocio estadoTurno = new EstadoTurnosNegocio();
+            EstadoTurnoNegocio estadoTurno = new EstadoTurnoNegocio();
             listaEstadosTurnos.DataSource = estadoTurno.listarEstadosTurnos();
             listaEstadosTurnos.DataBind();
 
