@@ -29,7 +29,7 @@ namespace TurnosNegocio
                     aux.fechaNacimiento = (DateTime)datos.Lector["FechaNacimiento"];
                     aux.sexo = (string)datos.Lector["Sexo"];
                    // aux.telefono = (string)datos.Lector["telefono"];
-                   // aux.mail = (string)datos.Lector["mail"];
+                    //aux.mail = (DBNull)datos.Lector["mail"];  (como hacer par string null)
                     aux.tipoDocumento = new TipoDocumento();
                     //aux.tipoDocumento.id = (Int16)datos.Lector["Id"];
                     aux.tipoDocumento.descripcion = (string)datos.Lector["TipoDoc"];
