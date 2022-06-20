@@ -30,6 +30,8 @@ create Table Personas(
 	Sexo char not null Check (Sexo in ('M', 'F', 'O')),
 	IdTipoDocumento smallint not null Foreign Key References Tipos_Documentos(Id),
 	NroDocumento bigint not null unique,
+	telefono varchar(50)null,
+	mail varchar(100) null unique,
 	IdObraSocial int null Foreign Key References Obras_Sociales(Id),
 	FechaAlta date not null default (getdate()),
 	Activo bit not null default(1)
@@ -50,7 +52,7 @@ Create Table Profesionales(
 	Habilitado bit not null default(1)
 )
 go*/
-
+select * from  Personas
 Create Table Especialidades(
 	Id int not null primary key identity(1,1),
 	Descripcion varchar(100) not null,

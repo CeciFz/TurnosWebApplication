@@ -42,7 +42,7 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Alta Obra Social</a></li>
+                                <li><a class="dropdown-item" href="altaobrasocial.aspx">Alta Obra Social</a></li>
                                 <li><a class="dropdown-item" href="#">Modificar Obra Social</a></li>
                                 <li>
                                     <hr class="dropdown-divider">

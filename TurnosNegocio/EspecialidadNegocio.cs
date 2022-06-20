@@ -17,7 +17,7 @@ namespace TurnosNegocio
 
             try
             {
-                datos.setearConsulta("select Id, Descripcion from Especialidades");
+                datos.setearConsulta("select Id, Descripcion,Activo from Especialidades");
                 datos.lecturaDatos();
 
                 while (datos.Lector.Read())
@@ -25,6 +25,7 @@ namespace TurnosNegocio
                     Especialidad aux = new Especialidad();
                     aux.id = (int)datos.Lector["Id"];
                     aux.descripcion = (string)datos.Lector["Descripcion"];
+                    aux.activo = (bool)datos.Lector["Activo"];
 
                     lista.Add(aux);
                 }

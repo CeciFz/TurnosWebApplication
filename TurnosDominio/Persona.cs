@@ -17,6 +17,8 @@ namespace TurnosDominio
         public Int64 nroDocumento { get; set; }
         public ObraSocial obraSocial { get; set; }
         public DateTime fechaAlta { get; set; }
+        public string telefono { get; set; }
+        public string mail { get; set; }
         public bool activo { get; set; }
 
         public override string ToString()

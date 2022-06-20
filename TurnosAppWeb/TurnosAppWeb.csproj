@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdministrarUsuarios.aspx" />
+    <Content Include="altaobrasocial.aspx" />
     <Content Include="Content\Style.css" />
     <Content Include="default.aspx" />
     <Content Include="Global.asax" />
@@ -83,6 +84,13 @@
     </Compile>
     <Compile Include="AdministrarUsuarios.aspx.designer.cs">
       <DependentUpon>AdministrarUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="altaobrasocial.aspx.cs">
+      <DependentUpon>altaobrasocial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="altaobrasocial.aspx.designer.cs">
+      <DependentUpon>altaobrasocial.aspx</DependentUpon>
     </Compile>
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>

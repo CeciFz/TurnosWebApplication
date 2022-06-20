@@ -17,5 +17,10 @@ namespace TurnosAppWeb
             listacontactos.DataSource = negocio.listarpersonas();
             listacontactos.DataBind();
         }
+
+        protected void btnbuscar_Click(object sender, EventArgs e)
+        {
+            // colocaremos para filtar los contactos y vuelva a cargar la pgina nuevamente
+        }
     }
 }

@@ -42,6 +42,15 @@
                     <asp:TextBox runat="server" ID="txtNroDocumento" CssClass="form-control"/>
                 </div> 
                 <div class="mb-3">
+                    <label for="txttelefono" class="form-label">Número de telefono</label>
+                    <asp:TextBox runat="server" ID="TextBox1" CssClass="form-control"/>
+                </div> 
+                <div class="mb-3">
+                    <label for="txtmail" class="form-label">Mail</label>
+                    <asp:TextBox runat="server" type="mail" ID="TextBox2" CssClass="form-control"/>
+                </div> 
+
+                <div class="mb-3">
                     <label for="ddlObraSocial" class="form-label">ObraSocial</label>
                     <asp:DropDownList runat="server" ID="ddlObraSocial" class="form-select">
                         <asp:ListItem Text="Pami" />
@@ -56,6 +65,20 @@
                         <asp:ListItem Text="Medicus" />
                     </asp:DropDownList>
                 </div>
+               
+                <div class="mb-3">
+                    <label for="ddl_perfilusuaio" class="form-label">Tipo usuario</label>
+                    <asp:DropDownList runat="server" ID="DropDownList1" class="form-select">
+                        <asp:ListItem Text="admintrador" />
+                        <asp:ListItem Text="Gestion" />
+                        <asp:ListItem Text="Paciente" />
+                        <asp:ListItem Text="Profesional" />
+                        
+                    </asp:DropDownList>
+                </div>
+
+
+
                 <asp:Button ID="btnRegistrar" runat="server" Text="Registrar" CssClass="btn btn-primary m-2 " />
             </div>
         </div>
