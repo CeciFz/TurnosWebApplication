@@ -11,7 +11,7 @@ namespace TurnosAppWeb
 {
 
 
-    public partial class altaobrasocial
+    public partial class ObraSocialForm
     {
 
         /// <summary>

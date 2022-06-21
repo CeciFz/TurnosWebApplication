@@ -3,59 +3,60 @@ go
 
 /* VISTA PACIENTES */
 Create View VW_Pacientes AS
-	Select p.Apellidos, p.Nombres, p.FechaNacimiento, p.Sexo, p.IdTipoDocumento,p.telefono,p.mail,
-	p.IdObraSocial, p.FechaAlta, pp.IdPerfilUsuario
-	from Personas p
-	inner join Perfil_X_Persona pp on p.Id = pp.IdPersona
-	Where pp.IdPerfilUsuario = 3
+	Select u.Apellidos, u.Nombres, u.FechaNacimiento, u.Sexo, u.IdTipoDocumento,u.telefono,u.mail,
+	u.IdObraSocial, u.FechaAlta, pu.IdPerfilUsuario
+	from Usuarios u
+	inner join Perfil_X_Usuario pu on u.Id = pu.IdUsuario
+	Where pu.IdPerfilUsuario = 3
 go
 
 
 /* VISTA PROFESIONALES */
 Create View VW_Profesionales AS
-	Select p.Id, p.Apellidos, p.Nombres, p.FechaNacimiento, p.Sexo, p.IdTipoDocumento,p.telefono,p.mail,
-	p.IdObraSocial, p.FechaAlta, pp.IdPerfilUsuario,e.Descripcion, pxe.CostoConsulta
-	from Personas p
-	inner join Perfil_X_Persona pp on p.Id = pp.IdPersona
-	inner join Profesionales_X_Especialidad pxe on p.id = pxe.IdPersona
+	Select u.Id, u.Apellidos, u.Nombres, u.FechaNacimiento, u.Sexo, u.IdTipoDocumento,u.telefono,u.mail,
+	u.IdObraSocial, u.FechaAlta, pu.IdPerfilUsuario,e.Descripcion, pxe.CostoConsulta
+	from Usuarios u
+	inner join Perfil_X_Usuario pu on u.Id = pu.IdUsuario
+	inner join Profesionales_X_Especialidad pxe on u.id = pxe.IdUsuario
 	inner join Especialidades e on pxe.IdEspecialidad= e.Id
-	Where pp.IdPerfilUsuario = 4
+	Where pu.IdPerfilUsuario = 4
 go
 
 
 /* VISTA ADMINS */
 Create View VW_Admins AS
-	Select p.Apellidos, p.Nombres, p.FechaNacimiento, p.Sexo, p.IdTipoDocumento,p.telefono,p.mail,
-	p.IdObraSocial, p.FechaAlta, pp.IdPerfilUsuario
-	from Personas p
-	inner join Perfil_X_Persona pp on p.Id = pp.IdPersona
-	Where pp.IdPerfilUsuario = 1
+	Select u.Apellidos, u.Nombres, u.FechaNacimiento, u.Sexo, u.IdTipoDocumento,u.telefono,u.mail,
+	u.IdObraSocial, u.FechaAlta, pu.IdPerfilUsuario
+	from Usuarios u
+	inner join Perfil_X_Usuario pu on u.Id = pu.IdUsuario
+	Where pu.IdPerfilUsuario = 1
 go
 
 
 /* VISTA GESTORES */
 Create View VW_Gestores AS
-	Select p.Apellidos, p.Nombres, p.FechaNacimiento, p.Sexo, p.IdTipoDocumento,p.telefono,p.mail,
-	p.IdObraSocial, p.FechaAlta, pp.IdPerfilUsuario
-	from Personas p
-	inner join Perfil_X_Persona pp on p.Id = pp.IdPersona
-	Where pp.IdPerfilUsuario = 2
+	Select u.Apellidos, u.Nombres, u.FechaNacimiento, u.Sexo, u.IdTipoDocumento,u.telefono,u.mail,
+	u.IdObraSocial, u.FechaAlta, pu.IdPerfilUsuario
+	from Usuarios u
+	inner join Perfil_X_Usuario pu on u.Id = pu.IdUsuario
+	Where pu.IdPerfilUsuario = 2
 go
 
 
-/* VISTA PERSONAS */
-create View VW_Personas AS
-	Select p.Apellidos, p.Nombres, p.FechaNacimiento, p.Sexo, td.Descripcion as 'TipoDoc', p.NroDocumento, p.telefono,p.mail,
-	os.Descripcion as 'Obra_Social', p.FechaAlta
-	from Personas p
-	inner join Tipos_Documentos td on p.IdTipoDocumento = td.Id
-	inner join Obras_Sociales os on p.IdObraSocial = os.Id
+/* VISTA Usuarios */
+create View VW_Usuarios AS
+	Select u.Apellidos, u.Nombres, u.FechaNacimiento, u.Sexo, td.Descripcion as 'TipoDoc', u.NroDocumento,
+	os.Descripcion as 'Obra_Social', ISNULL(u.Telefono,'no informado') as Telefono,
+	ISNULL(u.Mail,'no informado') as Mail, u.FechaAlta
+	from Usuarios u
+	inner join Tipos_Documentos td on u.IdTipoDocumento = td.Id
+	inner join Obras_Sociales os on u.IdObraSocial = os.Id
 go
 
-select Apellidos,Nombres,FechaNacimiento,Sexo,TipoDoc,NroDocumento,Obra_Social,FechaAlta from VW_Personas
 
+select Apellidos,Nombres,FechaNacimiento,Sexo,TipoDoc,NroDocumento,Obra_Social,Telefono,Mail,FechaAlta from VW_Usuarios
 
-Select * from VW_Personas
+Select * from VW_Usuarios
 go
 Select * from VW_Pacientes  
 go

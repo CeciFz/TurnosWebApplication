@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TunosWeb.Master" AutoEventWireup="true" CodeBehind="UsuarioForm.aspx.cs" Inherits="TurnosAppWeb.AdministrarUsuarios" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TunosWeb.Master" AutoEventWireup="true" CodeBehind="UsuarioForm.aspx.cs" Inherits="TurnosAppWeb.UsuarioForm" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -28,14 +28,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="ddlTipoDocumento" class="form-label">Tipo de documento</label>
-                    <asp:DropDownList runat="server" ID="ddlTipoDocumento" class="form-select">
-                        <asp:ListItem Text="Documento único" />
-                        <asp:ListItem Text="Libreta cívica" />
-                        <asp:ListItem Text="Libreta de enrolamiento" />
-                        <asp:ListItem Text="Pasaporte" />
-                        <asp:ListItem Text="Carnet de extranjería" />
-                        <asp:ListItem Text="Otros" />
-                    </asp:DropDownList>
+                    <asp:DropDownList runat="server" ID="ddlTipoDocumento" class="form-select"></asp:DropDownList>
                 </div>
                 <div class="mb-3">
                     <label for="txtNroDocumento" class="form-label">Número de documento</label>
@@ -51,28 +44,12 @@
                 </div> 
                 <div class="mb-3">
                     <label for="ddlObraSocial" class="form-label">ObraSocial</label>
-                    <asp:DropDownList runat="server" ID="ddlObraSocial" class="form-select">
-                        <asp:ListItem Text="Pami" />
-                        <asp:ListItem Text="Galeno" />
-                        <asp:ListItem Text="Osde" />
-                        <asp:ListItem Text="Osba" />
-                        <asp:ListItem Text="Swiss Medical" />
-                        <asp:ListItem Text="Uthgra" />
-                        <asp:ListItem Text="Osdepym" />
-                        <asp:ListItem Text="Ioma" />
-                        <asp:ListItem Text="Accord" />
-                        <asp:ListItem Text="Medicus" />
-                    </asp:DropDownList>
+                    <asp:DropDownList runat="server" ID="ddlObraSocial" class="form-select"></asp:DropDownList>
                 </div>
                
                 <div class="mb-3">
-                    <label for="ddl_perfilusuaio" class="form-label">Tipo usuario</label>
-                    <asp:DropDownList runat="server" ID="DropDownList1" class="form-select">
-                        <asp:ListItem Text="Admin" />
-                        <asp:ListItem Text="Gestión" />
-                        <asp:ListItem Text="Paciente" />
-                        <asp:ListItem Text="Profesional" />                       
-                    </asp:DropDownList>
+                    <label for="ddlPerfilusuario" class="form-label">Tipo usuario</label>
+                    <asp:DropDownList runat="server" ID="ddlPerfilusuario" class="form-select"></asp:DropDownList>
                 </div>
                 <asp:Button ID="btnRegistrar" runat="server" Text="Registrar" OnClick="btnRegistrar_Click" CssClass="btn btn-primary m-2" />
                 <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" CssClass="btn btn-primary m-2"  Visible="false" />

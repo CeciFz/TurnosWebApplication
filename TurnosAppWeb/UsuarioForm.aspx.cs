@@ -9,15 +9,28 @@ using TurnosNegocio;
 
 namespace TurnosAppWeb
 {
-    public partial class AdministrarUsuarios : System.Web.UI.Page
+    public partial class UsuarioForm : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             //en dll_perfilusuario  ,lo utilizamos para cargar el tipo de usuario tomtamos el dato "" comparando si es igual asocie el tipo de dato,
             //ejemplo  dll_perfilusuario  if(dll_perfilusuario="profecional")  perfil.id=4; else if 
 
+            TipoDocumentoNegocio tipoDocumentoNeg = new TipoDocumentoNegocio();
+            ObraSocialNegocio obraSocialNeg = new ObraSocialNegocio();
+            PerfilUsuarioNegocio perfilUsuarioNeg = new PerfilUsuarioNegocio();
 
-            if (Request.QueryString["id"] != null)
+            if (!IsPostBack)
+            {
+                ddlTipoDocumento.DataSource = tipoDocumentoNeg.listarTiposDeDocumento();
+                ddlTipoDocumento.DataBind();
+                ddlObraSocial.DataSource = obraSocialNeg.listarObrasSociales();
+                ddlObraSocial.DataBind();
+                ddlPerfilusuario.DataSource = perfilUsuarioNeg.listarPerfilesUsuarios();
+                ddlPerfilusuario.DataBind();
+            }
+
+            if (Request.QueryString["id"] != null && btnModificar.Visible==false)
             {
                 Int64 id = Int64.Parse(Request.QueryString["id"].ToString());
                 List<Usuario> temporal = ((List<Usuario>)Session["listaUsuarios"]);
@@ -54,7 +67,7 @@ namespace TurnosAppWeb
 
             ((List<Usuario>)Session["listaUsuarios"]).Add(usuario);
 
-            Response.Redirect("Usuarios.aspx");
+            Response.Redirect("UsuarioListado.aspx");
         }
 
         protected void btnModificar_Click(object sender, EventArgs e)

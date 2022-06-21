@@ -11,7 +11,7 @@ namespace TurnosAppWeb
 {
 
 
-    public partial class Usuarios
+    public partial class UsuarioListado
     {
 
         /// <summary>

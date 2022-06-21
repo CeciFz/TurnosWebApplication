@@ -11,7 +11,7 @@ namespace TurnosAppWeb
 {
 
 
-    public partial class AdministrarUsuarios
+    public partial class UsuarioForm
     {
 
         /// <summary>
@@ -96,13 +96,13 @@ namespace TurnosAppWeb
         protected global::System.Web.UI.WebControls.DropDownList ddlObraSocial;
 
         /// <summary>
-        /// DropDownList1 control.
+        /// ddlPerfilusuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPerfilusuario;
 
         /// <summary>
         /// btnRegistrar control.

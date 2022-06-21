@@ -9,7 +9,7 @@ using TurnosNegocio;
 
 namespace TurnosAppWeb
 {
-    public partial class Usuarios : System.Web.UI.Page
+    public partial class UsuarioListado : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

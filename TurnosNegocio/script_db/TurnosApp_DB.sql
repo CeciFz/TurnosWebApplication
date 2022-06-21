@@ -22,7 +22,7 @@ Create Table Obras_Sociales(
 )
 go
 
-Create Table Personas(
+Create Table Usuarios(
 	Id bigint not null primary key identity(1,1),
 	Apellidos varchar(100) not null,
 	Nombres varchar(100) not null,
@@ -52,7 +52,7 @@ Create Table Profesionales(
 	Habilitado bit not null default(1)
 )
 go*/
-select * from  Personas
+select * from  Usuarios
 Create Table Especialidades(
 	Id int not null primary key identity(1,1),
 	Descripcion varchar(100) not null,
@@ -62,11 +62,11 @@ go
 
 Create Table Profesionales_X_Especialidad(
 	Id int not null identity(1,1) unique,
-	IdPersona bigint not null Foreign Key References Personas(Id),
+	IdUsuario bigint not null Foreign Key References Usuarios(Id),
 	IdEspecialidad int not null Foreign Key References Especialidades(Id),
 	CostoConsulta money null check (CostoConsulta >= 0),
 	Habilitado bit not null default(1),
-	primary key (IdPersona,IdEspecialidad)
+	primary key (IdUsuario,IdEspecialidad)
 )
 go
 
@@ -82,7 +82,7 @@ Create Table Turnos(
 	Fecha date not null Check (Fecha >= getdate()),
 	Hora time not null,     
 	IdProfesional bigint not null,
-	IdPaciente bigint not null Foreign Key References Personas(Id),
+	IdPaciente bigint not null Foreign Key References Usuarios(Id),
 	Observaciones varchar(MAX) null,
 	IdEstado smallint not null Foreign Key References Estados_Turnos(Id)
 )
@@ -94,11 +94,11 @@ Create Table Perfiles_Usuarios(
 )
 go
 
-Create Table Perfil_X_Persona(
-	IdPersona bigint not null Foreign Key References Personas(Id),
+Create Table Perfil_X_Usuario(
+	IdUsuario bigint not null Foreign Key References Usuarios(Id),
 	IdPerfilUsuario smallint not null Foreign Key References Perfiles_Usuarios(Id),
 	Activo bit not null default(1), 
-	primary key (IdPersona,IdPerfilUsuario)
+	primary key (IdUsuario,IdPerfilUsuario)
 )
 go
 
