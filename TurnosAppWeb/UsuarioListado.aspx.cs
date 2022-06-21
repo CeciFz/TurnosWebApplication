@@ -9,13 +9,18 @@ using TurnosNegocio;
 
 namespace TurnosAppWeb
 {
-    public partial class Usuarios : System.Web.UI.Page
+    public partial class UsuarioListado : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            PersonaNegocio negocio = new PersonaNegocio();
-            listacontactos.DataSource = negocio.listarpersonas();
-            listacontactos.DataBind();
+            if (Session["listaUsuarios"] == null)
+            {
+                UsuarioNegocio negocio = new UsuarioNegocio();
+                Session.Add("listaUsuarios", negocio.listarUsuarios());
+            }
+
+            dgvlistaUsuarios.DataSource = Session["listaUsuarios"];
+            dgvlistaUsuarios.DataBind();
         }
 
         protected void btnbuscar_Click(object sender, EventArgs e)
@@ -25,7 +30,8 @@ namespace TurnosAppWeb
 
         protected void listacontactos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var capturaid = listacontactos.SelectedDataKey.Value.ToString();
+            var id = dgvlistaUsuarios.SelectedDataKey.Value.ToString();
+            Response.Redirect("UsuarioForm.aspx?id=" + id);
         }
     }
 }

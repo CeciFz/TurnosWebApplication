@@ -42,6 +42,53 @@ namespace TurnosNegocio
             }
         }
 
+        public void agregarObraSocial(ObraSocial obraSocial)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("Insert into Obras_Sociales (Descripcion) VALUES (@Descripcion)");
+                datos.SetearParametro("@Descripcion", obraSocial.descripcion);
+
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
+        public void modificarObraSocial(ObraSocial obraSocial)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("Update Obras_Sociales Set Descripcion = @descripcion where Id = @id");
+                datos.SetearParametro("@descripcion", obraSocial.descripcion);
+                datos.SetearParametro("@id", obraSocial.id);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }
 

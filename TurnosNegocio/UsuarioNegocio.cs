@@ -7,36 +7,35 @@ using TurnosDominio;
 
 namespace TurnosNegocio
 {
-    public class PersonaNegocio
+    public class UsuarioNegocio
     {
-        public List<Persona> listarpersonas()
+        public List<Usuario> listarUsuarios()
         {
-            List<Persona> lista = new List<Persona>();
+            List<Usuario> lista = new List<Usuario>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("select Id,Apellidos,Nombres,FechaNacimiento,Sexo,mail,telefono,TipoDoc,NroDocumento,Obra_Social, FechaAlta from VW_Personas");
+                datos.setearConsulta("select Apellidos,Nombres,FechaNacimiento,Sexo,TipoDoc,NroDocumento,Obra_Social,Telefono,Mail,FechaAlta from VW_Usuarios");
                 datos.lecturaDatos();
-                //telefono,mail, falta agregar esto aa setear consulta
                 while (datos.Lector.Read())
                 {
 
-                    Persona aux = new Persona();
-                    aux.Id = (Int64)datos.Lector["Id"];
+                    Usuario aux = new Usuario();
+
                     aux.apellidos = (string)datos.Lector["Apellidos"];
                     aux.nombres = (string)datos.Lector["Nombres"];
                     aux.fechaNacimiento = (DateTime)datos.Lector["FechaNacimiento"];
                     aux.sexo = (string)datos.Lector["Sexo"];
-                    aux.telefono = (dynamic)datos.Lector["telefono"];
-                    aux.mail = (dynamic)datos.Lector["mail"];  //(como hacer par string null)
+                    aux.telefono = (string)datos.Lector["Telefono"];
+                    aux.mail = (string)datos.Lector["Mail"];  
                     aux.tipoDocumento = new TipoDocumento();
-                    //aux.tipoDocumento.id = (Int16)datos.Lector["Id"];
+                    //aux.tipoDocumento.id = (short)datos.Lector["Id"];
                     aux.tipoDocumento.descripcion = (string)datos.Lector["TipoDoc"];
                     aux.nroDocumento = (Int64)datos.Lector["NroDocumento"];
-                   
+
                     aux.obraSocial = new ObraSocial();
-                    //aux.obraSocial.id = (Int32)datos.Lector["Id"];
+                    //aux.obraSocial.id = datos.Lector["Id"];
                     aux.obraSocial.descripcion = (string)datos.Lector["Obra_Social"];
                     
                     aux.fechaAlta = (DateTime)datos.Lector["FechaAlta"];
@@ -59,5 +58,29 @@ namespace TurnosNegocio
 
         }
 
-    }
+
+
+
+
+
+
+
+        /*
+        public void eliminarUsuario(int id)
+        {
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearConsulta("delete from Personas where id = @id");
+                datos.SetearParametro("@id", id);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        */
+        }
 }
