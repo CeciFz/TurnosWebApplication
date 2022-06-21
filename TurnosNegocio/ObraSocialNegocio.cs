@@ -45,7 +45,7 @@ namespace TurnosNegocio
         public void agregarObraSocial(ObraSocial obraSocial)
         {
             AccesoDatos datos = new AccesoDatos();
-
+            
             try
             {
                 datos.setearConsulta("Insert into Obras_Sociales (Descripcion) VALUES (@Descripcion)");

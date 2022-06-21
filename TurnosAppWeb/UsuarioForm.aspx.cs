@@ -21,7 +21,7 @@ namespace TurnosAppWeb
             PerfilUsuarioNegocio perfilUsuarioNeg = new PerfilUsuarioNegocio();
 
             if (!IsPostBack)
-            {
+            {   
                 ddlTipoDocumento.DataSource = tipoDocumentoNeg.listarTiposDeDocumento();
                 ddlTipoDocumento.DataBind();
                 ddlObraSocial.DataSource = obraSocialNeg.listarObrasSociales();
@@ -31,10 +31,13 @@ namespace TurnosAppWeb
             }
 
             if (Request.QueryString["id"] != null && btnModificar.Visible==false)
-            {
+            {   //captura el id 
                 Int64 id = Int64.Parse(Request.QueryString["id"].ToString());
+                // copia en lista temporal >> lo que hay en session
                 List<Usuario> temporal = ((List<Usuario>)Session["listaUsuarios"]);
+                //crea un objeto usuario llamado seleccionado y le copia lo que hay en la lista temporal q viene de session
                 Usuario seleccionado = temporal.Find(x => x.id == id);
+                //agrega los datos la pantalla .
                 txtApellidos.Text = seleccionado.apellidos;
                 txtNombres.Text = seleccionado.nombres;
                 txtFechaNac.Text = seleccionado.fechaNacimiento.ToString();
@@ -51,27 +54,65 @@ namespace TurnosAppWeb
 
         }
 
+
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
-            Usuario usuario = new Usuario();
+            ///agregar try y catch para que no se rompa cuando carga mal los datoss...
 
-            usuario.apellidos = txtApellidos.Text;
-            usuario.nombres = txtNombres.Text;
-            usuario.fechaNacimiento = DateTime.Parse(txtFechaNac.Text);
-            usuario.sexo = ddlSexo.SelectedValue;
-            //usuario.tipoDocumento = TipoDocumento.Parse(ddlTipoDocumento.SelectedValue);
-            usuario.nroDocumento = Int64.Parse(txtNroDocumento.Text);
-            usuario.telefono = txtTelefono.Text;
-            usuario.mail = txtMail.Text;
-            //usuario.obraSocial = ddlObraSocial.SelectedValue;
+            try
+            {
+                Usuario usuario = new Usuario();
 
-            ((List<Usuario>)Session["listaUsuarios"]).Add(usuario);
+                usuario.apellidos = txtApellidos.Text;
+                usuario.nombres = txtNombres.Text;
+                usuario.fechaNacimiento = DateTime.Parse(txtFechaNac.Text);
+                usuario.sexo = ddlSexo.SelectedValue;
+                //usuario.tipoDocumento = TipoDocumento.Parse(ddlTipoDocumento.SelectedValue);
+                usuario.nroDocumento = Int64.Parse(txtNroDocumento.Text);
+                usuario.telefono = txtTelefono.Text;
+                usuario.mail = txtMail.Text;
+                //usuario.obraSocial = ddlObraSocial.SelectedValue;
 
-            Response.Redirect("UsuarioListado.aspx");
+                ((List<Usuario>)Session["listaUsuarios"]).Add(usuario);
+
+                Response.Redirect("UsuarioListado.aspx");
+
+            }
+            catch (Exception ex)
+            {
+                
+                //throw ex;
+            }
+            
         }
 
+        ///agregar try y catch para que no se rompa cuando carga mal los datoss...
         protected void btnModificar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Usuario usuario = new Usuario();
+
+                usuario.apellidos = txtApellidos.Text;
+                usuario.nombres = txtNombres.Text;
+                usuario.fechaNacimiento = DateTime.Parse(txtFechaNac.Text);
+                usuario.sexo = ddlSexo.SelectedValue;
+                //usuario.tipoDocumento = TipoDocumento.Parse(ddlTipoDocumento.SelectedValue);
+                usuario.nroDocumento = Int64.Parse(txtNroDocumento.Text);
+                usuario.telefono = txtTelefono.Text;
+                usuario.mail = txtMail.Text;
+                //usuario.obraSocial = ddlObraSocial.SelectedValue;
+
+                ((List<Usuario>)Session["listaUsuarios"]).Add(usuario);
+
+                Response.Redirect("UsuarioListado.aspx");
+            }
+            catch (Exception ex)
+            {
+
+                //throw;
+            }
+            
 
         }
     }
