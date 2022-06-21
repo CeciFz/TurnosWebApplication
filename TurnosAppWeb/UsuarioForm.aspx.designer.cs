@@ -33,13 +33,13 @@ namespace TurnosAppWeb
         protected global::System.Web.UI.WebControls.TextBox txtNombres;
 
         /// <summary>
-        /// txtFecha control.
+        /// txtFechaNac control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFecha;
+        protected global::System.Web.UI.WebControls.TextBox txtFechaNac;
 
         /// <summary>
         /// ddlSexo control.
@@ -112,5 +112,14 @@ namespace TurnosAppWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnRegistrar;
+
+        /// <summary>
+        /// btnModificar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnModificar;
     }
 }

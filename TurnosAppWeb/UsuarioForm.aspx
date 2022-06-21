@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TunosWeb.Master" AutoEventWireup="true" CodeBehind="AdministrarUsuarios.aspx.cs" Inherits="TurnosAppWeb.AdministrarUsuarios" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TunosWeb.Master" AutoEventWireup="true" CodeBehind="UsuarioForm.aspx.cs" Inherits="TurnosAppWeb.AdministrarUsuarios" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -16,7 +16,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="txtFecha" class="form-label">Fecha de Nacimiento</label>
-                    <asp:TextBox runat="server" ID="txtFecha" TextMode="Date" CssClass="form-control"/>
+                    <asp:TextBox runat="server" ID="txtFechaNac" TextMode="Date" CssClass="form-control"/>
                 </div>            
                 <div class="mb-3">
                     <label for="ddlSexo" class="form-label">Sexo</label>
@@ -74,7 +74,8 @@
                         <asp:ListItem Text="Profesional" />                       
                     </asp:DropDownList>
                 </div>
-                <asp:Button ID="btnRegistrar" runat="server" Text="Registrar" CssClass="btn btn-primary m-2 " />
+                <asp:Button ID="btnRegistrar" runat="server" Text="Registrar" OnClick="btnRegistrar_Click" CssClass="btn btn-primary m-2" />
+                <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" CssClass="btn btn-primary m-2"  Visible="false" />
             </div>
         </div>
     </div>

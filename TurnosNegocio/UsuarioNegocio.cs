@@ -7,11 +7,11 @@ using TurnosDominio;
 
 namespace TurnosNegocio
 {
-    public class PersonaNegocio
+    public class UsuarioNegocio
     {
-        public List<Persona> listarpersonas()
+        public List<Usuario> listarUsuarios()
         {
-            List<Persona> lista = new List<Persona>();
+            List<Usuario> lista = new List<Usuario>();
             AccesoDatos datos = new AccesoDatos();
 
             try
@@ -21,7 +21,7 @@ namespace TurnosNegocio
                 while (datos.Lector.Read())
                 {
 
-                    Persona aux = new Persona();
+                    Usuario aux = new Usuario();
 
                     aux.apellidos = (string)datos.Lector["Apellidos"];
                     aux.nombres = (string)datos.Lector["Nombres"];
@@ -58,5 +58,29 @@ namespace TurnosNegocio
 
         }
 
-    }
+
+
+
+
+
+
+
+        /*
+        public void eliminarUsuario(int id)
+        {
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearConsulta("delete from Personas where id = @id");
+                datos.SetearParametro("@id", id);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        */
+        }
 }

@@ -67,30 +67,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AdministrarUsuarios.aspx" />
-    <Content Include="altaobrasocial.aspx" />
+    <Content Include="UsuarioForm.aspx" />
+    <Content Include="ObraSocialForm.aspx" />
     <Content Include="Content\Style.css" />
     <Content Include="default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="listados.aspx" />
-    <Content Include="Usuarios.aspx" />
+    <Content Include="ObraSocialListado.aspx" />
+    <Content Include="UsuarioListado.aspx" />
     <Content Include="Especialidades.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdministrarUsuarios.aspx.cs">
-      <DependentUpon>AdministrarUsuarios.aspx</DependentUpon>
+    <Compile Include="UsuarioForm.aspx.cs">
+      <DependentUpon>UsuarioForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdministrarUsuarios.aspx.designer.cs">
-      <DependentUpon>AdministrarUsuarios.aspx</DependentUpon>
+    <Compile Include="UsuarioForm.aspx.designer.cs">
+      <DependentUpon>UsuarioForm.aspx</DependentUpon>
     </Compile>
-    <Compile Include="altaobrasocial.aspx.cs">
-      <DependentUpon>altaobrasocial.aspx</DependentUpon>
+    <Compile Include="ObraSocialForm.aspx.cs">
+      <DependentUpon>ObraSocialForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="altaobrasocial.aspx.designer.cs">
-      <DependentUpon>altaobrasocial.aspx</DependentUpon>
+    <Compile Include="ObraSocialForm.aspx.designer.cs">
+      <DependentUpon>ObraSocialForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
@@ -109,12 +110,19 @@
     <Compile Include="listados.aspx.designer.cs">
       <DependentUpon>listados.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Usuarios.aspx.cs">
-      <DependentUpon>Usuarios.aspx</DependentUpon>
+    <Compile Include="ObraSocialListado.aspx.cs">
+      <DependentUpon>ObraSocialListado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Usuarios.aspx.designer.cs">
-      <DependentUpon>Usuarios.aspx</DependentUpon>
+    <Compile Include="ObraSocialListado.aspx.designer.cs">
+      <DependentUpon>ObraSocialListado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UsuarioListado.aspx.cs">
+      <DependentUpon>UsuarioListado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UsuarioListado.aspx.designer.cs">
+      <DependentUpon>UsuarioListado.aspx</DependentUpon>
     </Compile>
     <Compile Include="Especialidades.aspx.cs">
       <DependentUpon>Especialidades.aspx</DependentUpon>

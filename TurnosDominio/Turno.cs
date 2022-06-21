@@ -12,7 +12,7 @@ namespace TurnosDominio
         public DateTime fecha { get; set; }
         public DateTime hora { get; set; }
         //public Profesional profesional { get; set; }
-        public Persona paciente { get; set; }
+        public Usuario paciente { get; set; }
         public string observaciones { get; set; }
         public EstadoTurno estado { get; set; }
 

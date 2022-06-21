@@ -37,13 +37,13 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Administración</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="AdministrarUsuarios.aspx">Alta Usuarios</a></li>
-                                <li><a class="dropdown-item" href="#">Modificar Usuarios</a></li>
+                                <li><a class="dropdown-item" href="UsuarioForm.aspx">Alta Usuarios</a></li>
+                                <li><a class="dropdown-item" href="UsuarioListado.aspx">Modificar Usuarios</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="altaobrasocial.aspx">Alta Obra Social</a></li>
-                                <li><a class="dropdown-item" href="#">Modificar Obra Social</a></li>
+                                <li><a class="dropdown-item" href="ObraSocialForm.aspx">Alta Obra Social</a></li>
+                                <li><a class="dropdown-item" href="ObraSocialListado.aspx">Modificar Obra Social</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
