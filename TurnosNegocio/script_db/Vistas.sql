@@ -2,8 +2,8 @@ Use turnosApp
 go
 
 /* VISTA PACIENTES */
-Create View VW_Pacientes AS
-	Select p.Apellidos, p.Nombres, p.FechaNacimiento, p.Sexo, p.IdTipoDocumento,p.telefono,p.mail,
+	create View VW_Pacientes AS
+	Select  p.Id,p.Apellidos, p.Nombres, p.FechaNacimiento, p.Sexo, p.IdTipoDocumento,p.telefono,p.mail,
 	p.IdObraSocial, p.FechaAlta, pp.IdPerfilUsuario
 	from Personas p
 	inner join Perfil_X_Persona pp on p.Id = pp.IdPersona
@@ -44,8 +44,8 @@ go
 
 
 /* VISTA PERSONAS */
-create View VW_Personas AS
-	Select p.Apellidos, p.Nombres, p.FechaNacimiento, p.Sexo, td.Descripcion as 'TipoDoc', p.NroDocumento, p.telefono,p.mail,
+  create View VW_Personas AS
+	Select p.Id,p.Apellidos, p.Nombres, p.FechaNacimiento, p.Sexo, td.Descripcion as 'TipoDoc', p.NroDocumento, p.telefono,p.mail,
 	os.Descripcion as 'Obra_Social', p.FechaAlta
 	from Personas p
 	inner join Tipos_Documentos td on p.IdTipoDocumento = td.Id

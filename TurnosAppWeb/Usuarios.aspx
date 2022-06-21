@@ -13,8 +13,9 @@
 
 
             <div class="row col-md-12 justify-content-center">
-                <asp:GridView ID="listacontactos" runat="server" cssClass="table table-dark table-borderer" AutoGenerateColumns="false">
+                <asp:GridView ID="listacontactos" runat="server" OnSelectedIndexChanged="listacontactos_SelectedIndexChanged" DataKeyNames="Id" cssClass="table table-dark table-borderer" AutoGenerateColumns="false">
                     <Columns>
+                       
                         <asp:BoundField HeaderText="Apellidos" DataField="apellidos" />
                         <asp:BoundField HeaderText="Nombres" DataField="nombres" />
                         <asp:BoundField HeaderText="Fecha de Nacimiento" DataField="fechaNacimiento" />
@@ -25,7 +26,7 @@
                          <asp:BoundField HeaderText="Mail" DataField="mail" />
                         <asp:BoundField HeaderText="Obra social" DataField="obraSocial" />
                         <asp:BoundField HeaderText="Fecha de alta" DataField="fechaAlta" />
-                         
+                         <asp:CommandField ShowSelectButton="true" SelectText="Modificar" HeaderText="Acción" />
                     </Columns>    
                 </asp:GridView>
             </div>

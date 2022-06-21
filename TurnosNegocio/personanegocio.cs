@@ -16,20 +16,20 @@ namespace TurnosNegocio
 
             try
             {
-                datos.setearConsulta("select Apellidos,Nombres,FechaNacimiento,Sexo,TipoDoc,NroDocumento,Obra_Social, FechaAlta from VW_Personas");
+                datos.setearConsulta("select Id,Apellidos,Nombres,FechaNacimiento,Sexo,mail,telefono,TipoDoc,NroDocumento,Obra_Social, FechaAlta from VW_Personas");
                 datos.lecturaDatos();
                 //telefono,mail, falta agregar esto aa setear consulta
                 while (datos.Lector.Read())
                 {
 
                     Persona aux = new Persona();
-
+                    aux.Id = (Int64)datos.Lector["Id"];
                     aux.apellidos = (string)datos.Lector["Apellidos"];
                     aux.nombres = (string)datos.Lector["Nombres"];
                     aux.fechaNacimiento = (DateTime)datos.Lector["FechaNacimiento"];
                     aux.sexo = (string)datos.Lector["Sexo"];
-                   // aux.telefono = (string)datos.Lector["telefono"];
-                    //aux.mail = (DBNull)datos.Lector["mail"];  (como hacer par string null)
+                    aux.telefono = (dynamic)datos.Lector["telefono"];
+                    aux.mail = (dynamic)datos.Lector["mail"];  //(como hacer par string null)
                     aux.tipoDocumento = new TipoDocumento();
                     //aux.tipoDocumento.id = (Int16)datos.Lector["Id"];
                     aux.tipoDocumento.descripcion = (string)datos.Lector["TipoDoc"];

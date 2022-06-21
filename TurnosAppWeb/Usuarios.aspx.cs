@@ -22,5 +22,10 @@ namespace TurnosAppWeb
         {
             // colocaremos para filtar los contactos y vuelva a cargar la pgina nuevamente
         }
+
+        protected void listacontactos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var capturaid = listacontactos.SelectedDataKey.Value.ToString();
+        }
     }
 }
