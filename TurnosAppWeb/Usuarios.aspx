@@ -7,11 +7,8 @@
 
             <div class="mb-2">
                     <asp:Button ID="btnbuscar" runat="server" Text="Buscar Contacto" CssClass="btn btn-primary m-2 " onclick="btnbuscar_Click" />
-                    <asp:TextBox runat="server" ID="txtbuscar" CssClass="form-control"/>
-                     
-                </div> 
-
-
+                    <asp:TextBox runat="server" ID="txtbuscar" CssClass="form-control"/>     
+            </div> 
             <div class="row col-md-12 justify-content-center">
                 <asp:GridView ID="listacontactos" runat="server" cssClass="table table-dark table-borderer" AutoGenerateColumns="false">
                     <Columns>

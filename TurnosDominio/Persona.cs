@@ -16,7 +16,7 @@ namespace TurnosDominio
         public TipoDocumento tipoDocumento { get; set; }
         public Int64 nroDocumento { get; set; }
         public string telefono { get; set; }
-        public DBNull mail { get; set; } //verificarrrr tipo null string
+        public string mail { get; set; }
         public ObraSocial obraSocial { get; set; }
         public DateTime fechaAlta { get; set; }
         

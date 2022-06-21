@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
         
     <div>
-        <asp:GridView ID="listaespecialidades" runat="server" cssclass="table"></asp:GridView>
+        <asp:GridView ID="listaespecialidades" runat="server" cssClass="table"></asp:GridView>
     </div>
 
 

@@ -32,9 +32,9 @@ select * from Personas
 /* PERSONAS */
 
 SET IDENTITY_INSERT [dbo].[Personas] ON 
-INSERT [dbo].[Personas] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[telefono],[mail],[IdObraSocial]) VALUES (1,'Maldonado','Alex',N'24/03/1994' ,'M',1,30459252,11250202,'Maldonado@gmail.com',6)
-INSERT [dbo].[Personas] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[telefono],[mail],[IdObraSocial]) VALUES (2,'Longo','Enrico',N'09/08/1997' ,'M',1,39459251,11257562,'longo@gmail.com',1)
-INSERT [dbo].[Personas] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[telefono],[mail],[IdObraSocial]) VALUES (3,'Paredes','Helen',N'29/03/1988' ,'F',1,39459183,11235960,'peredeshelen@gmail.com',10)
+INSERT [dbo].[Personas] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[Telefono],[Mail],[IdObraSocial]) VALUES (1,'Maldonado','Alex',N'24/03/1994' ,'M',1,30459252,11250202,'Maldonado@gmail.com',6)
+INSERT [dbo].[Personas] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[Telefono],[Mail],[IdObraSocial]) VALUES (2,'Longo','Enrico',N'09/08/1997' ,'M',1,39459251,11257562,'longo@gmail.com',1)
+INSERT [dbo].[Personas] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[Telefono],[Mail],[IdObraSocial]) VALUES (3,'Paredes','Helen',N'29/03/1988' ,'F',1,39459183,11235960,'peredeshelen@gmail.com',10)
 INSERT [dbo].[Personas] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (4,'González','Paolo',N'06/10/2002' ,'F',1,39259109,6)
 INSERT [dbo].[Personas] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (5,'Salazar','Angela',N'05/01/1968' ,'M',1,39459199,4)
 INSERT [dbo].[Personas] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (6,'Rizzo','Yarela',N'17/10/1956' ,'F',1,39449105,2)

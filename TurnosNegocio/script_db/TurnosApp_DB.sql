@@ -22,7 +22,7 @@ Create Table Obras_Sociales(
 )
 go
 
-create Table Personas(
+Create Table Personas(
 	Id bigint not null primary key identity(1,1),
 	Apellidos varchar(100) not null,
 	Nombres varchar(100) not null,
@@ -30,8 +30,8 @@ create Table Personas(
 	Sexo char not null Check (Sexo in ('M', 'F', 'O')),
 	IdTipoDocumento smallint not null Foreign Key References Tipos_Documentos(Id),
 	NroDocumento bigint not null unique,
-	telefono varchar(50) null,
-	mail varchar(100) null,
+	Telefono varchar(50) null,
+	Mail varchar(100) null,
 	IdObraSocial int null Foreign Key References Obras_Sociales(Id),
 	FechaAlta date not null default (getdate()),
 	Activo bit not null default(1)
