@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using TurnosDominio;
+using TurnosNegocio;
 
 namespace TurnosAppWeb
 {
@@ -12,20 +13,30 @@ namespace TurnosAppWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.QueryString["id"] != null)
+            var id = Request.QueryString["ide"];
+            txtid.Text = id;
+            // no me andaba si habilito estoooo :(
+          /*  if (Request.QueryString["ide"] != null )
             {
-                int id = int.Parse(Request.QueryString["id"].ToString());
+                Int32 id = int.Parse(Request.QueryString["ide"].ToString());
                 List<Especialidad> temporal = ((List<Especialidad>) Session["listaespecialidades"]);
                 Especialidad especialidad = temporal.Find(x => x.id == id);
+                txtid.Text = especialidad.id.ToString();
+               Txtdescripcione.Text = especialidad.descripcion;
 
-                txtDescripcion.Text = especialidad.descripcion;
-
-            }
+            }*/
         }
 
-        protected void btnModificar_Click(object sender, EventArgs e)
+        protected void btnModificare_Click(object sender, EventArgs e)
         {
+            Especialidad objeto = new Especialidad();
+            EspecialidadNegocio negocio = new EspecialidadNegocio();
 
+            objeto.id = Int32.Parse(txtid.Text);
+            objeto.descripcion =Txtdescripcione.Text;
+            negocio.modificarEspecialidad(objeto);
+             Session.RemoveAll();
+            Response.Redirect("especialidades.aspx");
         }
     }
 }

@@ -11,10 +11,14 @@
                 <h1 class="align-self-center"> Modificar Especialidad seleccionada</h1>
                 <br />
                 <br />
+                    <label for="txtid" class="form-label">ID Especialidad</label>
+                    <asp:TextBox runat="server" id="txtid" CssClass="form-control"/>
+                
+                <br />
                     <label for="txtDescripcion" class="form-label">Modificar Nombre Especialidad</label>
-                    <asp:TextBox runat="server" ID="txtDescripcion" CssClass="form-control"/>
+                    <asp:TextBox runat="server" id="Txtdescripcione" CssClass="form-control"/>
                 </div>
-                <asp:Button ID="btnModificar" runat="server" Text="Modificar" onclick="btnModificar_Click" CssClass="btn btn-primary m-2" />
+                <asp:Button ID="btnModificare" runat="server" Text="Modificar" OnClick="btnModificare_Click" CssClass="btn btn-primary m-2" Visible="true" />
                 
             </div>
         

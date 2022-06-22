@@ -14,7 +14,7 @@ namespace TurnosAppWeb
         protected void Page_Load(object sender, EventArgs e)
         {
             //se carga la lista a session para luego mostrarla en modificar 
-            if (Session["listaespecialidades"] == null)
+            if (Session["listaespecialidades"] == null )
             {
                 EspecialidadNegocio negocios = new EspecialidadNegocio();
                 Session.Add("listaespecialidades", negocios.listarEspecialidades());
@@ -25,10 +25,10 @@ namespace TurnosAppWeb
 
 
 
-           EspecialidadNegocio negocio = new EspecialidadNegocio();
+          EspecialidadNegocio negocio = new EspecialidadNegocio();
             
             listaespecialidades.DataSource = negocio.listarEspecialidades();
-            listaespecialidades.DataBind();
+           listaespecialidades.DataBind();
 
 
 
@@ -38,7 +38,7 @@ namespace TurnosAppWeb
         {
             //captura el id seleccionado
             var id = listaespecialidades.SelectedDataKey.Value.ToString();
-            Response.Redirect("modificar_especialidad.aspx?id=" + id);
+            Response.Redirect("modificar_especialidad.aspx?ide=" + id);
         }
 
         protected void btnbuscar_Click(object sender, EventArgs e)
