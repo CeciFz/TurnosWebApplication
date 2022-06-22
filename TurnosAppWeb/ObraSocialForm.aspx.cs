@@ -34,6 +34,7 @@ namespace TurnosAppWeb
                 obraSocial.descripcion = txtDescripcion.Text;
                 negocio.agregarObraSocial(obraSocial);
 
+            // se agrega a la lista session para mostrar en el modificar
                 ((List<ObraSocial>)Session["listaObrasSociales"]).Add(obraSocial);
                 Response.Redirect("ObraSocialListado.aspx");
 

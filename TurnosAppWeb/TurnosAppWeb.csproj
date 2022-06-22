@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="alta_especialidad.aspx" />
     <Content Include="UsuarioForm.aspx" />
     <Content Include="ObraSocialForm.aspx" />
     <Content Include="Content\Style.css" />
@@ -79,6 +80,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="alta_especialidad.aspx.cs">
+      <DependentUpon>alta_especialidad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="alta_especialidad.aspx.designer.cs">
+      <DependentUpon>alta_especialidad.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UsuarioForm.aspx.cs">
       <DependentUpon>UsuarioForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

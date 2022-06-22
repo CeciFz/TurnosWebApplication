@@ -17,5 +17,15 @@ namespace TurnosAppWeb
             listaespecialidades.DataSource = negocio.listarEspecialidades();
             listaespecialidades.DataBind();
         }
+
+        protected void listaespecialidades_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //accion de editar
+        }
+
+        protected void btnbuscar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

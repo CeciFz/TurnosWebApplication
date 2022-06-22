@@ -47,6 +47,13 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
+                                <li><a class="dropdown-item" href="alta_especialidad.aspx">Alta Especialidad</a></li>
+                                <li><a class="dropdown-item" href="especialidades.aspx">Modificar Especialidad</a></li>
+                                <li>
+                                    
+
+                                    <hr class="dropdown-divider">
+                                </li>
                                 <li><a class="dropdown-item" href="#">Nuevo Turno</a></li>
                                 <li><a class="dropdown-item" href="#">Modificar Turno</a></li>
                                 <li>
