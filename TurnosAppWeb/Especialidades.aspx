@@ -17,7 +17,7 @@
 
             <div class="col-md-7">
 
-        <asp:GridView ID="listaespecialidades" runat="server" cssClass="table table-dark" AutoGenerateColumns="false" OnSelectedIndexChanged="listaespecialidades_SelectedIndexChanged">
+        <asp:GridView ID="listaespecialidades" DataKeyNames="id" runat="server" cssClass="table table-dark" AutoGenerateColumns="false" OnSelectedIndexChanged="listaespecialidades_SelectedIndexChanged">
             <Columns>
                 <asp:BoundField HeaderText="Id" DataField="id" />
                 <asp:BoundField HeaderText="Descripción" DataField="descripcion" />

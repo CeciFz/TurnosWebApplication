@@ -25,7 +25,7 @@ namespace TurnosAppWeb
                 especialidad.descripcion = txtDescripcion.Text;
                 negocio.agregarEspecialidad(especialidad);
 
-                //((List<Especialidad>Session ["listaespecialidades"]).add(especialidad);
+                
                 Response.Redirect("especialidades.aspx");
             }
             catch (Exception ex)
