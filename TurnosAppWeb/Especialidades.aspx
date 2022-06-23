@@ -10,7 +10,7 @@
         <div class="container">
               <div class="mb-3">
                     <asp:Button ID="btnbuscar" runat="server" Text="Buscar Especialidad" CssClass="btn btn-primary m-2 " onclick="btnbuscar_Click" />
-                    <asp:TextBox runat="server" ID="txtbuscar" CssClass="form-control px-lg-3"/>     
+                    <asp:TextBox runat="server" ID="txtbuscar"  CssClass="form-control px-lg-3"/>     
             </div>  
 
 
