@@ -6,8 +6,8 @@
         <div class="container">
 
             <div class="mb-2">
-                    <asp:Button ID="btnbuscar" runat="server" Text="Buscar Contacto" CssClass="btn btn-primary m-2 " onclick="btnbuscar_Click" />
-                    <asp:TextBox runat="server" ID="txtbuscar" CssClass="form-control"/>     
+                    <asp:Button ID="btnbuscar" runat="server" Text="Buscar Contacto: DNI" CssClass="btn btn-primary m-2 " onclick="btnbuscar_Click" />
+                    <asp:TextBox runat="server" ID="txtbuscaru"  CssClass="form-control"/>     
             </div> 
             <div class="row col-md-12 justify-content-center">
                 <asp:GridView ID="dgvlistaUsuarios" runat="server" DataKeyNames="id" OnSelectedIndexChanged="listacontactos_SelectedIndexChanged" cssClass="table table-dark table-borderer" AutoGenerateColumns="false">
