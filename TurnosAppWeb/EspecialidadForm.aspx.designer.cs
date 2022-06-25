@@ -11,34 +11,52 @@ namespace TurnosAppWeb
 {
 
 
-    public partial class UsuarioListado
+    public partial class EspecialidadForm
     {
 
         /// <summary>
-        /// btnbuscar control.
+        /// txtId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnbuscar;
+        protected global::System.Web.UI.WebControls.TextBox txtId;
 
         /// <summary>
-        /// txtbuscaru control.
+        /// txtDescripcion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtbuscaru;
+        protected global::System.Web.UI.WebControls.TextBox txtDescripcion;
 
         /// <summary>
-        /// dgvlistaUsuarios control.
+        /// btnRegistrar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvlistaUsuarios;
+        protected global::System.Web.UI.WebControls.Button btnRegistrar;
+
+        /// <summary>
+        /// btnModificar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnModificar;
+
+        /// <summary>
+        /// btnEliminar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEliminar;
     }
 }

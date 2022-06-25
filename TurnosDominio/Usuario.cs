@@ -19,12 +19,9 @@ namespace TurnosDominio
         public string mail { get; set; }
         public ObraSocial obraSocial { get; set; }
         public DateTime fechaAlta { get; set; }
-        
+        List<PerfilUsuario> perfilUsuarios { get; set; }
         public bool activo { get; set; }
 
-        public override string ToString()
-        {
-            return apellidos + ", " + nombres;
-        }
+
     }
 }

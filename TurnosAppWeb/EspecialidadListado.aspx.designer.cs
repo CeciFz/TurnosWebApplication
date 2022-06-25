@@ -11,8 +11,17 @@ namespace TurnosAppWeb
 {
 
 
-    public partial class UsuarioListado
+    public partial class EspecialidadListado
     {
+
+        /// <summary>
+        /// txtbuscar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtbuscar;
 
         /// <summary>
         /// btnbuscar control.
@@ -24,21 +33,12 @@ namespace TurnosAppWeb
         protected global::System.Web.UI.WebControls.Button btnbuscar;
 
         /// <summary>
-        /// txtbuscaru control.
+        /// dgvlistaespecialidades control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtbuscaru;
-
-        /// <summary>
-        /// dgvlistaUsuarios control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvlistaUsuarios;
+        protected global::System.Web.UI.WebControls.GridView dgvlistaespecialidades;
     }
 }

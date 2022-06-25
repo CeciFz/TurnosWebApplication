@@ -67,8 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="alta_especialidad.aspx" />
-    <Content Include="modificar_especialidad.aspx" />
+    <Content Include="EspecialidadForm.aspx" />
     <Content Include="UsuarioForm.aspx" />
     <Content Include="ObraSocialForm.aspx" />
     <Content Include="Content\Style.css" />
@@ -77,23 +76,16 @@
     <Content Include="listados.aspx" />
     <Content Include="ObraSocialListado.aspx" />
     <Content Include="UsuarioListado.aspx" />
-    <Content Include="Especialidades.aspx" />
+    <Content Include="EspecialidadListado.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="alta_especialidad.aspx.cs">
-      <DependentUpon>alta_especialidad.aspx</DependentUpon>
+    <Compile Include="EspecialidadForm.aspx.cs">
+      <DependentUpon>EspecialidadForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="alta_especialidad.aspx.designer.cs">
-      <DependentUpon>alta_especialidad.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="modificar_especialidad.aspx.cs">
-      <DependentUpon>modificar_especialidad.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="modificar_especialidad.aspx.designer.cs">
-      <DependentUpon>modificar_especialidad.aspx</DependentUpon>
+    <Compile Include="EspecialidadForm.aspx.designer.cs">
+      <DependentUpon>EspecialidadForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="UsuarioForm.aspx.cs">
       <DependentUpon>UsuarioForm.aspx</DependentUpon>
@@ -140,12 +132,12 @@
     <Compile Include="UsuarioListado.aspx.designer.cs">
       <DependentUpon>UsuarioListado.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Especialidades.aspx.cs">
-      <DependentUpon>Especialidades.aspx</DependentUpon>
+    <Compile Include="EspecialidadListado.aspx.cs">
+      <DependentUpon>EspecialidadListado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Especialidades.aspx.designer.cs">
-      <DependentUpon>Especialidades.aspx</DependentUpon>
+    <Compile Include="EspecialidadListado.aspx.designer.cs">
+      <DependentUpon>EspecialidadListado.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TunosWeb.Master.cs">
