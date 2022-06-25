@@ -8,7 +8,7 @@
 
 html {
     text-decoration: none;
-    //font-size: 62.5%;
+    font-size: 62.5%;
 }
 
 body {
@@ -58,7 +58,7 @@ footer {
     border-color: #39284b;
 }
 
-    .default .btn:hover {
-        background-color: #39284b;
-        border-color: #39284b;
-    }
+.default .btn:hover {
+    background-color: #39284b;
+    border-color: #39284b;
+}

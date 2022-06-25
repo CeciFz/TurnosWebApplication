@@ -23,6 +23,7 @@ namespace TurnosAppWeb
 
                 btnRegistrar.Visible = false;
                 btnModificar.Visible = true;
+                btnEliminar.Visible = true;
             }
         }
 
@@ -49,6 +50,18 @@ namespace TurnosAppWeb
             obraSocial.descripcion = txtDescripcion.Text;
 
             negocio.modificarObraSocial(obraSocial);
+            Session.RemoveAll();   // TODO: Ver si esto está ok
+            Response.Redirect("ObraSocialListado.aspx");
+
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            ObraSocialNegocio negocio = new ObraSocialNegocio();
+
+            int id = Int32.Parse(txtId.Text);
+
+            negocio.eliminarLogicoObraSocial(id);
             Session.RemoveAll();   // TODO: Ver si esto está ok
             Response.Redirect("ObraSocialListado.aspx");
 

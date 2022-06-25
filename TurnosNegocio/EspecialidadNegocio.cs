@@ -10,15 +10,15 @@ namespace TurnosNegocio
 {
     public class EspecialidadNegocio
     {
-        public List<Especialidad> listarEspecialidades()
+        private AccesoDatos datos = new AccesoDatos();
 
+        public List<Especialidad> listarEspecialidades()
         {
             List<Especialidad> lista = new List<Especialidad>();
-            AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("select Id, Descripcion from Especialidades");
+                datos.setearConsulta("select Id, Descripcion, Activo from Especialidades");
                 datos.lecturaDatos();
 
                 while (datos.Lector.Read())
@@ -26,9 +26,8 @@ namespace TurnosNegocio
                     Especialidad aux = new Especialidad();
                     aux.id = (int)datos.Lector["Id"];
                     aux.descripcion = (string)datos.Lector["Descripcion"];
-                    //aux.activo = (bool)datos.Lector["Activo"];
 
-                    lista.Add(aux);
+                    if (aux.activo = (bool)datos.Lector["Activo"]) lista.Add(aux);
                 }
 
                 return lista;
@@ -45,11 +44,8 @@ namespace TurnosNegocio
             }
         }
 
-
         public void agregarEspecialidad(Especialidad especialidad)
         {
-            AccesoDatos datos = new AccesoDatos();
-
             try
             {
                 datos.setearConsulta("Insert into Especialidades (Descripcion) VALUES (@Descripcion)");
@@ -69,18 +65,33 @@ namespace TurnosNegocio
             }
         }
 
-
-
         public void modificarEspecialidad(Especialidad especialidad)
         {
-            AccesoDatos datos = new AccesoDatos();
-
             try
             {
                 datos.setearConsulta("Update Especialidades Set Descripcion = @descripcion where Id = @id");
                 datos.SetearParametro("@descripcion",especialidad.descripcion);
                 datos.SetearParametro("@id",especialidad.id);
 
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void eliminarLogicoEspecialidad(int id)
+        {
+            try
+            {
+                datos.setearConsulta("Update Especialidades set Activo = 0 where id = @Id");
+                datos.SetearParametro("@Id", id);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
