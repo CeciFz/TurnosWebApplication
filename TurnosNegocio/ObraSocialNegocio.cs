@@ -10,14 +10,14 @@ namespace TurnosNegocio
 {
     public class ObraSocialNegocio
     {
-        public List<ObraSocial> listarObrasSociales()
+        private AccesoDatos datos = new AccesoDatos();
+        public List<ObraSocial> listarObrasSociales()  //No muestra los que no están activos
         {
             List<ObraSocial> lista = new List<ObraSocial>();
-            AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("Select Id, Descripcion from Obras_Sociales");
+                datos.setearConsulta("Select Id, Descripcion, Activo from Obras_Sociales");
                 datos.lecturaDatos();
 
                 while (datos.Lector.Read())
@@ -26,7 +26,7 @@ namespace TurnosNegocio
                     aux.id = (Int32)datos.Lector["Id"];
                     aux.descripcion = (string)datos.Lector["Descripcion"];
 
-                    lista.Add(aux);
+                    if(aux.activo=(bool)datos.Lector["Activo"]) lista.Add(aux);
                 }
 
                 return lista;
@@ -44,8 +44,7 @@ namespace TurnosNegocio
 
         public void agregarObraSocial(ObraSocial obraSocial)
         {
-            AccesoDatos datos = new AccesoDatos();
-            
+ 
             try
             {
                 datos.setearConsulta("Insert into Obras_Sociales (Descripcion) VALUES (@Descripcion)");
@@ -65,17 +64,33 @@ namespace TurnosNegocio
             }
         }
 
-
         public void modificarObraSocial(ObraSocial obraSocial)
         {
-            AccesoDatos datos = new AccesoDatos();
-
             try
             {
                 datos.setearConsulta("Update Obras_Sociales Set Descripcion = @descripcion where Id = @id");
                 datos.SetearParametro("@descripcion", obraSocial.descripcion);
                 datos.SetearParametro("@id", obraSocial.id);
 
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void eliminarLogicoObraSocial(int id)
+        {
+            try
+            {
+                datos.setearConsulta("Update Obras_Sociales set Activo = 0 where id = @Id");
+                datos.SetearParametro("@Id", id);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)

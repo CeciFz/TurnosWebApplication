@@ -45,16 +45,17 @@ go
 
 /* VISTA Usuarios */
 create View VW_Usuarios AS
-	Select u.Apellidos, u.Nombres, u.FechaNacimiento, u.Sexo, td.Descripcion as 'TipoDoc', u.NroDocumento,
+	Select u.Id, u.Apellidos, u.Nombres, u.FechaNacimiento, u.Sexo, td.Descripcion as 'TipoDoc', u.NroDocumento,
 	os.Descripcion as 'Obra_Social', ISNULL(u.Telefono,'no informado') as Telefono,
 	ISNULL(u.Mail,'no informado') as Mail, u.FechaAlta
 	from Usuarios u
 	inner join Tipos_Documentos td on u.IdTipoDocumento = td.Id
 	inner join Obras_Sociales os on u.IdObraSocial = os.Id
+	inner join Perfil_X_Usuario pu on u.Id = pu.IdUsuario
 go
 
 
-select Apellidos,Nombres,FechaNacimiento,Sexo,TipoDoc,NroDocumento,Obra_Social,Telefono,Mail,FechaAlta from VW_Usuarios
+select Id, Apellidos,Nombres,FechaNacimiento,Sexo,TipoDoc,NroDocumento,Obra_Social,Telefono,Mail,FechaAlta from VW_Usuarios
 
 Select * from VW_Usuarios
 go

@@ -13,26 +13,22 @@ namespace TurnosAppWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            UsuarioNegocio negocio = new UsuarioNegocio();
             if (!IsPostBack)
             {
+                if (Session["listaUsuarios"] == null)
+                {
+                    UsuarioNegocio negocio = new UsuarioNegocio();
+                    Session.Add("listaUsuarios", negocio.listarUsuarios());
+                }
 
-                List<Usuario> listausuarios = negocio.listarUsuarios();
-                Session["listaUsuarios"] = listausuarios;
                 dgvlistaUsuarios.DataSource = Session["listaUsuarios"];
                 dgvlistaUsuarios.DataBind();
 
+                //TODO: REVER esta forma de asignar el primer usuario de la lista!
+                repUsuario.DataSource = ((List<Usuario>)Session["listaUsuarios"]).FindAll(x => x.nroDocumento.ToString() == "30459252");
+                repUsuario.DataBind();
 
             }
-            /*if (Session["listaUsuarios"] == null)
-            {
-                UsuarioNegocio negocio = new UsuarioNegocio();
-                Session.Add("listaUsuarios", negocio.listarUsuarios());
-            }
-
-            dgvlistaUsuarios.DataSource = Session["listaUsuarios"];
-            dgvlistaUsuarios.DataBind();   
-            */
         }
 
         protected void btnbuscar_Click(object sender, EventArgs e)
@@ -57,8 +53,11 @@ namespace TurnosAppWeb
 
         protected void listacontactos_SelectedIndexChanged(object sender, EventArgs e)
         {//pasaje por url
-            var id = dgvlistaUsuarios.SelectedDataKey.Value.ToString();
-            Response.Redirect("UsuarioForm.aspx?id=" + id);
+            string id = dgvlistaUsuarios.SelectedDataKey.Value.ToString();
+            //Response.Redirect("UsuarioForm.aspx?id=" + id);
+
+            repUsuario.DataSource = ((List<Usuario>)Session["listaUsuarios"]).FindAll(x => x.id.ToString() == id);
+            repUsuario.DataBind();
         }
     }
 }

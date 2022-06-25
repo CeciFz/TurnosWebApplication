@@ -11,7 +11,7 @@ namespace TurnosAppWeb
 {
 
 
-    public partial class ObraSocialForm
+    public partial class EspecialidadForm
     {
 
         /// <summary>

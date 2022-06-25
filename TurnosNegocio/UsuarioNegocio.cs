@@ -16,13 +16,13 @@ namespace TurnosNegocio
 
             try
             {
-                datos.setearConsulta("select Apellidos,Nombres,FechaNacimiento,Sexo,TipoDoc,NroDocumento,Obra_Social,Telefono,Mail,FechaAlta from VW_Usuarios");
+                datos.setearConsulta("select Id, Apellidos,Nombres,FechaNacimiento,Sexo,TipoDoc,NroDocumento,Obra_Social,Telefono,Mail,FechaAlta from VW_Usuarios");
                 datos.lecturaDatos();
                 while (datos.Lector.Read())
                 {
-
                     Usuario aux = new Usuario();
 
+                    aux.id = (Int64)datos.Lector["Id"];
                     aux.apellidos = (string)datos.Lector["Apellidos"];
                     aux.nombres = (string)datos.Lector["Nombres"];
                     aux.fechaNacimiento = (DateTime)datos.Lector["FechaNacimiento"];
@@ -30,12 +30,12 @@ namespace TurnosNegocio
                     aux.telefono = (string)datos.Lector["Telefono"];
                     aux.mail = (string)datos.Lector["Mail"];  
                     aux.tipoDocumento = new TipoDocumento();
-                    //aux.tipoDocumento.id = (short)datos.Lector["Id"];
+                    //aux.tipoDocumento.id = (Int16)datos.Lector["IdTipoDoc"];  Si lo precisamos, hay que agregarlo vista y consulta tmb
                     aux.tipoDocumento.descripcion = (string)datos.Lector["TipoDoc"];
                     aux.nroDocumento = (Int64)datos.Lector["NroDocumento"];
 
                     aux.obraSocial = new ObraSocial();
-                    //aux.obraSocial.id = datos.Lector["Id"];
+                    //aux.obraSocial.id = datos.Lector["Id"]; Si lo precisamos, hay que agregarlo vista y consulta tmb
                     aux.obraSocial.descripcion = (string)datos.Lector["Obra_Social"];
                     
                     aux.fechaAlta = (DateTime)datos.Lector["FechaAlta"];

@@ -12,64 +12,63 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <header>
-        <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/default.aspx">Central de Turnos</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/default.aspx">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Especialidades.aspx">Especialidades</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="UsuarioListado.aspx">Usuarios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="listados.aspx">Otros Listados</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Administración</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="UsuarioForm.aspx">Alta Usuarios</a></li>
-                                <li><a class="dropdown-item" href="UsuarioListado.aspx">Modificar Usuarios</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
+        <div>
+            <header>
+                <nav class="navbar navbar-expand-lg">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="/default.aspx">Central de Turnos</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="/default.aspx">Home</a>
                                 </li>
-                                <li><a class="dropdown-item" href="ObraSocialForm.aspx">Alta Obra Social</a></li>
-                                <li><a class="dropdown-item" href="ObraSocialListado.aspx">Modificar Obra Social</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="UsuarioListado.aspx">Usuarios</a>
                                 </li>
-                                <li><a class="dropdown-item" href="alta_especialidad.aspx">Alta Especialidad</a></li>
-                                <li><a class="dropdown-item" href="especialidades.aspx">Modificar Especialidad</a></li>
-                                <li>
-                                    
+                                <li class="nav-item">
+                                    <a class="nav-link" href="listados.aspx">Otros Listados</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Administración</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="UsuarioForm.aspx">Alta Usuarios</a></li>
+                                        <li><a class="dropdown-item" href="UsuarioListado.aspx">Modificar Usuarios</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="ObraSocialForm.aspx">Alta Obra Social</a></li>
+                                        <li><a class="dropdown-item" href="ObraSocialListado.aspx">Modificar Obra Social</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="EspecialidadForm.aspx">Alta Especialidad</a></li>
+                                        <li><a class="dropdown-item" href="EspecialidadListado.aspx">Modificar Especialidad</a></li>
+                                        <li>
 
-                                    <hr class="dropdown-divider">
+
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">Nuevo Turno</a></li>
+                                        <li><a class="dropdown-item" href="#">Modificar Turno</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">------</a></li>
+                                    </ul>
                                 </li>
-                                <li><a class="dropdown-item" href="#">Nuevo Turno</a></li>
-                                <li><a class="dropdown-item" href="#">Modificar Turno</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">------</a></li>
                             </ul>
-                        </li>
-                    </ul>
-                </div>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+            <div class="center-grid default">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
             </div>
-        </nav>
-        </header>
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        </asp:ContentPlaceHolder>
-    </div>
+        </div>
     </form>
     <footer class="col-md-12 d-flex justify-content-center">2022 - TP Cuatrimestral Programación III - Central de Turnos</footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
