@@ -18,7 +18,7 @@ namespace TurnosAppWeb
 
             TipoDocumentoNegocio tipoDocumentoNeg = new TipoDocumentoNegocio();
             ObraSocialNegocio obraSocialNeg = new ObraSocialNegocio();
-            PerfilUsuarioNegocio perfilUsuarioNeg = new PerfilUsuarioNegocio();
+            //PerfilUsuarioNegocio perfilUsuarioNeg = new PerfilUsuarioNegocio();
 
             if (!IsPostBack)
             {   
@@ -26,8 +26,8 @@ namespace TurnosAppWeb
                 ddlTipoDocumento.DataBind();
                 ddlObraSocial.DataSource = obraSocialNeg.listarObrasSociales();
                 ddlObraSocial.DataBind();
-                ddlPerfilusuario.DataSource = perfilUsuarioNeg.listarPerfilesUsuarios();
-                ddlPerfilusuario.DataBind();
+               // ddlPerfilusuario.DataSource = perfilUsuarioNeg.listarPerfilesUsuarios();
+               // ddlPerfilusuario.DataBind();
             }
 
             if (Request.QueryString["id"] != null && btnModificar.Visible==false)
@@ -40,7 +40,7 @@ namespace TurnosAppWeb
                 //agrega los datos la pantalla .
                 txtApellidos.Text = seleccionado.apellidos;
                 txtNombres.Text = seleccionado.nombres;
-                txtFechaNac.Text = seleccionado.fechaNacimiento.ToString();
+                txtFechaNac.Text = seleccionado.fechaNacimiento.ToString("yyyy-MM-dd");
                 ddlSexo.SelectedValue = seleccionado.sexo;
                 ddlTipoDocumento.SelectedValue = seleccionado.tipoDocumento.descripcion;
                 txtNroDocumento.Text = seleccionado.nroDocumento.ToString();

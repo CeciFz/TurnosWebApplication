@@ -54,10 +54,10 @@
                 <asp:DropDownList runat="server" ID="ddlObraSocial" class="form-select"></asp:DropDownList>
             </div>
 
-            <div class="mb-3">
+<%--            <div class="mb-3">
                 <label for="ddlPerfilusuario" class="form-label">Tipo usuario</label>
                 <asp:DropDownList runat="server" ID="ddlPerfilusuario" class="form-select"></asp:DropDownList>
-            </div>
+            </div>--%>
             <asp:Button ID="btnRegistrar" runat="server" Text="Registrar" OnClick="btnRegistrar_Click" CssClass="btn btn-primary m-2" />
             <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" CssClass="btn btn-primary m-2" Visible="false" />
         </div>

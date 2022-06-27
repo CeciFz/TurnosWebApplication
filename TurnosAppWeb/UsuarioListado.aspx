@@ -34,18 +34,19 @@
                                 <%--<img src="" class="card-img-top" alt="">--%>
                                 <div class="card-body">
                                     <h5 class="card-title"><%#Eval("apellidos") %>, <%#Eval("nombres") %> </h5>
-                                    <p class="card-text">Fecha de nacimiento: <%#Eval("fechaNacimiento")%> </p>
+                                    <p class="card-text">Fecha de nacimiento: <%#Eval("fechaNacimiento", "{0: dd/MM/yyyy}")%> </p>
                                     <p class="card-text"><%#Eval("tipoDocumento.descripcion")%>: <%#Eval("nroDocumento")%> </p>
                                     <p class="card-text">Sexo: <%#Eval("sexo")%> </p>
                                     <p class="card-text">Teléfono: <%#Eval("telefono")%> </p>
                                     <p class="card-text">Mail: <%#Eval("mail")%> </p>
-                                    <label class="card-text">Perfiles: </label>
-                                    <%foreach (TurnosDominio.PerfilUsuario pu in perfil)
-                                        { %>
-                                    <label class="card-text"><%: pu.descripcion %> </label>
-                                    <%} %>
-                                    <%-- <asp:Button Text="Ejemplo" runat="server" CssClass="btn btn-primary" ID="btnEjemplo" CommandArgument='<%#Eval("Id")%>' CommandName="PokemonId" OnClick="btnEjemplo_Click" />
-                                    --%>
+                                    <div>
+                                        <label class="card-text">Perfiles: </label>
+                                        <%foreach (TurnosDominio.PerfilUsuario pu in perfil)
+                                            { %>
+                                        <label class="card-text"><%: pu.descripcion %> </label>
+                                        <%} %>
+                                    </div>
+                                    <asp:Button Text="Modificar" runat="server" CssClass="btn btn-primary" ID="btnModificar" CommandArgument='<%#Eval("Id")%>' CommandName="UsuarioId" OnClick="btnModificar_Click" />
                                 </div>
                             </div>
                     </ItemTemplate>

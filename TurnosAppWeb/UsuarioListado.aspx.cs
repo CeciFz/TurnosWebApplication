@@ -23,20 +23,18 @@ namespace TurnosAppWeb
                     UsuarioNegocio negocio = new UsuarioNegocio();
                     //listaUsuarios = negocio.listarUsuarios();
                     Session.Add("listaUsuarios", negocio.listarUsuarios());
-                    perfil = (List<PerfilUsuario>)((List<Usuario>)Session["listaUsuarios"]).Find(x => x.id == 1).perfileslUsuario;
-
-
-                    //ddlPerfil.((List<Usuario>)Session["listaUsuarios"])[0].perfileslUsuario;
-                    //ddlPerfil.DataBind();
                 }
+
+                perfil = (List<PerfilUsuario>)((List<Usuario>)Session["listaUsuarios"]).Find(x => x.id == 1).perfileslUsuario;
 
                 dgvlistaUsuarios.DataSource = Session["listaUsuarios"];
                 dgvlistaUsuarios.DataBind();
 
                 repUsuario.DataSource = ((List<Usuario>)Session["listaUsuarios"]).FindAll(x => x.id == 1);
                 repUsuario.DataBind();
+
             }
-        }
+        }   
 
         protected void btnbuscar_Click(object sender, EventArgs e)
         {
@@ -70,5 +68,10 @@ namespace TurnosAppWeb
 
         }
 
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+            string id = ((Button)sender).CommandArgument;
+            Response.Redirect("UsuarioForm.aspx?id=" + id);
+        }
     }
 }
