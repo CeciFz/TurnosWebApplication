@@ -11,6 +11,9 @@ namespace TurnosAppWeb
 {
     public partial class UsuarioListado : System.Web.UI.Page
     {
+        public List<Usuario> listaUsuarios { get; set; }
+        public List<PerfilUsuario> perfil { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -18,16 +21,20 @@ namespace TurnosAppWeb
                 if (Session["listaUsuarios"] == null)
                 {
                     UsuarioNegocio negocio = new UsuarioNegocio();
+                    //listaUsuarios = negocio.listarUsuarios();
                     Session.Add("listaUsuarios", negocio.listarUsuarios());
+                    perfil = (List<PerfilUsuario>)((List<Usuario>)Session["listaUsuarios"]).Find(x => x.id == 1).perfileslUsuario;
+
+
+                    //ddlPerfil.((List<Usuario>)Session["listaUsuarios"])[0].perfileslUsuario;
+                    //ddlPerfil.DataBind();
                 }
 
                 dgvlistaUsuarios.DataSource = Session["listaUsuarios"];
                 dgvlistaUsuarios.DataBind();
 
-                //TODO: REVER esta forma de asignar el primer usuario de la lista!
-                repUsuario.DataSource = ((List<Usuario>)Session["listaUsuarios"]).FindAll(x => x.nroDocumento.ToString() == "30459252");
+                repUsuario.DataSource = ((List<Usuario>)Session["listaUsuarios"]).FindAll(x => x.id == 1);
                 repUsuario.DataBind();
-
             }
         }
 
@@ -58,6 +65,10 @@ namespace TurnosAppWeb
 
             repUsuario.DataSource = ((List<Usuario>)Session["listaUsuarios"]).FindAll(x => x.id.ToString() == id);
             repUsuario.DataBind();
+
+            perfil = (List<PerfilUsuario>)((List<Usuario>)Session["listaUsuarios"]).Find(x => x.id.ToString() == id).perfileslUsuario;
+
         }
+
     }
 }

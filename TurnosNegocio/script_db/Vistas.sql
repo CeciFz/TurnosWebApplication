@@ -51,7 +51,6 @@ create View VW_Usuarios AS
 	from Usuarios u
 	inner join Tipos_Documentos td on u.IdTipoDocumento = td.Id
 	inner join Obras_Sociales os on u.IdObraSocial = os.Id
-	inner join Perfil_X_Usuario pu on u.Id = pu.IdUsuario
 go
 
 
@@ -69,3 +68,15 @@ Select * from VW_Gestores
 go
 
 
+/* Vista para listar los perfiles que tiene CADA usuario  */ 
+create View VW_UsuariosConPerfil AS
+select u.Id as IdUsuario, pxu.IdPerfilUsuario as IdPerfil, pu.Descripcion as Perfil from VW_Usuarios u
+inner join Perfil_X_Usuario pxu on pxu.IdUsuario = u.Id
+inner join Perfiles_Usuarios pu on pu.id = pxu.IdPerfilUsuario
+Go
+
+select * from Perfiles_Usuarios
+Select * from Perfil_X_Usuario
+Select * from VW_UsuariosConPerfil
+
+Select IdUsuario, IdPerfil, Perfil from VW_UsuariosConPerfil

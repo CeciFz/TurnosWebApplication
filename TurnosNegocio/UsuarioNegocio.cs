@@ -40,6 +40,8 @@ namespace TurnosNegocio
                     
                     aux.fechaAlta = (DateTime)datos.Lector["FechaAlta"];
 
+                    cargarPerfilesUsuarios(aux);
+
                     lista.Add(aux);
                 }
                 return lista;
@@ -58,29 +60,41 @@ namespace TurnosNegocio
 
         }
 
-
-
-
-
-
-
-
-        /*
-        public void eliminarUsuario(int id)
+        private void cargarPerfilesUsuarios( Usuario usuario)
         {
+            AccesoDatos datos = new AccesoDatos();
+            usuario.perfileslUsuario = new List<PerfilUsuario>();
+
             try
             {
-                AccesoDatos datos = new AccesoDatos();
-                datos.setearConsulta("delete from Personas where id = @id");
-                datos.SetearParametro("@id", id);
-                datos.ejecutarAccion();
+                datos.setearConsulta("Select IdUsuario, IdPerfil, Perfil from VW_UsuariosConPerfil");
+                datos.lecturaDatos();
 
+                while (datos.Lector.Read())
+                {
+                    Usuario aux = new Usuario();
+                    aux.id = (Int64)datos.Lector["IdUsuario"];
+
+                    if (aux.id == usuario.id)
+                    {
+                        PerfilUsuario perfil = new PerfilUsuario();
+                        perfil.id = (Int16)datos.Lector["IdPerfil"];
+                        perfil.descripcion = (String)datos.Lector["Perfil"];
+                        usuario.perfileslUsuario.Add(perfil);
+                    }
+                }
             }
             catch (Exception ex)
             {
 
                 throw ex;
             }
-        */
+            finally
+            {
+                datos.cerrarConexion();
+            }
+      
+
         }
+    }
 }

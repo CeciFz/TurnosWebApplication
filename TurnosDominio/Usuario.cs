@@ -19,9 +19,12 @@ namespace TurnosDominio
         public string mail { get; set; }
         public ObraSocial obraSocial { get; set; }
         public DateTime fechaAlta { get; set; }
-        List<PerfilUsuario> perfilUsuarios { get; set; }
+        public List<PerfilUsuario> perfileslUsuario { get; set; }
         public bool activo { get; set; }
 
-
+        public static implicit operator List<object>(Usuario v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

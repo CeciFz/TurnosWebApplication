@@ -281,6 +281,26 @@ INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (65,4)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (97,4)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (94,4)
 
+INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (1,3)
+INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (4,3)
+INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (23,4)
+INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (24,4)
+INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (26,4)
+INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (27,4)
+INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (28,4)
+INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (30,4)
+INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (31,4)
+INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (32,4)
+INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (6,3)
+INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (34,3)
+INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (50,3)
+INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (60,3)
+INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (78,3)
+INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (92,3)
+
+
+
+
 
 
 /* PROFESIONAL X ESPECIALIDAD */

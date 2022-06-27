@@ -25,8 +25,6 @@ namespace TurnosNegocio
 
         }
 
-
-
         public void setearConsulta(String consulta)
         {
             comando.CommandType = System.Data.CommandType.Text;
