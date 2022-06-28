@@ -13,7 +13,7 @@
 html {
     text-decoration: none;
     /*font-size: 62.5%;*/
-    min-height:100vh;
+    position: relative;
 }
 
 body {
@@ -25,13 +25,20 @@ body {
 .navbar a {
     color: var(--primary-text-color);
 }
+form .form__div {
+    min-height: 100vh;
+}
+#layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 90vh;
+    justify-content: space-between;
+}
 
 .hero h1 {
     color: #fff;
     text-shadow: 0 2px 2px rgba(0,0,0,.5);
     font-weight: 700;
-    margin-bottom: .3   em;
-    margin-top: 0;
 }
 
 .hero p {
