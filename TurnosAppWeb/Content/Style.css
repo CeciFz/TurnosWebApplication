@@ -2,6 +2,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    --main-bg-color: #fbc2eb; /*rosa*/
+    --secondary-bg-color: #a6c1ee;
+    --primary-text-color: #212121;
+    --secondary-text-color: #819cc8;
 }
 
 /*----------------GENERALES-------------*/
@@ -9,48 +13,29 @@
 html {
     text-decoration: none;
     /*font-size: 62.5%;*/
+    min-height:100vh;
 }
 
 body {
     /*font-family: 'Inter', sans-serif;*/
-    background: rgb(199,182,209);
-    background: radial-gradient(circle, rgba(199,182,209,1) 0%, rgba(171,111,242,1) 100%);
-    color: #201828 /*#5F5F5F*/;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    /*/grid-template-rows: auto 1fr 1fr;*/
-    min-height: 100vh;
-    grid-template-areas:"header"
-                        "center-grid"
-                        "footer";
-}
-
-header {
-    grid-area: header;
-}
-
-.center-grid {
-    grid-area: center-grid;
-}
-
-footer {
-    grid-area: footer;
-    background: #8d5cc5;
+    background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+    color: var(--primary-text-color);
 }
 
 .navbar a {
-    color: #201828;
-}
-.hero {
-    background: #533872;
+    color: var(--primary-text-color);
 }
 
 .hero h1 {
     color: #fff;
     text-shadow: 0 2px 2px rgba(0,0,0,.5);
     font-weight: 700;
-    margin-bottom: .3em;
+    margin-bottom: .3   em;
     margin-top: 0;
+}
+
+.hero p {
+    color: var(--primary-text-color);
 }
 
 .default .btn {
@@ -61,4 +46,25 @@ footer {
 .default .btn:hover {
     background-color: #39284b;
     border-color: #39284b;
+}
+
+
+
+/* TABLA */
+
+/*
+.table {
+    background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%) !important;
+}*/
+
+.table a {
+    text-decoration: none;
+}
+
+.card-body {
+    background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%) !important;
+}
+
+.card-header {
+    background-color: var(--secondary-bg-color) !important;
 }

@@ -3,14 +3,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="hero p-4 p-md-5 mb-4 text-white">
+    <div class="hero p-4 p-md-5 mb-2 text-white">
         <div class="col-md-12 d-flex flex-column justify-content-center">
             <h1 class="display-4 align-self-center">TURNOS</h1>
             <p class="lead my-3 align-self-center">Por favor loguearse para poder ingresar al sistema de turnos.</p>
-            <p class="lead mb-0 align-self-center">Si es la primera vez que va a solicitar atención en nuestra institución primero deberá registrar sus datos y generar su usuario.</p>
+            <p class="lead mb-0 align-self-center text-center">Si es la primera vez que va a solicitar atención en nuestra institución primero deberá registrar sus datos y generar su usuario.</p>
         </div>
     </div>
-    <div class="col-md-4 p-4 container">
+    <div class="col-md-5 px-4 pb-4 container">
         <div class="row mb-3">
             <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">

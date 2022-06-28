@@ -21,20 +21,21 @@ namespace TurnosAppWeb
                 if (Session["listaUsuarios"] == null)
                 {
                     UsuarioNegocio negocio = new UsuarioNegocio();
-                    //listaUsuarios = negocio.listarUsuarios();
-                    Session.Add("listaUsuarios", negocio.listarUsuarios());
+                    listaUsuarios = negocio.listarUsuarios();
+                    Session.Add("listaUsuarios", listaUsuarios);
                 }
 
-                perfil = (List<PerfilUsuario>)((List<Usuario>)Session["listaUsuarios"]).Find(x => x.id == 1).perfileslUsuario;
-
-                dgvlistaUsuarios.DataSource = Session["listaUsuarios"];
-                dgvlistaUsuarios.DataBind();
-
-                repUsuario.DataSource = ((List<Usuario>)Session["listaUsuarios"]).FindAll(x => x.id == 1);
-                repUsuario.DataBind();
+               // repUsuario.DataSource = ((List<Usuario>)Session["listaUsuarios"]).FindAll(x => x.id == 1);
+               // repUsuario.DataBind();
 
             }
-        }   
+
+            perfil = (List<PerfilUsuario>)((List<Usuario>)Session["listaUsuarios"]).Find(x => x.id == 1).perfileslUsuario;
+
+            dgvlistaUsuarios.DataSource = Session["listaUsuarios"];
+            dgvlistaUsuarios.DataBind();
+
+        }
 
         protected void btnbuscar_Click(object sender, EventArgs e)
         {
@@ -46,12 +47,16 @@ namespace TurnosAppWeb
 
                 dgvlistaUsuarios.DataSource = ((List<Usuario>)Session["listaUsuarios"]).FindAll(x => x.nroDocumento.ToString() == dni);
                 dgvlistaUsuarios.DataBind();
+
+                repUsuario.DataSource = ((List<Usuario>)Session["listaUsuarios"]).FindAll(x => x.nroDocumento.ToString() == dni);
+                repUsuario.DataBind();
             }
            else 
             {
                 dgvlistaUsuarios.DataSource = Session["listaUsuarios"];
                 dgvlistaUsuarios.DataBind();
 
+                repUsuario.DataBind();
             }
 
         }
@@ -72,6 +77,14 @@ namespace TurnosAppWeb
         {
             string id = ((Button)sender).CommandArgument;
             Response.Redirect("UsuarioForm.aspx?id=" + id);
+        }
+
+        protected void dgvlistaUsuarios_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgvlistaUsuarios.PageIndex = e.NewPageIndex;
+            dgvlistaUsuarios.DataBind();
+
+            repUsuario.DataBind();
         }
     }
 }
