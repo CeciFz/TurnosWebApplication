@@ -67,38 +67,86 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="EspecialidadForm.aspx" />
-    <Content Include="UsuarioForm.aspx" />
-    <Content Include="ObraSocialForm.aspx" />
+    <Content Include="Tablas\EspecialidadForm.aspx" />
+    <Content Include="Tablas\EstadoTurnoForm.aspx" />
+    <Content Include="Tablas\EstadoTurnoListado.aspx" />
+    <Content Include="Tablas\PerfilUsuarioForm.aspx" />
+    <Content Include="Tablas\PerfilUsuarioListado.aspx" />
+    <Content Include="Tablas\TipoDocumentoForm.aspx" />
+    <Content Include="Tablas\TipoDocumentoListado.aspx" />
+    <Content Include="Tablas\UsuarioForm.aspx" />
+    <Content Include="Tablas\ObraSocialForm.aspx" />
     <Content Include="Content\Style.css" />
     <Content Include="default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="listados.aspx" />
-    <Content Include="ObraSocialListado.aspx" />
-    <Content Include="UsuarioListado.aspx" />
-    <Content Include="EspecialidadListado.aspx" />
+    <Content Include="Tablas\ObraSocialListado.aspx" />
+    <Content Include="Tablas\UsuarioListado.aspx" />
+    <Content Include="Tablas\EspecialidadListado.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EspecialidadForm.aspx.cs">
+    <Compile Include="Tablas\EspecialidadForm.aspx.cs">
       <DependentUpon>EspecialidadForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EspecialidadForm.aspx.designer.cs">
+    <Compile Include="Tablas\EspecialidadForm.aspx.designer.cs">
       <DependentUpon>EspecialidadForm.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UsuarioForm.aspx.cs">
+    <Compile Include="Tablas\EstadoTurnoForm.aspx.cs">
+      <DependentUpon>EstadoTurnoForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tablas\EstadoTurnoForm.aspx.designer.cs">
+      <DependentUpon>EstadoTurnoForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tablas\EstadoTurnoListado.aspx.cs">
+      <DependentUpon>EstadoTurnoListado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tablas\EstadoTurnoListado.aspx.designer.cs">
+      <DependentUpon>EstadoTurnoListado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tablas\PerfilUsuarioForm.aspx.cs">
+      <DependentUpon>PerfilUsuarioForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tablas\PerfilUsuarioForm.aspx.designer.cs">
+      <DependentUpon>PerfilUsuarioForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tablas\PerfilUsuarioListado.aspx.cs">
+      <DependentUpon>PerfilUsuarioListado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tablas\PerfilUsuarioListado.aspx.designer.cs">
+      <DependentUpon>PerfilUsuarioListado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tablas\TipoDocumentoForm.aspx.cs">
+      <DependentUpon>TipoDocumentoForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tablas\TipoDocumentoForm.aspx.designer.cs">
+      <DependentUpon>TipoDocumentoForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tablas\TipoDocumentoListado.aspx.cs">
+      <DependentUpon>TipoDocumentoListado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tablas\TipoDocumentoListado.aspx.designer.cs">
+      <DependentUpon>TipoDocumentoListado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tablas\UsuarioForm.aspx.cs">
       <DependentUpon>UsuarioForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UsuarioForm.aspx.designer.cs">
+    <Compile Include="Tablas\UsuarioForm.aspx.designer.cs">
       <DependentUpon>UsuarioForm.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ObraSocialForm.aspx.cs">
+    <Compile Include="Tablas\ObraSocialForm.aspx.cs">
       <DependentUpon>ObraSocialForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ObraSocialForm.aspx.designer.cs">
+    <Compile Include="Tablas\ObraSocialForm.aspx.designer.cs">
       <DependentUpon>ObraSocialForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="default.aspx.cs">
@@ -118,25 +166,25 @@
     <Compile Include="listados.aspx.designer.cs">
       <DependentUpon>listados.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ObraSocialListado.aspx.cs">
+    <Compile Include="Tablas\ObraSocialListado.aspx.cs">
       <DependentUpon>ObraSocialListado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ObraSocialListado.aspx.designer.cs">
+    <Compile Include="Tablas\ObraSocialListado.aspx.designer.cs">
       <DependentUpon>ObraSocialListado.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UsuarioListado.aspx.cs">
+    <Compile Include="Tablas\UsuarioListado.aspx.cs">
       <DependentUpon>UsuarioListado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UsuarioListado.aspx.designer.cs">
+    <Compile Include="Tablas\UsuarioListado.aspx.designer.cs">
       <DependentUpon>UsuarioListado.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EspecialidadListado.aspx.cs">
+    <Compile Include="Tablas\EspecialidadListado.aspx.cs">
       <DependentUpon>EspecialidadListado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EspecialidadListado.aspx.designer.cs">
+    <Compile Include="Tablas\EspecialidadListado.aspx.designer.cs">
       <DependentUpon>EspecialidadListado.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

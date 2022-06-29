@@ -22,9 +22,5 @@ namespace TurnosDominio
         public List<PerfilUsuario> perfileslUsuario { get; set; }
         public bool activo { get; set; }
 
-        public static implicit operator List<object>(Usuario v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

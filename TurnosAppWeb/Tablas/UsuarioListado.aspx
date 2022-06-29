@@ -22,7 +22,6 @@
         <div class="col-md-6 px-4">
             <asp:Repeater runat="server" ID="repUsuario">
                 <ItemTemplate>
-                    <div class="col">
                         <div class="card border-secondary">
                             <div class="card-header">
                                 <h5 class="card-title"><%#Eval("apellidos") %>, <%#Eval("nombres") %> </h5>

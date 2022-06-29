@@ -27,28 +27,43 @@
                                     <a class="nav-link active" aria-current="page" href="/default.aspx">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="UsuarioListado.aspx">Usuarios</a>
+                                    <a class="nav-link" href="../Tablas/UsuarioListado.aspx">Usuarios</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="listados.aspx">Otros Listados</a>
+                                    <a class="nav-link" href="/listados.aspx">Otros Listados</a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Administración</a>
+                                    <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Administrar</a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="UsuarioForm.aspx">Alta Usuarios</a></li>
-                                        <li><a class="dropdown-item" href="UsuarioListado.aspx">Modificar Usuarios</a></li>
+                                        <li><a class="dropdown-item" href="../Tablas/UsuarioForm.aspx">Alta Usuarios</a></li>
+                                        <li><a class="dropdown-item" href="../Tablas/UsuarioListado.aspx">Modificar Usuarios</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" href="ObraSocialForm.aspx">Alta Obra Social</a></li>
-                                        <li><a class="dropdown-item" href="ObraSocialListado.aspx">Modificar Obra Social</a></li>
+                                        <li><a class="dropdown-item" href="../Tablas/ObraSocialForm.aspx">Alta Obra Social</a></li>
+                                        <li><a class="dropdown-item" href="../Tablas/ObraSocialListado.aspx">Modificar Obra Social</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" href="EspecialidadForm.aspx">Alta Especialidad</a></li>
-                                        <li><a class="dropdown-item" href="EspecialidadListado.aspx">Modificar Especialidad</a></li>
+                                        <li><a class="dropdown-item" href="../Tablas/EspecialidadForm.aspx">Alta Especialidad</a></li>
+                                        <li><a class="dropdown-item" href="../Tablas/EspecialidadListado.aspx">Modificar Especialidad</a></li>
+                                        <li> 
                                         <li>
-
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="../Tablas/EstadoTurnoForm.aspx">Alta Estado Turno</a></li>
+                                        <li><a class="dropdown-item" href="../Tablas/EstadoTurnoListado.aspx">Modificar Estado Turno</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="../Tablas/TipoDocumentoForm.aspx">Alta Tipo Documento</a></li>
+                                        <li><a class="dropdown-item" href="../Tablas/TipoDocumentoListado.aspx">Modificar Tipo Documento</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="../Tablas/PerfilUsuarioForm.aspx">Alta Perfil Usuario</a></li>
+                                        <li><a class="dropdown-item" href="../Tablas/PerfilUsuarioListado.aspx">Modificar Perfil Usuario</a></li>
+                                        <li>
 
                                             <hr class="dropdown-divider">
                                         </li>
