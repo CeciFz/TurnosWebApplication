@@ -18,16 +18,17 @@ namespace TurnosAppWeb
 
             TipoDocumentoNegocio tipoDocumentoNeg = new TipoDocumentoNegocio();
             ObraSocialNegocio obraSocialNeg = new ObraSocialNegocio();
-            //PerfilUsuarioNegocio perfilUsuarioNeg = new PerfilUsuarioNegocio();
+            PerfilUsuarioNegocio perfilUsuarioNeg = new PerfilUsuarioNegocio();
 
             if (!IsPostBack)
             {   
                 ddlTipoDocumento.DataSource = tipoDocumentoNeg.listarTiposDeDocumento();
                 ddlTipoDocumento.DataBind();
+               // ddlTipoDocumento.DataValueField = "Id";
                 ddlObraSocial.DataSource = obraSocialNeg.listarObrasSociales();
                 ddlObraSocial.DataBind();
-               // ddlPerfilusuario.DataSource = perfilUsuarioNeg.listarPerfilesUsuarios();
-               // ddlPerfilusuario.DataBind();
+                ddlPerfilusuario.DataSource = perfilUsuarioNeg.listarPerfilesUsuarios();
+                ddlPerfilusuario.DataBind();
             }
 
             if (Request.QueryString["id"] != null && btnModificar.Visible==false)
@@ -62,18 +63,30 @@ namespace TurnosAppWeb
             try
             {
                 Usuario usuario = new Usuario();
+               UsuarioNegocio negocio = new UsuarioNegocio();
+                
 
                 usuario.apellidos = txtApellidos.Text;
                 usuario.nombres = txtNombres.Text;
                 usuario.fechaNacimiento = DateTime.Parse(txtFechaNac.Text);
                 usuario.sexo = ddlSexo.SelectedValue;
-                //usuario.tipoDocumento = TipoDocumento.Parse(ddlTipoDocumento.SelectedValue);
+                //VERIFICAR LA FORMA DE QUE TOME DEL DESPLEGABLE DEL TIPO DE DOCUMENTO; OBRA SOCIAL
+                //para habilitar negocio.agregarusuario(usuario)
+
+
+               // usuario.tipoDocumento = TipoDocumento.Parse(ddlTipoDocumento.SelectedValue);
+              
+                //usuario.tipoDocumento.id =Int16.Parse (ddlTipoDocumento.SelectedValue);
+
                 usuario.nroDocumento = Int64.Parse(txtNroDocumento.Text);
                 usuario.telefono = txtTelefono.Text;
                 usuario.mail = txtMail.Text;
-                //usuario.obraSocial = ddlObraSocial.SelectedValue;
+
+               //usuario.obraSocial = ddlObraSocial.SelectedValue;
+               // negocio.agregarusuario(usuario);
 
                 ((List<Usuario>)Session["listaUsuarios"]).Add(usuario);
+
 
                 Response.Redirect("UsuarioListado.aspx");
 
@@ -81,7 +94,7 @@ namespace TurnosAppWeb
             catch (Exception ex)
             {
                 
-                //throw ex;
+               throw ex;
             }
             
         }
@@ -113,6 +126,21 @@ namespace TurnosAppWeb
                 //throw;
             }
             
+
+        }
+
+        protected void ddlPerfilusuario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ddlTipoDocumento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ddlPerfilusuario_SelectedIndexChanged1(object sender, EventArgs e)
+        {
 
         }
     }

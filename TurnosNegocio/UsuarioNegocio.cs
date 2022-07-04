@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TurnosDominio;
+using TurnosNegocio;
 
 namespace TurnosNegocio
 {
@@ -96,5 +97,35 @@ namespace TurnosNegocio
       
 
         }
+
+        public void agregarusuario(Usuario usuario )
+         {
+            AccesoDatos datos = new AccesoDatos();
+            try
+             {
+                 datos.setearConsulta("Insert into Usuarios (Apellidos,Nombres,FechaNacimiento,Sexo,IdTipoDocumento,NroDocumento,Telefono,Mail,IdObraSocial) VALUES (@Apellidos,@Nombres,@FechaNacimiento,@Sexo,@IdTipoDocumento,@NroDocumento,@Telefono,@Mail,@IdObraSocial)");
+                    datos.SetearParametro("@Apellidos",usuario.apellidos);
+                    datos.SetearParametro("@Nombres",usuario.nombres);
+                    datos.SetearParametro("@FechaNacimiento",usuario.fechaNacimiento);
+                    datos.SetearParametro("@Sexo",usuario.sexo);
+                    datos.SetearParametro("@IdTipoDocumento",usuario.tipoDocumento.id);
+                    datos.SetearParametro("@NroDocumento",usuario.nroDocumento);
+                    datos.SetearParametro("@Telefono",usuario.telefono);
+                    datos.SetearParametro("@Mail",usuario.mail);
+                    datos.SetearParametro("@IdObraSocial",usuario.obraSocial.id);
+                    
+
+                 datos.ejecutarAccion();
+             }
+             catch (Exception ex)
+             {
+
+                 throw ex;
+             }
+             finally
+             {
+                 datos.cerrarConexion();
+             }
+         }
     }
 }
