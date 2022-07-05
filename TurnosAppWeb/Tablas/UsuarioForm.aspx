@@ -13,10 +13,6 @@
         <h1 class="text-center mb-4">Modificar Usuario</h1>
         <% } %>
         <div class="row row-cols-3 mb-3">
-            <%--<div class="mb-3">
-                <label for="txtId" class="form-label">Id</label>
-                <asp:TextBox runat="server" ID="txtId" CssClass="form-control" ReadOnly="true" />
-            </div>--%>
             <div class="col">
                 <label for="txtApellidos" class="form-label">Apellidos</label>
                 <asp:TextBox runat="server" ID="txtApellidos" CssClass="form-control" />

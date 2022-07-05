@@ -1,4 +1,5 @@
-
+use turnosApp
+go
 /*    Stored Procedures  */
 
 
@@ -8,8 +9,14 @@ create procedure SP_ListarUsuarios AS BEGIN
 END
 GO
 
---EXEC SP_ListarUsuarios
-					   
+create procedure SP_ListarProfesionales AS BEGIN
+	select Id, Apellidos,Nombres,Sexo,Telefono,Mail,up.IdPerfil
+	from VW_Usuarios 
+	inner join VW_UsuariosConPerfil up on up.IdUsuario = VW_Usuarios.Id
+	where IdPerfil = 4
+END
+GO
+
 create procedure SP_AgregarPerfil(
 	@IdUsuario bigint,
 	@IdPerfilUsuario smallint

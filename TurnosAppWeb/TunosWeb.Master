@@ -39,13 +39,17 @@
                                         <li><a class="dropdown-item" href="../Tablas/UsuarioListado.aspx">Modificar Usuarios</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
+                                            <li><a class="dropdown-item" href="../Tablas/ProfesionalForm.aspx">Alta Usuarios</a></li>
+                                        <li><a class="dropdown-item" href="../Tablas/ProfesionalListado.aspx">Modificar Profesional</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
                                         </li>
                                         <li><a class="dropdown-item" href="../Tablas/ObraSocialForm.aspx">Alta Obra Social</a></li>
                                         <li><a class="dropdown-item" href="../Tablas/ObraSocialListado.aspx">Modificar Obra Social</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" href="../Tablas/EspecialidadForm.aspx">Alta Especialidad</a></li>
+<%--                                        <li><a class="dropdown-item" href="../Tablas/EspecialidadForm.aspx">Alta Especialidad</a></li>--%>
                                         <li><a class="dropdown-item" href="../Tablas/EspecialidadListado.aspx">Modificar Especialidad</a></li>
                                         <li> 
                                         <li>
@@ -81,7 +85,7 @@
                 </nav>
             </header>
             <div id="layout">
-                <div class="container py-2">
+                <div class="container py-3">
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                     </asp:ContentPlaceHolder>
                 </div>

@@ -14,7 +14,7 @@ go
 /* VISTA PROFESIONALES */
 Create View VW_Profesionales AS
 	Select u.Id, u.Apellidos, u.Nombres, u.FechaNacimiento, u.Sexo, u.IdTipoDocumento,u.telefono,u.mail,
-	u.IdObraSocial, u.FechaAlta, pu.IdPerfilUsuario,e.Descripcion, pxe.CostoConsulta
+	u.IdObraSocial, u.FechaAlta, pu.IdPerfilUsuario,e.Descripcion
 	from Usuarios u
 	inner join Perfil_X_Usuario pu on u.Id = pu.IdUsuario
 	inner join Profesionales_X_Especialidad pxe on u.id = pxe.IdUsuario
@@ -61,6 +61,19 @@ select u.Id as IdUsuario, pxu.IdPerfilUsuario as IdPerfil, pu.Descripcion as Per
 inner join Perfil_X_Usuario pxu on pxu.IdUsuario = u.Id
 inner join Perfiles_Usuarios pu on pu.id = pxu.IdPerfilUsuario
 Go
+
+
+/* Vista para listar las especialidades de cada profesional  */ 
+create View VW_ProfesionalesConEspecialidad AS
+select u.Id as IdUsuario, pe.IdEspecialidad as IdEspecialidad,
+esp.Descripcion as Especialidad from VW_Usuarios u
+inner join Perfil_X_Usuario pxu on pxu.IdUsuario = u.Id
+inner join Profesionales_X_Especialidad pe on pe.IdUsuario = u.Id
+inner join Especialidades esp on esp.Id = pe.IdEspecialidad
+where pxu.IdPerfilUsuario = 4
+Go
+
+
 
 /*
 select * from Perfiles_Usuarios

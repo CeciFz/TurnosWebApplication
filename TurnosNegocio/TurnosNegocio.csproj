@@ -46,6 +46,7 @@
     <Compile Include="EstadoTurnoNegocio.cs" />
     <Compile Include="ObraSocialNegocio.cs" />
     <Compile Include="PerfilUsuarioNegocio.cs" />
+    <Compile Include="ProfesionalNegocio.cs" />
     <Compile Include="UsuarioNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TipoDocumentoNegocio.cs" />

@@ -47,7 +47,6 @@ namespace TurnosAppWeb
                         //crea un objeto usuario llamado seleccionado y le copia lo que hay en la lista temporal q viene de session
                         Usuario seleccionado = temporal.Find(x => x.id == id);
                         //agrega los datos la pantalla .
-                        txtId.Text = seleccionado.id.ToString();
                         txtApellidos.Text = seleccionado.apellidos;
                         txtNombres.Text = seleccionado.nombres;
                         txtFechaNac.Text = seleccionado.fechaNacimiento.ToString("yyyy-MM-dd");
@@ -122,7 +121,7 @@ namespace TurnosAppWeb
                 Usuario usuario = new Usuario();
                 UsuarioNegocio negocio = new UsuarioNegocio();
 
-                usuario.id = Int64.Parse(txtId.Text);
+                usuario.id = Int64.Parse(Request.QueryString["id"].ToString());
                 usuario.apellidos = txtApellidos.Text;
                 usuario.nombres = txtNombres.Text;
                 usuario.fechaNacimiento = DateTime.Parse(txtFechaNac.Text);

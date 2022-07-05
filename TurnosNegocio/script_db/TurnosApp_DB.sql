@@ -61,10 +61,8 @@ Create Table Especialidades(
 go
 
 Create Table Profesionales_X_Especialidad(
-	Id int not null identity(1,1) unique,
 	IdUsuario bigint not null Foreign Key References Usuarios(Id),
 	IdEspecialidad int not null Foreign Key References Especialidades(Id),
-	CostoConsulta money null check (CostoConsulta >= 0),
 	Habilitado bit not null default(1),
 	primary key (IdUsuario,IdEspecialidad)
 )

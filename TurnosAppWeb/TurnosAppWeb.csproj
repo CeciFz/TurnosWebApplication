@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Tablas\ProfesionalListado.aspx" />
     <Content Include="Tablas\EspecialidadForm.aspx" />
     <Content Include="Tablas\EstadoTurnoForm.aspx" />
     <Content Include="Tablas\EstadoTurnoListado.aspx" />
@@ -86,6 +87,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Tablas\ProfesionalListado.aspx.cs">
+      <DependentUpon>ProfesionalListado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tablas\ProfesionalListado.aspx.designer.cs">
+      <DependentUpon>ProfesionalListado.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Tablas\EspecialidadForm.aspx.cs">
       <DependentUpon>EspecialidadForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
