@@ -81,7 +81,7 @@
                 </nav>
             </header>
             <div id="layout">
-                <div class="container py-4">
+                <div class="container py-2">
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                     </asp:ContentPlaceHolder>
                 </div>

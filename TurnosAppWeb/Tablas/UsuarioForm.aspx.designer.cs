@@ -15,15 +15,6 @@ namespace TurnosAppWeb
     {
 
         /// <summary>
-        /// txtId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtId;
-
-        /// <summary>
         /// txtApellidos control.
         /// </summary>
         /// <remarks>
@@ -40,15 +31,6 @@ namespace TurnosAppWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNombres;
-
-        /// <summary>
-        /// txtFechaNac control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaNac;
 
         /// <summary>
         /// ddlSexo control.
@@ -76,6 +58,15 @@ namespace TurnosAppWeb
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNroDocumento;
+
+        /// <summary>
+        /// txtFechaNac control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFechaNac;
 
         /// <summary>
         /// txtTelefono control.
