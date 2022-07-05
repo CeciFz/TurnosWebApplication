@@ -31,7 +31,7 @@ namespace TurnosNegocio
             comando.CommandText = consulta;  
         }
 
-        public void  setearprocedimiento(string sp)
+        public void  setearSP(string sp)
         {
 
             comando.CommandType = System.Data.CommandType.StoredProcedure;
@@ -43,7 +43,7 @@ namespace TurnosNegocio
             comando.Connection = conexion;
             try
             {
-                conexion.Open();
+                if (conexion.State != System.Data.ConnectionState.Open) conexion.Open();
                 lector = comando.ExecuteReader();
             }
             catch (Exception ex)

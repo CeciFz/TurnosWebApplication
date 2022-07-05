@@ -13,6 +13,10 @@
         <h1 class="align-self-center">Modificar Usuario</h1>
         <% } %>
         <div class="mb-3">
+            <label for="txtId" class="form-label">Id</label>
+            <asp:TextBox runat="server" ID="txtId" CssClass="form-control" ReadOnly="true" />
+        </div>
+        <div class="mb-3">
             <label for="txtApellidos" class="form-label">Apellidos</label>
             <asp:TextBox runat="server" ID="txtApellidos" CssClass="form-control" />
         </div>
@@ -52,11 +56,10 @@
             <label for="ddlObraSocial" class="form-label">ObraSocial</label>
             <asp:DropDownList runat="server" ID="ddlObraSocial" class="form-select"></asp:DropDownList>
         </div>
-
-        <%--            <div class="mb-3">
-                <label for="ddlPerfilusuario" class="form-label">Tipo usuario</label>
-                <asp:DropDownList runat="server" ID="ddlPerfilusuario" class="form-select"></asp:DropDownList>
-            </div>--%>
+        <div class="mb-3">
+            <label for="ddlPerfilusuario" class="form-label">Tipo usuario</label>
+            <asp:DropDownList runat="server" ID="ddlPerfilusuario" class="form-select"></asp:DropDownList>
+        </div>
         <asp:Button ID="btnRegistrar" runat="server" Text="Registrar" OnClick="btnRegistrar_Click" CssClass="btn btn-primary m-2" />
         <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" CssClass="btn btn-primary m-2" Visible="false" />
     </div>

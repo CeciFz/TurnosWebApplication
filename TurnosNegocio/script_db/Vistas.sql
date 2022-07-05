@@ -44,27 +44,14 @@ go
 
 
 /* VISTA Usuarios */
-create View VW_Usuarios AS
-	Select u.Id, u.Apellidos, u.Nombres, u.FechaNacimiento, u.Sexo, td.Descripcion as 'TipoDoc', u.NroDocumento,
-	os.Descripcion as 'Obra_Social', ISNULL(u.Telefono,'no informado') as Telefono,
+CREATE View VW_Usuarios AS
+	Select u.Id, u.Apellidos, u.Nombres, u.FechaNacimiento, u.Sexo, td.Id as 'IdTipoDoc', td.Descripcion as 'TipoDoc',
+	u.NroDocumento, os.Id as 'IdObraSocial', os.Descripcion as 'ObraSocial', 
+	ISNULL(u.Telefono,'no informado') as Telefono,
 	ISNULL(u.Mail,'no informado') as Mail, u.FechaAlta
 	from Usuarios u
 	inner join Tipos_Documentos td on u.IdTipoDocumento = td.Id
 	inner join Obras_Sociales os on u.IdObraSocial = os.Id
-go
-
-
-select Id, Apellidos,Nombres,FechaNacimiento,Sexo,TipoDoc,NroDocumento,Obra_Social,Telefono,Mail,FechaAlta from VW_Usuarios
-
-Select * from VW_Usuarios
-go
-Select * from VW_Pacientes  
-go
-Select * from VW_Profesionales  
-go
-Select * from VW_Admins  
-go
-Select * from VW_Gestores  
 go
 
 
@@ -75,8 +62,10 @@ inner join Perfil_X_Usuario pxu on pxu.IdUsuario = u.Id
 inner join Perfiles_Usuarios pu on pu.id = pxu.IdPerfilUsuario
 Go
 
+/*
 select * from Perfiles_Usuarios
 Select * from Perfil_X_Usuario
 Select * from VW_UsuariosConPerfil
 
 Select IdUsuario, IdPerfil, Perfil from VW_UsuariosConPerfil
+*/
