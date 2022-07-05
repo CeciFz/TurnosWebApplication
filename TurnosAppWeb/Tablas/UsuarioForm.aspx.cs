@@ -17,7 +17,7 @@ namespace TurnosAppWeb
         {
             TipoDocumentoNegocio tipoDocumentoNeg = new TipoDocumentoNegocio();
             ObraSocialNegocio obraSocialNeg = new ObraSocialNegocio();
-            //PerfilUsuarioNegocio perfilUsuarioNeg = new PerfilUsuarioNegocio();
+            PerfilUsuarioNegocio perfilUsuarioNeg = new PerfilUsuarioNegocio();
 
             try
             {
