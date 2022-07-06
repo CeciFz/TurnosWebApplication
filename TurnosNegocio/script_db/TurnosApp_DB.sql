@@ -60,6 +60,17 @@ Create Table Especialidades(
 )
 go
 
+create table Ingresos(
+Id int not null primary key identity (1,1),
+Usuario varchar (50) not null,
+Pass varchar (50) not null,
+TipoUser int not null,
+)
+
+
+
+
+go
 Create Table Profesionales_X_Especialidad(
 	IdUsuario bigint not null Foreign Key References Usuarios(Id),
 	IdEspecialidad int not null Foreign Key References Especialidades(Id),
