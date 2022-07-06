@@ -8,7 +8,7 @@ using TurnosDominio;
 
 namespace TurnosNegocio
 {
-    class ingresosnegocio
+   public class ingresosnegocio
     {
         public bool loguear(ingresos ingresos)
         {
@@ -16,7 +16,7 @@ namespace TurnosNegocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("select id, tipouser from ingresos where usuario=@user and pass=@pass ");
+                datos.setearConsulta("select Id, TipoUser from Ingresos where Usuario=@user and Pass=@pass");
                 datos.SetearParametro("@user", ingresos.user);
                 datos.SetearParametro("@pass", ingresos.pass);
 
@@ -24,7 +24,7 @@ namespace TurnosNegocio
                 while (datos.Lector.Read())
                 {
                     ingresos.id = (int)datos.Lector["Id"];
-                    ingresos.tipoUsuario = (int)(datos.Lector["TipoUser"]) == 2 ? tipousuarios.admin : tipousuarios.normal;
+                    ingresos.tipoUsuario = (int)datos.Lector["TipoUser"] == 2 ? tipousuarios.admin : tipousuarios.normal;
                     return true;       
                 }
                 return false;

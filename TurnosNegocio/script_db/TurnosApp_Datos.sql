@@ -161,6 +161,12 @@ INSERT [dbo].[Especialidades] (Id, Descripcion) VALUES (21, 'Análisis De Geńet
 INSERT [dbo].[Especialidades] (Id, Descripcion) VALUES (22, 'Análisis De Medicina Nuclear')
 SET IDENTITY_INSERT [dbo].[Especialidades] OFF
 
+
+SET IDENTITY_INSERT [dbo].[Ingresos] ON 
+INSERT [dbo].[Ingresos] ( [Usuario], [Pass], [TipoUser]) VALUES ('utn','utn',2)
+SET IDENTITY_INSERT [dbo].[Ingresos] OFF
+
+
 /* ESTADOS TURNOS */
 SET IDENTITY_INSERT [dbo].[Estados_Turnos] ON 
 INSERT [dbo].[Estados_Turnos] ([Id], [Descripcion]) VALUES (1, N'Asignado')
@@ -327,3 +333,10 @@ INSERT [dbo].[Profesionales_X_Especialidad] ([IdUsuario], [IdEspecialidad]) VALU
 INSERT [dbo].[Profesionales_X_Especialidad] ([IdUsuario], [IdEspecialidad]) VALUES (65,1)
 INSERT [dbo].[Profesionales_X_Especialidad] ([IdUsuario], [IdEspecialidad]) VALUES (97,6)
 INSERT [dbo].[Profesionales_X_Especialidad] ([IdUsuario], [IdEspecialidad]) VALUES (94,2)
+
+
+
+
+
+
+
