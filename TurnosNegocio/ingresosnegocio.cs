@@ -10,21 +10,23 @@ namespace TurnosNegocio
 {
    public class ingresosnegocio
     {
-        public bool loguear(ingresos ingresos)
+        public bool Loguear(ingresos ingresos)
         {
 
             AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.setearConsulta("select Id, TipoUser from Ingresos where Usuario=@user and Pass=@pass");
-                datos.SetearParametro("@user", ingresos.user);
-                datos.SetearParametro("@pass", ingresos.pass);
+                datos.SetearParametro("@user", ingresos.User);
+                datos.SetearParametro("@pass", ingresos.Pass);
 
-                datos.ejecutarAccion();
+               // datos.ejecutarAccion();
+                datos.lecturaDatos();
+                
                 while (datos.Lector.Read())
                 {
-                    ingresos.id = (int)datos.Lector["Id"];
-                    ingresos.tipoUsuario = (int)datos.Lector["TipoUser"] == 2 ? tipousuarios.admin : tipousuarios.normal;
+                    ingresos.Id = (int)datos.Lector["Id"];
+                    ingresos.TipoUsuario = (int)(datos.Lector["TipoUser"]) == 2 ? tipousuarios.admin : tipousuarios.normal;
                     return true;       
                 }
                 return false;

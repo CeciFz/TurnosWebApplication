@@ -13,6 +13,10 @@ namespace TurnosAppWeb.Tablas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["ingresos"] == null)
+            {
+                Response.Redirect("../default.aspx");
+            }
             if (Request.QueryString["id"] != null && btnModificar.Visible == false)
             {
                 Int16 id = Int16.Parse(Request.QueryString["id"].ToString());

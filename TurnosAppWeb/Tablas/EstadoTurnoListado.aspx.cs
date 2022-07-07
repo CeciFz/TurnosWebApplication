@@ -13,6 +13,11 @@ namespace TurnosAppWeb.Tablas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["ingresos"] == null)
+            {
+                Response.Redirect("../default.aspx");
+            }
+
             if (!IsPostBack)
             {
                 if (Session["listaEstadosTurnos"] == null)

@@ -13,6 +13,11 @@ namespace TurnosAppWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(Session["ingresos"] == null)
+            {
+                Response.Redirect("default.aspx");
+            }
+
             TipoDocumentoNegocio tipoDoc = new TipoDocumentoNegocio();
             listaTiposDocumentos.DataSource = tipoDoc.listarTiposDeDocumento();
             listaTiposDocumentos.DataBind();

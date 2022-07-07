@@ -15,6 +15,11 @@ namespace TurnosAppWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["ingresos"] == null)
+            {
+                Response.Redirect("../default.aspx");
+            }
+
             TipoDocumentoNegocio tipoDocumentoNeg = new TipoDocumentoNegocio();
             ObraSocialNegocio obraSocialNeg = new ObraSocialNegocio();
             PerfilUsuarioNegocio perfilUsuarioNeg = new PerfilUsuarioNegocio();

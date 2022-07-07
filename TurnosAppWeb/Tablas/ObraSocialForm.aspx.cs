@@ -13,6 +13,12 @@ namespace TurnosAppWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["ingresos"] == null)
+            {
+                Response.Redirect("../default.aspx");
+            }
+
+
             if (Request.QueryString["id"] != null && btnModificar.Visible==false)
             {
                 Int32 id = Int32.Parse(Request.QueryString["id"].ToString());

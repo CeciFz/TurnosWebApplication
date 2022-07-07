@@ -13,6 +13,11 @@ namespace TurnosAppWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["ingresos"] == null)
+            {
+                Response.Redirect("../default.aspx");
+            }
+
             if (Session["listaObrasSociales"] == null)
             {
                 ObraSocialNegocio negocio = new ObraSocialNegocio();

@@ -3,6 +3,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+   
+    
+    
+
     <div class="hero p-4 p-md-5 mb-2 text-white">
         <div class="col-md-12 d-flex flex-column justify-content-center">
             <h1 class="display-4 align-self-center">TURNOS</h1>
@@ -12,14 +16,15 @@
     </div>
     <div class="col-md-5 px-4 pb-4 container">
         <div class="row mb-3">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Usuario</label>
+            <asp:Label Text="Usuario o contraseña invalida" ID="lblerror" CssClass="lead my-3 align-self-center" Visible="false" runat="server" />
+            <label class="col-sm-2 col-form-label">Usuario</label>
             <div class="col-sm-10">
                 <asp:TextBox ID="TextUser" placeholder="user name" CssClass="form-control"  runat="server"></asp:TextBox>
                 
             </div>
         </div>
         <div class="row mb-3">
-            <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+            <label  class="col-sm-2 col-form-label">Password</label>
             <div class="col-sm-10">
                 <asp:TextBox ID="Textpassword" placeholder="*****" CssClass="form-control" runat="server"></asp:TextBox>
                 

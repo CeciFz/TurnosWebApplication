@@ -13,6 +13,12 @@ namespace TurnosAppWeb.Tablas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["ingresos"] == null)
+            {
+                Response.Redirect("../default.aspx");
+            }
+
+
             if (Session["listaTiposDocumentos"] == null)
             {
                 TipoDocumentoNegocio negocio = new TipoDocumentoNegocio();

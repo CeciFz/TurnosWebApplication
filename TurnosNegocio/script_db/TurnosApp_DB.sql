@@ -52,7 +52,7 @@ Create Table Profesionales(
 	Habilitado bit not null default(1)
 )
 go*/
-select * from  Usuarios
+
 Create Table Especialidades(
 	Id int not null primary key identity(1,1),
 	Descripcion varchar(100) not null,
@@ -62,9 +62,9 @@ go
 
 create table Ingresos(
 Id int not null primary key identity (1,1),
-Usuario varchar (50) not null,
-Pass varchar (50) not null,
-TipoUser int not null,
+Usuario varchar (50) unique null,
+Pass varchar (50) null,
+TipoUser int null,
 )
 
 

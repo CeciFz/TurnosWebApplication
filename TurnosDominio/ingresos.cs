@@ -16,21 +16,21 @@ namespace TurnosDominio
     public class ingresos
     {
 
-        public int id { get; set; }
-        public string user { get; set; }
+        public int Id { get; set; }
+        public string User { get; set; }
 
-        public string pass { get; set; }
+        public string Pass { get; set; }
 
-        public tipousuarios tipoUsuario { get; set; }
+        public tipousuarios TipoUsuario { get; set; }
 
 
         public ingresos (string user, string pass, bool admin)
       {
-        user = user;
-        pass = pass;
+            User = user;
+             Pass = pass;
 
             //?operador ternario, if de una linea, envia true si es admin, sino false
-        tipoUsuario = admin? tipousuarios.admin : tipousuarios.normal;
+        TipoUsuario = admin? tipousuarios.admin : tipousuarios.normal;
 
 
          }
