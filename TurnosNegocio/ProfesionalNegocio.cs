@@ -31,6 +31,7 @@ namespace TurnosNegocio
                     aux.mail = (string)datos.Lector["Mail"];
 
                     cargarEspecialidades(aux);
+                    cargarHorarios(aux);
 
                     lista.Add(aux);
                 }
@@ -80,6 +81,45 @@ namespace TurnosNegocio
             finally
             {
                 datosEspecialidad.cerrarConexion();
+            }
+        }
+
+        private void cargarHorarios(Profesional profesional)
+        {
+            AccesoDatos datosHorario= new AccesoDatos();
+            profesional.horarios = new List<Horario>();
+
+            try
+            {
+                datosHorario.setearConsulta("Select IdUsuario, IdEspecialidad, Especialidad, IdHorario, Dia, " +
+                    "Hora_Inicio, Hora_Fin, Frecuencia from VW_HorariosDeProfesionales");
+                datosHorario.lecturaDatos();
+
+                while (datosHorario.Lector.Read())
+                {
+                    Profesional aux = new Profesional();
+                    aux.id = (Int64)datosHorario.Lector["IdUsuario"];
+
+                    if (aux.id == profesional.id)
+                    {
+                        Horario horario = new Horario();
+                        horario.idHorario = (Int64)datosHorario.Lector["IdHorario"];
+                        horario.dia = (String)datosHorario.Lector["Dia"];
+                        horario.horaInicio = (TimeSpan)datosHorario.Lector["Hora_Inicio"];
+                        horario.horaFin = (TimeSpan)datosHorario.Lector["Hora_Fin"];
+                        horario.frecuencia = (Int16)datosHorario.Lector["Frecuencia"];
+                        profesional.horarios.Add(horario);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datosHorario.cerrarConexion();
             }
         }
     }

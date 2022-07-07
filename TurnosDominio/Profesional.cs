@@ -9,6 +9,7 @@ namespace TurnosDominio
     public class Profesional:Usuario
     {
         public List<Especialidad> especialidades { get; set; }
+        public List<Horario> horarios { get; set; }
         public bool habilitado { get; set; }
 
     }

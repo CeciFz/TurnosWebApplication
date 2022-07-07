@@ -299,6 +299,17 @@ INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (78,3)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (92,3)
 
 
+/* HORARIOS */
+INSERT [dbo].[Horarios] ([Día],[Hora_Inicio],[Hora_Fin],[Frecuencia]) VALUES ('Lunes','8:00','13:00',30)
+INSERT [dbo].[Horarios] ([Día],[Hora_Inicio],[Hora_Fin],[Frecuencia]) VALUES ('Miércoles','13:00','18:00',30)
+INSERT [dbo].[Horarios] ([Día],[Hora_Inicio],[Hora_Fin],[Frecuencia]) VALUES ('Viernes','10:00','15:00',30)
+INSERT [dbo].[Horarios] ([Día],[Hora_Inicio],[Hora_Fin],[Frecuencia]) VALUES ('Viernes','9:00','14:00',30)
+INSERT [dbo].[Horarios] ([Día],[Hora_Inicio],[Hora_Fin],[Frecuencia]) VALUES ('Jueves','8:00','12:00',60)
+INSERT [dbo].[Horarios] ([Día],[Hora_Inicio],[Hora_Fin],[Frecuencia]) VALUES ('Jueves','14:00','18:00',60)
+INSERT [dbo].[Horarios] ([Día],[Hora_Inicio],[Hora_Fin],[Frecuencia]) VALUES ('Lunes','7:00','11:00',30)
+INSERT [dbo].[Horarios] ([Día],[Hora_Inicio],[Hora_Fin],[Frecuencia]) VALUES ('Martes','14:00','19:00',30)
+
+
 
 
 /* PROFESIONAL X ESPECIALIDAD */
@@ -327,3 +338,22 @@ INSERT [dbo].[Profesionales_X_Especialidad] ([IdUsuario], [IdEspecialidad]) VALU
 INSERT [dbo].[Profesionales_X_Especialidad] ([IdUsuario], [IdEspecialidad]) VALUES (65,1)
 INSERT [dbo].[Profesionales_X_Especialidad] ([IdUsuario], [IdEspecialidad]) VALUES (97,6)
 INSERT [dbo].[Profesionales_X_Especialidad] ([IdUsuario], [IdEspecialidad]) VALUES (94,2)
+
+
+/* HORARIO X PROFESIONAL */
+INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (11,1,1)
+INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (11,1,2)
+INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (11,1,3)
+INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (2,13,4)
+INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (13,12,5)
+INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (13,12,6)
+INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (15,22,7)
+INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (17,15,8)
+INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (25,10,8)
+INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (65,1,8)
+
+
+/* TURNOS */
+SELECT * FROM Horarios
+SELECT * FROM TURNOS
+SELECT * FROM Profesionales_X_Especialidad
