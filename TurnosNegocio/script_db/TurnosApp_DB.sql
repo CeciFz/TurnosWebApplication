@@ -38,21 +38,6 @@ Create Table Usuarios(
 )
 go
 
-/*
-create Table Pacientes(
-	Id bigint not null primary key identity(1,1),
-	IdObraSocial int null Foreign Key References Obras_Sociales(Id),
-	Habilitado bit not null default(1)
-)
-go
-
-Create Table Profesionales(
-	Id bigint not null primary key identity(1,1),
-	CostoConsulta money null check (CostoConsulta >= 0),
-	Habilitado bit not null default(1)
-)
-go*/
-
 Create Table Especialidades(
 	Id int not null primary key identity(1,1),
 	Descripcion varchar(100) not null,
@@ -129,51 +114,3 @@ Create Table Turnos(
 	references Horario_x_Profesional(IdProfesional, IdEspecialidad,IdHorario)
 )
 
-Select IdUsuario, IdEspecialidad, Especialidad from VW_ProfesionalesConEspecialidad
-
-
-/*
-SELECT (CASE DATENAME(dw,'2019-01-08 00:00:00')
-     when 'Monday' then 'LUNES'
-     when 'Tuesday' then 'MARTES'
-     when 'Wednesday' then 'MIERCOLES'
-     when 'Thursday' then 'JUEVES'
-     when 'Friday' then 'VIERNES'
-     when 'Saturday' then 'SABADO'
-     when 'Sunday' then 'DOMINGO'
-END
-
-SELECT DATENAME(dw,'2019-01-08')
-
-SELECT (case DATEPART(dw,'2019-01-08 00:00:00') 
-when 2 then 'Lunes' when 3 then 'Martes' 
-when 4 then 'Miércoles' when 5 then 'Jueves' 
-when 6 then 'Viernes' when 7 then 'Sábado' 
-when 1 then 'Domingo' end) AS nombreDiaSemana;
-*/
-
-/*
-create table Marcas
-(
-    ID int primary key not null identity(1,1),
-    nombre varchar(100) not null,
-    estado bit not null
-)
-
-create table Modelos
-(
-    ID int not null identity(1,1),
-    IDMarca int foreign key references Marcas(ID),
-    nombre varchar(100) not null,
-    primary key(ID, IDMarca)
-)
-
-create table Automoviles
-(
-    IDMarca int not null,
-    IDModelo int not null,
-    patente varchar(8) not null,
-    foreign key (IDMarca, IDModelo) references Modelos(ID, IDMarca),
-    primary key(IDMarca, IDModelo, patente)
-)
-*/

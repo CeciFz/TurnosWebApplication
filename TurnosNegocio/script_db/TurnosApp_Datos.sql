@@ -354,6 +354,8 @@ INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorar
 
 
 /* TURNOS */
+/*
 SELECT * FROM Horarios
 SELECT * FROM TURNOS
 SELECT * FROM Profesionales_X_Especialidad
+*/

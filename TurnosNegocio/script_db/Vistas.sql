@@ -10,19 +10,6 @@ Create View VW_Pacientes AS
 	Where pu.IdPerfilUsuario = 3
 go
 
-
-/* VISTA PROFESIONALES */
-Create View VW_Profesionales AS
-	Select u.Id, u.Apellidos, u.Nombres, u.FechaNacimiento, u.Sexo, u.IdTipoDocumento,u.telefono,u.mail,
-	u.IdObraSocial, u.FechaAlta, pu.IdPerfilUsuario,e.Id,e.Descripcion
-	from Usuarios u
-	inner join Perfil_X_Usuario pu on u.Id = pu.IdUsuario
-	inner join Profesionales_X_Especialidad pxe on u.id = pxe.IdUsuario
-	inner join Especialidades e on pxe.IdEspecialidad= e.Id
-	Where pu.IdPerfilUsuario = 4
-go
-
-
 /* VISTA ADMINS */
 Create View VW_Admins AS
 	Select u.Apellidos, u.Nombres, u.FechaNacimiento, u.Sexo, u.IdTipoDocumento,u.telefono,u.mail,
@@ -92,4 +79,3 @@ select*from especialidades
 Select IdUsuario, IdPerfil, Perfil from VW_UsuariosConPerfil
 */
 
-Select IdUsuario, IdEspecialidad, Especialidad, Habilitado from VW_ProfesionalesConEspecialidad
