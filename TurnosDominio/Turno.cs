@@ -10,7 +10,7 @@ namespace TurnosDominio
     {
         public Int64 id { get; set; }
         public Usuario paciente { get; set; }
-        public DateTime fecha { get; set; }
+        public DateTime fecha { get; set; } 
         public TimeSpan hora { get; set; }
         public Profesional profesional { get; set; }
         public Especialidad especialidad { get; set; }

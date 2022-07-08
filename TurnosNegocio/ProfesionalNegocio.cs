@@ -56,7 +56,7 @@ namespace TurnosNegocio
 
             try
             {
-                datosEspecialidad.setearConsulta("Select IdUsuario, IdEspecialidad, Especialidad from VW_ProfesionalesConEspecialidad");
+                datosEspecialidad.setearConsulta("Select IdUsuario, IdEspecialidad, Especialidad, Habilitado from VW_ProfesionalesConEspecialidad");
                 datosEspecialidad.lecturaDatos();
 
                 while (datosEspecialidad.Lector.Read())
@@ -69,6 +69,7 @@ namespace TurnosNegocio
                         Especialidad especialidad = new Especialidad();
                         especialidad.id = (int)datosEspecialidad.Lector["IdEspecialidad"];
                         especialidad.descripcion = (String)datosEspecialidad.Lector["Especialidad"];
+                        especialidad.activo = (bool)datosEspecialidad.Lector["Habilitado"];
                         profesional.especialidades.Add(especialidad);
                     }
                 }

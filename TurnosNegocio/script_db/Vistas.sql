@@ -66,7 +66,7 @@ Go
 /* Vista para listar las especialidades de cada profesional  */ 
 create View VW_ProfesionalesConEspecialidad AS
 	select u.Id as IdUsuario, pe.IdEspecialidad as IdEspecialidad,
-	esp.Descripcion as Especialidad from VW_Usuarios u
+	esp.Descripcion as Especialidad, pe.Habilitado from VW_Usuarios u
 	inner join Perfil_X_Usuario pxu on pxu.IdUsuario = u.Id
 	inner join Profesionales_X_Especialidad pe on pe.IdUsuario = u.Id
 	inner join Especialidades esp on esp.Id = pe.IdEspecialidad
@@ -91,3 +91,5 @@ Select * from VW_UsuariosConPerfil
 select*from especialidades
 Select IdUsuario, IdPerfil, Perfil from VW_UsuariosConPerfil
 */
+
+Select IdUsuario, IdEspecialidad, Especialidad, Habilitado from VW_ProfesionalesConEspecialidad

@@ -21,6 +21,9 @@ namespace TurnosDominio
         public DateTime fechaAlta { get; set; }
         public List<PerfilUsuario> perfileslUsuario { get; set; }
         public bool activo { get; set; }
-
+        public override string ToString()
+        {
+            return apellidos + ", " + nombres;
+        }
     }
 }

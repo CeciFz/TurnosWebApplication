@@ -15,5 +15,25 @@ namespace TurnosDominio
         {
             return descripcion;
         }
+
+       /* public override bool Equals(System.Object obj)
+        {
+            if (obj == null)
+                return false;
+
+            Especialidad especialidad = obj as Especialidad;
+            if ((System.Object)especialidad == null)
+                return false;
+
+            return (id == especialidad.id) && (descripcion == especialidad.descripcion);
+        }*/
+        public bool Equals(Especialidad especialidad)
+        {
+            if (especialidad == null)
+                return false;
+
+            return (id == especialidad.id) && (descripcion == especialidad.descripcion);
+        }
+
     }
 }
