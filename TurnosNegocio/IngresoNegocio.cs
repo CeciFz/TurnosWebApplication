@@ -8,9 +8,9 @@ using TurnosDominio;
 
 namespace TurnosNegocio
 {
-   public class ingresosnegocio
+   public class IngresoNegocio
     {
-        public bool Loguear(ingresos ingresos)
+        public bool Loguear(Ingreso ingresos)
         {
 
             AccesoDatos datos = new AccesoDatos();

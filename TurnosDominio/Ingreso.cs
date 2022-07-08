@@ -13,7 +13,7 @@ namespace TurnosDominio
 
     }
 
-    public class ingresos
+    public class Ingreso
     {
 
         public int Id { get; set; }
@@ -24,7 +24,7 @@ namespace TurnosDominio
         public tipousuarios TipoUsuario { get; set; }
 
 
-        public ingresos (string user, string pass, bool admin)
+        public Ingreso (string user, string pass, bool admin)
       {
             User = user;
              Pass = pass;

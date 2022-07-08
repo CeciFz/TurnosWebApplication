@@ -18,8 +18,8 @@ namespace TurnosNegocio
 
         public AccesoDatos()  
         {
-            // conexion = new SqlConnection("server=.\\SQLEXPRESS; database = TurnosApp; integrated security = true");
-            conexion = new SqlConnection("server =ZUMSTEIND; database = TurnosApp; integrated security = true");
+            conexion = new SqlConnection("server=.\\SQLEXPRESS; database = TurnosApp; integrated security = true");
+            //conexion = new SqlConnection("server =ZUMSTEIND; database = TurnosApp; integrated security = true");
 
             comando = new SqlCommand();
 

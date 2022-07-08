@@ -32,12 +32,12 @@ namespace TurnosAppWeb
         protected void btnIniciarSesion_Click(object sender, EventArgs e)
         {
 
-            ingresos ingresos;
-            ingresosnegocio negocio = new ingresosnegocio();
+            Ingreso ingresos;
+            IngresoNegocio negocio = new IngresoNegocio();
 
             try
             {
-                ingresos = new ingresos(TextUser.Text, Textpassword.Text,false);
+                ingresos = new Ingreso(TextUser.Text, Textpassword.Text,false);
                 if (negocio.Loguear(ingresos))
                 {
                     Session.Add("ingresos", ingresos);

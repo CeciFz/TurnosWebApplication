@@ -162,9 +162,10 @@ INSERT [dbo].[Especialidades] (Id, Descripcion) VALUES (22, 'Análisis De Medici
 SET IDENTITY_INSERT [dbo].[Especialidades] OFF
 
 
-SET IDENTITY_INSERT [dbo].[Ingresos] ON 
+
 INSERT [dbo].[Ingresos] ( [Usuario], [Pass], [TipoUser]) VALUES ('utn','utn',2)
-SET IDENTITY_INSERT [dbo].[Ingresos] OFF
+INSERT [dbo].[Ingresos] ( [Usuario], [Pass], [TipoUser]) VALUES ('utn1','utn1',1)
+
 
 
 /* ESTADOS TURNOS */
