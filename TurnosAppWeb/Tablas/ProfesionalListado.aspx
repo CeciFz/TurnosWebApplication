@@ -37,6 +37,14 @@
                                 <lbl class="card-text" id="txtEspecialidad"><%:esp.descripcion %></lbl>
                                 <%} %>
                             </div>
+                            <div>
+                                <label class="card-text">Horarios: </label>
+                                <%foreach (TurnosDominio.Horario hr in horarios)
+                                    { %>
+<%--                                <asp:textbox cssclass="card-text" id="txtEspecialidad" runat="server">"esp.descripcion"</asp:textbox>--%>
+                                <lbl class="card-text" id="txtHorarios"><%:hr.dia + " de " + hr.horaInicio + " a " + hr.horaFin %></lbl>
+                                <%} %>
+                            </div>
 <%--                            <asp:Button Text="Editar" runat="server" CssClass="btn btn-primary" ID="btnModificar" CommandArgument='<%#Eval("Id")%>' CommandName="UsuarioId" OnClick="btnModificar_Click" />--%>
                         </div>
                     </div>

@@ -13,6 +13,7 @@ namespace TurnosAppWeb
     {
         public List<Profesional> listaProfesionales { get; set; }
         public List<Especialidad> especialidad { get; set; }
+        public List<Horario> horarios { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["ingresos"] == null)
@@ -47,6 +48,8 @@ namespace TurnosAppWeb
             repProfesional.DataBind();
 
             especialidad = (List<Especialidad>)((List<Profesional>)Session["listaProfesionales"]).Find(x => x.id.ToString() == id).especialidades;
+            
+            horarios = (List<Horario>)((List<Profesional>)Session["listaProfesionales"]).Find(x => x.id.ToString() == id).horarios;
 
         }
 

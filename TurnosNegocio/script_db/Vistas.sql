@@ -10,19 +10,6 @@ Create View VW_Pacientes AS
 	Where pu.IdPerfilUsuario = 3
 go
 
-
-/* VISTA PROFESIONALES */
-Create View VW_Profesionales AS
-	Select u.Id, u.Apellidos, u.Nombres, u.FechaNacimiento, u.Sexo, u.IdTipoDocumento,u.telefono,u.mail,
-	u.IdObraSocial, u.FechaAlta, pu.IdPerfilUsuario,e.Descripcion
-	from Usuarios u
-	inner join Perfil_X_Usuario pu on u.Id = pu.IdUsuario
-	inner join Profesionales_X_Especialidad pxe on u.id = pxe.IdUsuario
-	inner join Especialidades e on pxe.IdEspecialidad= e.Id
-	Where pu.IdPerfilUsuario = 4
-go
-
-
 /* VISTA ADMINS */
 Create View VW_Admins AS
 	Select u.Apellidos, u.Nombres, u.FechaNacimiento, u.Sexo, u.IdTipoDocumento,u.telefono,u.mail,
@@ -65,20 +52,30 @@ Go
 
 /* Vista para listar las especialidades de cada profesional  */ 
 create View VW_ProfesionalesConEspecialidad AS
-select u.Id as IdUsuario, pe.IdEspecialidad as IdEspecialidad,
-esp.Descripcion as Especialidad from VW_Usuarios u
-inner join Perfil_X_Usuario pxu on pxu.IdUsuario = u.Id
-inner join Profesionales_X_Especialidad pe on pe.IdUsuario = u.Id
-inner join Especialidades esp on esp.Id = pe.IdEspecialidad
-where pxu.IdPerfilUsuario = 4
+	select u.Id as IdUsuario, pe.IdEspecialidad as IdEspecialidad,
+	esp.Descripcion as Especialidad, pe.Habilitado from VW_Usuarios u
+	inner join Perfil_X_Usuario pxu on pxu.IdUsuario = u.Id
+	inner join Profesionales_X_Especialidad pe on pe.IdUsuario = u.Id
+	inner join Especialidades esp on esp.Id = pe.IdEspecialidad
+	where pxu.IdPerfilUsuario = 4
 Go
 
-
+/* Vista para listar los horarios de cada profesional  */ 
+create View VW_HorariosDeProfesionales AS
+	select u.Id as IdUsuario, hxp.IdEspecialidad, esp.Descripcion as Especialidad,
+	hr.IdHorario, hr.día as Dia, hr.Hora_Inicio, hr.Hora_Fin, hr.Frecuencia
+	from VW_Usuarios u
+	inner join Horario_x_Profesional hxp on hxp.IdProfesional = u.Id
+	inner join Horarios hr on hr.IdHorario = hxp.IdHorario
+    inner join Especialidades esp on esp.Id = hxp.IdEspecialidad
+Go
 
 /*
+select * from Horarios
 select * from Perfiles_Usuarios
 Select * from Perfil_X_Usuario
 Select * from VW_UsuariosConPerfil
-
+select*from especialidades
 Select IdUsuario, IdPerfil, Perfil from VW_UsuariosConPerfil
 */
+

@@ -35,6 +35,11 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Administrar</a>
                                     <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="../Tablas/TurnoForm.aspx">Nuevo Turno</a></li>
+                                        <li><a class="dropdown-item" href="#">Modificar Turno</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
                                         <li><a class="dropdown-item" href="../Tablas/UsuarioForm.aspx">Alta Usuarios</a></li>
                                         <li><a class="dropdown-item" href="../Tablas/UsuarioListado.aspx">Modificar Usuarios</a></li>
                                         <li>
@@ -49,9 +54,9 @@
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-<%--                                        <li><a class="dropdown-item" href="../Tablas/EspecialidadForm.aspx">Alta Especialidad</a></li>--%>
+                                        <%--                                        <li><a class="dropdown-item" href="../Tablas/EspecialidadForm.aspx">Alta Especialidad</a></li>--%>
                                         <li><a class="dropdown-item" href="../Tablas/EspecialidadListado.aspx">Modificar Especialidad</a></li>
-                                        <li> 
+                                        <li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
@@ -69,11 +74,6 @@
                                         <li><a class="dropdown-item" href="../Tablas/PerfilUsuarioListado.aspx">Modificar Perfil Usuario</a></li>
                                         <li>
 
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li><a class="dropdown-item" href="#">Nuevo Turno</a></li>
-                                        <li><a class="dropdown-item" href="#">Modificar Turno</a></li>
-                                        <li>
                                             <hr class="dropdown-divider">
                                         </li>
                                         <li><a class="dropdown-item" href="#">------</a></li>

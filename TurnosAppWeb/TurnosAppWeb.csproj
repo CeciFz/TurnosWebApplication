@@ -84,6 +84,7 @@
     <Content Include="Tablas\ObraSocialListado.aspx" />
     <Content Include="Tablas\UsuarioListado.aspx" />
     <Content Include="Tablas\EspecialidadListado.aspx" />
+    <Content Include="Tablas\TurnoForm.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -202,6 +203,13 @@
     </Compile>
     <Compile Include="TunosWeb.Master.designer.cs">
       <DependentUpon>TunosWeb.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Tablas\TurnoForm.aspx.cs">
+      <DependentUpon>TurnoForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tablas\TurnoForm.aspx.designer.cs">
+      <DependentUpon>TurnoForm.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
