@@ -52,16 +52,6 @@ Pass varchar (50) null,
 TipoUser int null,
 )
 
-
-
-
-go
-Create Table Profesionales_X_Especialidad(
-	IdUsuario bigint not null Foreign Key References Usuarios(Id),
-	IdEspecialidad int not null Foreign Key References Especialidades(Id),
-	Habilitado bit not null default(1),
-	primary key (IdUsuario,IdEspecialidad)
-)
 go
 
 Create Table Estados_Turnos(
