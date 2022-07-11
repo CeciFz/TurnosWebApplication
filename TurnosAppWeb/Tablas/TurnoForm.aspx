@@ -36,7 +36,7 @@
                         <div class="col">
                             <div class="col">
                                 <asp:Label ID="lblDias" runat="server" CssClass="form-label" Text="Día:"></asp:Label>
-                                <asp:DropDownList ID="ddlDias" CssClass="form-select" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlDias" CssClass="form-select" runat="server" AutoPostBack="true"></asp:DropDownList>
                             </div>
 <%--                        </div>--%>
                     </ContentTemplate>

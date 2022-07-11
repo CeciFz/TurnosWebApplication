@@ -10,13 +10,14 @@ namespace TurnosNegocio
     public class ProfesionalNegocio
     {
         private AccesoDatos datos = new AccesoDatos();
-        public List<Profesional> listarProfesionalesConSP()
+        public List<Profesional> listarProfesionalesConSP(Int32 idEspecialidad = -1)
         {
             List<Profesional> lista = new List<Profesional>();
 
             try
             {
                 datos.setearSP("SP_ListarProfesionales");
+                datos.SetearParametro("@IdEspecialidad", idEspecialidad);
                 datos.lecturaDatos();
 
                 while (datos.Lector.Read())
@@ -24,8 +25,15 @@ namespace TurnosNegocio
                     Profesional aux = new Profesional();
 
                     aux.id = (Int64)datos.Lector["Id"];
-                    aux.apellidos = (string)datos.Lector["Apellidos"];
-                    aux.nombres = (string)datos.Lector["Nombres"];
+                    if (idEspecialidad == -1)
+                    {
+                        aux.apellidos = (string)datos.Lector["Apellidos"];
+                        aux.nombres = (string)datos.Lector["nombres"];
+                    }
+                    else
+                    {
+                        aux.nombres = (string)datos.Lector["NombreCompleto"];
+                    }
                     aux.sexo = (string)datos.Lector["Sexo"];
                     aux.telefono = (string)datos.Lector["Telefono"];
                     aux.mail = (string)datos.Lector["Mail"];

@@ -16,6 +16,8 @@ namespace TurnosAppWeb
         public List<Usuario> listaPacientes { get; set; }
         public List<Especialidad> listaEspecialidades { get; set; }
 
+        public Int32 idEspecialidad { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             UsuarioNegocio negocio = new UsuarioNegocio();
@@ -55,71 +57,34 @@ namespace TurnosAppWeb
 
         protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
-            /* int id = int.Parse(ddlEspecialidad.SelectedItem.Value);
-
-             List<Profesional> profesionalesfiltrados = new List<Profesional>();
-             Especialidad seleccionada = ((List<Especialidad>)Session["listaEspecialidades"]).Find(x => x.id == id);
-             profesionalesfiltrados = ((List<Profesional>)Session["listaProfesionales"]).FindAll(x => x.especialidades.FindAll(y => y.Equals(seleccionada));
-             ProfesionalNegocio profNeg = new ProfesionalNegocio();
-             listaProfesionales = profNeg.listarProfesionalesConSP();
-
-             foreach (Profesional prof in listaProfesionales)
-             {
-                 foreach(Especialidad esp in prof.especialidades)
-                 {
-                     //if (esp.id == id)   
-                     if (esp.Equals(seleccionada))   
-                     {
-                         profesionalesfiltrados.Add(prof);
-                     }
-                 }
-
-             };*/
-
+            idEspecialidad = Int32.Parse(ddlEspecialidad.SelectedItem.Value);
             ProfesionalNegocio profNeg = new ProfesionalNegocio();
-            List<Profesional> listaProfesionales = profNeg.listarProfesionalesConSP();
-            List<Profesional> profesionalesFiltrados = new List<Profesional>();
-
-            int id = int.Parse(ddlEspecialidad.SelectedItem.Value);
-
-            foreach (Profesional prof in listaProfesionales)
-            {
-                foreach (Especialidad esp in prof.especialidades)
-                {
-                    if (esp.id == id)
-                    {
-                        profesionalesFiltrados.Add(prof);
-                    }
-                }
-
-            }
+            List<Profesional> profesionalesFiltrados = profNeg.listarProfesionalesConSP(idEspecialidad);
 
             ddlProfesionales.DataSource = profesionalesFiltrados;
             ddlProfesionales.DataValueField = "id";
-            ddlProfesionales.DataTextField = "apellidos";
+            ddlProfesionales.DataTextField = "nombres";
             ddlProfesionales.DataBind();
+
+            Int64 idProfesional = Int64.Parse(ddlProfesionales.SelectedItem.Value);
+            HorarioNegocio horNeg = new HorarioNegocio();
+            List<Horario> diasAtencion = horNeg.listarHorariosConSP(idEspecialidad, idProfesional);
+
+
+            ddlDias.DataSource = diasAtencion;
+            ddlDias.DataValueField = "idHorario";
+            ddlDias.DataTextField = "dia";
+            ddlDias.DataBind();
 
         }
 
         protected void ddlProfesionales_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ProfesionalNegocio profNeg = new ProfesionalNegocio();
-            List<Profesional> listaProfesionales = profNeg.listarProfesionalesConSP();
-            List<Horario> diasAtencion= new List<Horario>();
+            idEspecialidad = Int32.Parse(ddlEspecialidad.SelectedItem.Value);
+            Int64 idProfesional = Int64.Parse(ddlProfesionales.SelectedItem.Value);
+            HorarioNegocio horNeg = new HorarioNegocio();
+            List<Horario> diasAtencion = horNeg.listarHorariosConSP(idEspecialidad, idProfesional);
 
-            int id = int.Parse(ddlProfesionales.SelectedItem.Value);
-
-            foreach (Profesional prof in listaProfesionales)
-            {
-                if (prof.id == id)
-                    {
-                    foreach (Horario horario in prof.horarios)
-                    {
-                        diasAtencion.Add(horario);
-                    }
-                } 
-
-            }
 
             ddlDias.DataSource = diasAtencion;
             ddlDias.DataValueField = "idHorario";

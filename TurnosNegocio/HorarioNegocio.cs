@@ -12,24 +12,35 @@ namespace TurnosNegocio
     {
         private AccesoDatos datos = new AccesoDatos();
 
-        public List<Horario> listarHorarios()
+        public List<Horario> listarHorariosConSP(Int32 idEspecialidad = -1 , Int64 idProfesional = -1)
         {
             List<Horario> lista = new List<Horario>();
 
             try
             {
-                datos.setearConsulta("select IdHorario, Día, Hora_Inicio, Hora_Fin, Frecuencia, Activo from Horarios");
+                datos.setearSP("SP_ListarHorariosProfesionales");
+                datos.SetearParametro("@IdEspecialidad", idEspecialidad);
+                datos.SetearParametro("@IdProfesional", idProfesional);
                 datos.lecturaDatos();
 
                 while (datos.Lector.Read())
                 {
                     Horario aux = new Horario();
                     aux.idHorario = (Int64)datos.Lector["IdHorario"];
+
+                    if(idProfesional > -1)
+                    {
+                        aux.dia = (string)datos.Lector["Horario"];
+                    }
+                    else
+                    {
                     aux.dia = (string)datos.Lector["Día"];
                     aux.horaInicio = (TimeSpan)datos.Lector["Hora_Inicio"];
                     aux.horaFin = (TimeSpan)datos.Lector["Hora_Fin"];
-                    aux.frecuencia = (Int16)datos.Lector["Frecuencia"];
 
+                    }
+
+                    aux.frecuencia = (Int16)datos.Lector["Frecuencia"];
                     if (aux.activo = (bool)datos.Lector["Activo"]) lista.Add(aux);
                 }
 

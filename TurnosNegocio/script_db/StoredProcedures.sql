@@ -9,13 +9,45 @@ create procedure SP_ListarUsuarios AS BEGIN
 END
 GO
 
-create procedure SP_ListarProfesionales AS BEGIN
-	select Id, Apellidos,Nombres,Sexo,Telefono,Mail,up.IdPerfil
-	from VW_Usuarios 
-	inner join VW_UsuariosConPerfil up on up.IdUsuario = VW_Usuarios.Id
-	where IdPerfil = 4
+create procedure SP_ListarProfesionales (
+	@IdEspecialidad int
+) AS BEGIN
+	IF (@IdEspecialidad=-1) BEGIN
+		select Id, Apellidos, Nombres as NombreCompleto,Sexo,Telefono,Mail
+		from VW_Usuarios 
+		inner join VW_UsuariosConPerfil up on up.IdUsuario = VW_Usuarios.Id
+		where IdPerfil = 4
+	END ELSE BEGIN
+		select Id, Apellidos + ', ' + Nombres as NombreCompleto,Sexo,Telefono,Mail
+		from VW_Usuarios 
+		inner join VW_UsuariosConPerfil up on up.IdUsuario = VW_Usuarios.Id
+		inner join Profesionales_x_Especialidad pe on pe.IdUsuario = up.IdUsuario
+		where IdPerfil = 4 AND IdEspecialidad = @IdEspecialidad
+	END
 END
 GO
+
+create procedure SP_ListarHorariosProfesionales (
+	@IdEspecialidad int,
+	@IdProfesional bigint
+) AS BEGIN
+	IF (@IdProfesional=-1) BEGIN
+		Select pe.IdUsuario as IDProfesional, h.IdHorario, h.Día, h.Hora_Inicio, h.Hora_Fin, h.Frecuencia, h.Activo
+		from Profesionales_x_Especialidad pe
+		left Join Horario_x_Profesional hp on hp.IdProfesional = pe.IdUsuario
+		left Join Horarios h on h.IdHorario = hp.IdHorario
+	END ELSE BEGIN
+		Select pe.IdUsuario as IDProfesional, isnull(h.IdHorario,0) as IdHorario, isnull((
+		h.Día +' de '+ Cast(h.Hora_Inicio as varchar(5)) + ' a ' +  Cast(h.Hora_Fin as varchar(5))),
+		'Sin atención') as Horario, isnull(h.Frecuencia,0) as Frecuencia, pe.Habilitado as Activo
+		from Profesionales_x_Especialidad pe
+		left Join Horario_x_Profesional hp on hp.IdProfesional = pe.IdUsuario
+		left Join Horarios h on h.IdHorario = hp.IdHorario
+		where pe.IdUsuario = @IdProfesional AND pe.IdEspecialidad = @IdEspecialidad
+	END
+END
+GO
+exec SP_ListarHorariosProfesionales 2,94
 
 create procedure SP_AgregarPerfil(
 	@IdUsuario bigint,

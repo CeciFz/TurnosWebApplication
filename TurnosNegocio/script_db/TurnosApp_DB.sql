@@ -89,7 +89,7 @@ Create Table Horarios(
 
 	--drop Table Horarios    ... ¿hacer idprofesional ?   drop Table Profesionales_X_Especialidad  
 	--  drop Table Horario_x_Profesional
-	
+
 Create Table Profesionales_x_Especialidad(
 	IdUsuario bigint not null Foreign Key References Usuarios(Id),
 	IdEspecialidad int not null Foreign Key References Especialidades(Id),
