@@ -47,7 +47,7 @@ create procedure SP_ListarHorariosProfesionales (
 	END
 END
 GO
-exec SP_ListarHorariosProfesionales 2,94
+--exec SP_ListarHorariosProfesionales 2,94
 
 create procedure SP_AgregarPerfil(
 	@IdUsuario bigint,
