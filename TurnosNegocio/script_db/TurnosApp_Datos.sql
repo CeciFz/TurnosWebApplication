@@ -358,8 +358,11 @@ INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorar
 INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (17,15,8)
 INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (25,10,8)
 INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (65,1,8)
+INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (55,3,8)
 
-
+Select*from Profesionales_x_Especialidad pe
+inner join Especialidades e on e.id = pe.idespecialidad
+order by e.Descripcion
 /* TURNOS */
 /*
 SELECT * FROM Horarios
