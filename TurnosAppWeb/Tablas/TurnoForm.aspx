@@ -35,7 +35,12 @@
                         </div>
                         <div class="col">
                             <asp:Label ID="lblDias" runat="server" CssClass="form-label" Text="Día:"></asp:Label>
-                            <asp:DropDownList ID="ddlDias" CssClass="form-select" runat="server" AutoPostBack="true"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlDias" CssClass="form-select" runat="server" AutoPostBack="true"
+                                OnSelectedIndexChanged="ddlDias_SelectedIndexChanged">
+                            </asp:DropDownList>
+                        </div>                            
+                        <asp:Label ID="lblTurnosDisponibles" runat="server" CssClass="form-label" Text="Turnos Disponibles:"></asp:Label>
+                            <asp:DropDownList ID="ddlFecha" CssClass="form-select" runat="server" AutoPostBack="true"></asp:DropDownList>
                         </div>
                         <%--                        </div>--%>
                     </ContentTemplate>
