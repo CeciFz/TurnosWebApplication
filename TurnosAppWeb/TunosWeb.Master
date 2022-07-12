@@ -77,21 +77,14 @@
                                             <hr class="dropdown-divider">
                                         </li>
                                         <li><a class="dropdown-item" href="#">------</a></li>
-
-                                        
                                     </ul>
-                                    
-                                </li> 
-                                
-                                <asp:Button ID="btnCerrarsession" runat="server" Text="CERRAR SESSIÓN" ONCLICK="btnCerrarsession_Click" class="btn btn-dark" Visible="false" /> 
-                                <% //<a class="nav-link active" aria-current="page" href="/default.aspx">CERRAR SESSIÓN</a> %>
+                                </li>
                             </ul>
                         </div>
                         <asp:Button ID="btnCerrarsession" runat="server" Text="CERRAR SESSIÓN" OnClick="btnCerrarsession_Click" class="btn btn-dark" Visible="false" />
                         <% //<a class="nav-link active" aria-current="page" href="/default.aspx">CERRAR SESSIÓN</a> %>
                     </div>
                 </nav>
-                 
             </header>
             <div id="layout">
                 <div class="container py-3">
