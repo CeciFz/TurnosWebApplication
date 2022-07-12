@@ -44,7 +44,7 @@
                                         <li><a class="dropdown-item" href="../Tablas/UsuarioListado.aspx">Modificar Usuarios</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
-                                            <li><a class="dropdown-item" href="../Tablas/ProfesionalForm.aspx">Alta Usuarios</a></li>
+                                            <li><a class="dropdown-item" href="#">Alta Profesional</a></li>
                                         <li><a class="dropdown-item" href="../Tablas/ProfesionalListado.aspx">Modificar Profesional</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
@@ -54,7 +54,7 @@
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-                                        <%--                                        <li><a class="dropdown-item" href="../Tablas/EspecialidadForm.aspx">Alta Especialidad</a></li>--%>
+                                        <li><a class="dropdown-item" href="#">Alta Especialidad</a></li>
                                         <li><a class="dropdown-item" href="../Tablas/EspecialidadListado.aspx">Modificar Especialidad</a></li>
                                         <li>
                                         <li>
@@ -87,6 +87,8 @@
                                 <% //<a class="nav-link active" aria-current="page" href="/default.aspx">CERRAR SESSIÓN</a> %>
                             </ul>
                         </div>
+                        <asp:Button ID="btnCerrarsession" runat="server" Text="CERRAR SESSIÓN" OnClick="btnCerrarsession_Click" class="btn btn-dark" Visible="false" />
+                        <% //<a class="nav-link active" aria-current="page" href="/default.aspx">CERRAR SESSIÓN</a> %>
                     </div>
                 </nav>
                  

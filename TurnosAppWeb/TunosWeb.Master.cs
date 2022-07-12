@@ -20,9 +20,7 @@ namespace TurnosAppWeb
         protected void btnCerrarsession_Click(object sender, EventArgs e)
         {
             Session["ingresos"] = null;
-            
-                Response.Redirect("/default.aspx");
-            
+            Response.Redirect("/default.aspx");
         }
     }
 }

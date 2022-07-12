@@ -21,27 +21,26 @@
                 <asp:UpdatePanel runat="server">
                     <ContentTemplate>
                         <%--<div class="row">--%>
-                            <div class="col">
-                                <asp:Label ID="lblEspecialidad" runat="server" Text="Especialidades"></asp:Label>
-                                <asp:DropDownList ID="ddlEspecialidad" CssClass="form-select" AutoPostBack="true"
-                                    OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged" runat="server">
-                                </asp:DropDownList>
-                            </div>
-                            <div class="col">
-                                <asp:Label ID="lblProfesional" runat="server" Text="Profesionales"></asp:Label>
-                                <asp:DropDownList ID="ddlProfesionales" CssClass="form-select" AutoPostBack="true"
-                                    runat="server" OnSelectedIndexChanged="ddlProfesionales_SelectedIndexChanged">
-                                </asp:DropDownList>
-                            </div>
                         <div class="col">
-                            <div class="col">
-                                <asp:Label ID="lblDias" runat="server" CssClass="form-label" Text="Día:"></asp:Label>
-                                <asp:DropDownList ID="ddlDias" CssClass="form-select" runat="server" AutoPostBack="true"></asp:DropDownList>
-                            </div>
-<%--                        </div>--%>
+                            <asp:Label ID="lblEspecialidad" runat="server" Text="Especialidades"></asp:Label>
+                            <asp:DropDownList ID="ddlEspecialidad" CssClass="form-select" AutoPostBack="true"
+                                OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged" runat="server">
+                            </asp:DropDownList>
+                        </div>
+                        <div class="col">
+                            <asp:Label ID="lblProfesional" runat="server" Text="Profesionales"></asp:Label>
+                            <asp:DropDownList ID="ddlProfesionales" CssClass="form-select" AutoPostBack="true"
+                                runat="server" OnSelectedIndexChanged="ddlProfesionales_SelectedIndexChanged">
+                            </asp:DropDownList>
+                        </div>
+                        <div class="col">
+                            <asp:Label ID="lblDias" runat="server" CssClass="form-label" Text="Día:"></asp:Label>
+                            <asp:DropDownList ID="ddlDias" CssClass="form-select" runat="server" AutoPostBack="true"></asp:DropDownList>
+                        </div>
+                        <%--                        </div>--%>
                     </ContentTemplate>
                 </asp:UpdatePanel>
-<%--                <asp:Button Text="Agendar" runat="server" CssClass="btn btn-primary" ID="btnAgendar" CommandArgument='<%#Eval("Id")%>' CommandName="UsuarioId" OnClick="btnAgendar_Click" />--%>
+                <%--                <asp:Button Text="Agendar" runat="server" CssClass="btn btn-primary" ID="btnAgendar" CommandArgument='<%#Eval("Id")%>' CommandName="UsuarioId" OnClick="btnAgendar_Click" />--%>
             </div>
         </div>
     </div>

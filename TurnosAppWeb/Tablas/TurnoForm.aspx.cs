@@ -16,7 +16,7 @@ namespace TurnosAppWeb
         public List<Usuario> listaPacientes { get; set; }
         public List<Especialidad> listaEspecialidades { get; set; }
 
-        public Int32 idEspecialidad { get; set; }
+        //public Int32 idEspecialidad { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -38,7 +38,7 @@ namespace TurnosAppWeb
                     ddlEspecialidad.DataValueField = "id";
                     ddlEspecialidad.DataTextField = "descripcion";
                     ddlEspecialidad.DataBind();
-
+                    ddlEspecialidad.Items.Insert(0, new ListItem("Seleccione especialidad","0"));
                 }
 
             }
@@ -57,7 +57,7 @@ namespace TurnosAppWeb
 
         protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
-            idEspecialidad = Int32.Parse(ddlEspecialidad.SelectedItem.Value);
+            Int32 idEspecialidad = Int32.Parse(ddlEspecialidad.SelectedItem.Value);
             ProfesionalNegocio profNeg = new ProfesionalNegocio();
             List<Profesional> profesionalesFiltrados = profNeg.listarProfesionalesConSP(idEspecialidad);
 
@@ -65,31 +65,36 @@ namespace TurnosAppWeb
             ddlProfesionales.DataValueField = "id";
             ddlProfesionales.DataTextField = "nombres";
             ddlProfesionales.DataBind();
+            if(ddlProfesionales.Items.Count > 1) ddlProfesionales.Items.Insert(0, new ListItem("Seleccione profesional", "0"));
 
-            Int64 idProfesional = Int64.Parse(ddlProfesionales.SelectedItem.Value);
-            HorarioNegocio horNeg = new HorarioNegocio();
-            List<Horario> diasAtencion = horNeg.listarHorariosConSP(idEspecialidad, idProfesional);
+            Int64 idProfesional = 0;
+            if (idEspecialidad > 0)  idProfesional = Int64.Parse(ddlProfesionales.SelectedItem.Value);
+                HorarioNegocio horNeg = new HorarioNegocio();
+                List<Horario> diasAtencion = horNeg.listarHorariosConSP(idEspecialidad, idProfesional);
 
 
-            ddlDias.DataSource = diasAtencion;
-            ddlDias.DataValueField = "idHorario";
-            ddlDias.DataTextField = "dia";
-            ddlDias.DataBind();
+                ddlDias.DataSource = diasAtencion;
+                ddlDias.DataValueField = "idHorario";
+                ddlDias.DataTextField = "dia";
+                ddlDias.DataBind();
+                if (ddlDias.Items.Count > 1) ddlDias.Items.Insert(0, new ListItem("Seleccione una opción", "0"));
 
         }
 
         protected void ddlProfesionales_SelectedIndexChanged(object sender, EventArgs e)
         {
-            idEspecialidad = Int32.Parse(ddlEspecialidad.SelectedItem.Value);
+
+            Int32 idEspecialidad = Int32.Parse(ddlEspecialidad.SelectedItem.Value);
             Int64 idProfesional = Int64.Parse(ddlProfesionales.SelectedItem.Value);
             HorarioNegocio horNeg = new HorarioNegocio();
             List<Horario> diasAtencion = horNeg.listarHorariosConSP(idEspecialidad, idProfesional);
-
 
             ddlDias.DataSource = diasAtencion;
             ddlDias.DataValueField = "idHorario";
             ddlDias.DataTextField = "dia";
             ddlDias.DataBind();
+            if (ddlDias.Items.Count > 1) ddlDias.Items.Insert(0, new ListItem("Seleccione una opción", "0"));
+
         }
 
         //public List<DateTime> ObtenerFechas(string dia)
