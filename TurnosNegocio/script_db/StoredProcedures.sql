@@ -49,6 +49,14 @@ END
 GO
 --exec SP_ListarHorariosProfesionales 2,94
 
+Create procedure SP_ListarHorarioSeleccionado (
+	@IdHorario bigint
+) AS BEGIN
+		Select Día, Hora_Inicio, Hora_Fin,Frecuencia,Activo from Horarios
+		where IdHorario = @IdHorario
+END
+GO
+
 create procedure SP_AgregarPerfil(
 	@IdUsuario bigint,
 	@IdPerfilUsuario smallint
@@ -180,3 +188,5 @@ GO
 
 
 --Exec SP_ModificarUsuario 104,'Perez','Juan','1999-06-26','M',1,36987589,1137429988,'perez@gmail.com',5,3
+
+

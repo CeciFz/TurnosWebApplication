@@ -58,6 +58,43 @@ namespace TurnosNegocio
             }
         }
 
+        public Horario listarHorarioSeleccionadoConSP(Int64 idHorario)
+        {
+            Horario horario = new Horario();
+
+            try
+            {
+                datos.setearSP("SP_ListarHorarioSeleccionado");
+                datos.SetearParametro("@IdHorario", idHorario);
+                datos.lecturaDatos();
+
+                while (datos.Lector.Read())
+                {
+                    if (horario.activo = (bool)datos.Lector["Activo"]) {
+                        horario.dia = (string)datos.Lector["Día"];
+                        horario.horaInicio = (TimeSpan)datos.Lector["Hora_Inicio"];
+                        horario.horaFin = (TimeSpan)datos.Lector["Hora_Fin"];
+                        horario.frecuencia = (Int16)datos.Lector["Frecuencia"];
+                    } else
+                    {
+                        horario = null;
+                    }
+                }
+
+                return horario;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public void agregarHorario(Horario horario)
         {
             
