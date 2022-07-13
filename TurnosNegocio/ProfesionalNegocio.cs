@@ -23,7 +23,7 @@ namespace TurnosNegocio
                 while (datos.Lector.Read())
                 {
                     Profesional aux = new Profesional();
-
+                    
                     aux.id = (Int64)datos.Lector["Id"];
                     if (idEspecialidad == -1)
                     {
@@ -100,8 +100,7 @@ namespace TurnosNegocio
 
             try
             {
-                datosHorario.setearConsulta("Select IdUsuario, IdEspecialidad, Especialidad, IdHorario, Dia, " +
-                    "Hora_Inicio, Hora_Fin, Frecuencia from VW_HorariosDeProfesionales");
+                datosHorario.setearConsulta("Select IdUsuario, IdEspecialidad, Especialidad, IdHorario, Dia ,Hora_Inicio, Hora_Fin, Frecuencia from VW_HorariosDeProfesionales");
                 datosHorario.lecturaDatos();
 
                 while (datosHorario.Lector.Read())

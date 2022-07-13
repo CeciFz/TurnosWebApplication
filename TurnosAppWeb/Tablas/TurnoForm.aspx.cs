@@ -28,16 +28,20 @@ namespace TurnosAppWeb
             {
                 if (!IsPostBack)
                 {
+                    //crea listapaciente=lista basedato
                     listaPacientes = negocio.listarUsuarios();
                     listaEspecialidades = espNeg.listarEspecialidades();
-
+                    //carga la lista en el desplegable
                     ddlPaciente.DataSource = listaPacientes;
                     ddlPaciente.DataBind();
 
                     ddlEspecialidad.DataSource = listaEspecialidades;
+                    // datavaluefield es lo que toma como valor
                     ddlEspecialidad.DataValueField = "id";
+                    //datatextfiel es lo que muestra el desplegable
                     ddlEspecialidad.DataTextField = "descripcion";
                     ddlEspecialidad.DataBind();
+                    // que hacE????
                     ddlEspecialidad.Items.Insert(0, new ListItem("Seleccione especialidad","0"));
                 }
 
@@ -58,6 +62,7 @@ namespace TurnosAppWeb
 
         protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //captura el id del desplegable especialidades, 
             Int32 idEspecialidad = Int32.Parse(ddlEspecialidad.SelectedItem.Value);
             ProfesionalNegocio profNeg = new ProfesionalNegocio();
             List<Profesional> profesionalesFiltrados = profNeg.listarProfesionalesConSP(idEspecialidad);
@@ -66,6 +71,7 @@ namespace TurnosAppWeb
             ddlProfesionales.DataValueField = "id";
             ddlProfesionales.DataTextField = "nombres";
             ddlProfesionales.DataBind();
+            // que hace??
             if(ddlProfesionales.Items.Count > 1) ddlProfesionales.Items.Insert(0, new ListItem("Seleccione profesional", "0"));
 
             ddlProfesionales_SelectedIndexChanged(sender, e);    

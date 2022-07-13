@@ -12,7 +12,7 @@ namespace TurnosAppWeb
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["ingresos"] != null)
-            {
+            { 
                 btnCerrarsession.Visible = true;
             }
         }
@@ -20,6 +20,7 @@ namespace TurnosAppWeb
         protected void btnCerrarsession_Click(object sender, EventArgs e)
         {
             Session["ingresos"] = null;
+            
             Response.Redirect("/default.aspx");
         }
     }
