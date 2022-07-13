@@ -15,14 +15,16 @@ namespace TurnosAppWeb
     {
         public List<Usuario> listaPacientes { get; set; }
         public List<Especialidad> listaEspecialidades { get; set; }
-
-        //public Int32 idEspecialidad { get; set; }
+        private Int32 idEspecialidad { get; set; }
+        private Int64 idProfesional { get; set; }
+        private Int64 idHorario { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             UsuarioNegocio negocio = new UsuarioNegocio();
             EspecialidadNegocio espNeg = new EspecialidadNegocio();
             ProfesionalNegocio profNeg = new ProfesionalNegocio();
+            idProfesional = idHorario = 0;
 
             try
             {
@@ -32,14 +34,18 @@ namespace TurnosAppWeb
                     listaEspecialidades = espNeg.listarEspecialidades();
 
                     ddlPaciente.DataSource = listaPacientes;
+                    ddlPaciente.DataValueField = "id";
+                    ddlPaciente.DataTextField = "apellidos";  // TODO: Rearmar para que muestre nombre completo
                     ddlPaciente.DataBind();
 
                     ddlEspecialidad.DataSource = listaEspecialidades;
                     ddlEspecialidad.DataValueField = "id";
                     ddlEspecialidad.DataTextField = "descripcion";
                     ddlEspecialidad.DataBind();
-                    ddlEspecialidad.Items.Insert(0, new ListItem("Seleccione especialidad","0"));
+                    ddlEspecialidad.Items.Insert(0, new ListItem("Seleccione especialidad", "0"));
                 }
+
+                idEspecialidad = Int32.Parse(ddlEspecialidad.SelectedItem.Value);
 
 
             }
@@ -50,15 +56,8 @@ namespace TurnosAppWeb
             }
         }
 
-        /* protected void btnAgendar_Click(object sender, EventArgs e)
-         {
-             string id = ((Button)sender).CommandArgument;
-         }*/
-
-
         protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Int32 idEspecialidad = Int32.Parse(ddlEspecialidad.SelectedItem.Value);
             ProfesionalNegocio profNeg = new ProfesionalNegocio();
             List<Profesional> profesionalesFiltrados = profNeg.listarProfesionalesConSP(idEspecialidad);
 
@@ -66,18 +65,16 @@ namespace TurnosAppWeb
             ddlProfesionales.DataValueField = "id";
             ddlProfesionales.DataTextField = "nombres";
             ddlProfesionales.DataBind();
-            if(ddlProfesionales.Items.Count > 1) ddlProfesionales.Items.Insert(0, new ListItem("Seleccione profesional", "0"));
+            if (ddlProfesionales.Items.Count > 1) ddlProfesionales.Items.Insert(0, new ListItem("Seleccione profesional", "0"));
 
-            ddlProfesionales_SelectedIndexChanged(sender, e);    
+            ddlProfesionales_SelectedIndexChanged(sender, e);
 
         }
 
         protected void ddlProfesionales_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            Int32 idEspecialidad = Int32.Parse(ddlEspecialidad.SelectedItem.Value);
-            Int64 idProfesional = 0;
             if (idEspecialidad > 0) idProfesional = Int64.Parse(ddlProfesionales.SelectedItem.Value);
+
             HorarioNegocio horNeg = new HorarioNegocio();
             List<Horario> diasAtencion = horNeg.listarHorariosConSP(idEspecialidad, idProfesional);
 
@@ -87,31 +84,40 @@ namespace TurnosAppWeb
             ddlDias.DataBind();
             if (ddlDias.Items.Count > 1) ddlDias.Items.Insert(0, new ListItem("Seleccione una opción", "0"));
 
-            if (idEspecialidad > 0 && idProfesional > 0) ddlDias_SelectedIndexChanged(sender,e);
+            if (idEspecialidad > 0 && idProfesional > 0) ddlDias_SelectedIndexChanged(sender, e);
             else
             {
                 ddlFecha.Items.Clear();
                 ddlFecha.DataBind();
+                ddlHora.Items.Clear();
+                ddlHora.DataBind();
             }
         }
 
         protected void ddlDias_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (idEspecialidad > 0) idProfesional = Int64.Parse(ddlProfesionales.SelectedItem.Value);
+            if (idProfesional > 0) idHorario = Int64.Parse(ddlDias.SelectedItem.Value);
 
-            Int64 idHorario = Int64.Parse(ddlDias.SelectedItem.Value);
-            if (idHorario > 0 )
+            if (idHorario > 0)
             {
                 HorarioNegocio horNeg = new HorarioNegocio();
 
                 Horario horario = horNeg.listarHorarioSeleccionadoConSP(idHorario);
                 int hoy = (int)DateTime.Now.DayOfWeek;
                 int diaSeleccionado = diaSemana(horario.dia);
+                int aux = 0;
 
                 DateTime firstDay = DateTime.Today;
 
                 if (hoy > diaSeleccionado)
                 {
-                    int aux = 7 - diaSeleccionado;
+                    aux = 7 - diaSeleccionado;
+                    firstDay = firstDay.AddDays(aux);
+                }
+                else if (hoy < diaSeleccionado)
+                {
+                    aux = diaSeleccionado - hoy;
                     firstDay = firstDay.AddDays(aux);
                 }
 
@@ -124,45 +130,119 @@ namespace TurnosAppWeb
 
                 ddlFecha.DataSource = date;
                 ddlFecha.DataBind();
-
+                ddlFecha_SelectedIndexChanged(sender, e);
             }
             else
             {
                 ddlFecha.Items.Clear();
                 ddlFecha.DataBind();
+                ddlHora.Items.Clear();
+                ddlHora.DataBind();
             }
 
         }
 
-        //public List<DateTime> ObtenerFechas(string dia)
-        //{
+        private int diaSemana(string dia)
+        {
+            int result = -1;
+
+            switch (dia)
+            {
+                case "Domingo":
+                    result = 0;
+                    break;
+                case "Lunes":
+                    result = 1;
+                    break;
+                case "Martes":
+                    result = 2;
+                    break;
+                case "Miércoles":
+                    result = 3;
+                    break;
+                case "Jueves":
+                    result = 4;
+                    break;
+                case "Viernes":
+                    result = 5;
+                    break;
+                case "Sábado":
+                    result = 6;
+                    break;
+            }
+            return result;
+        }
+
+        protected void ddlFecha_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (idEspecialidad > 0) idProfesional = Int64.Parse(ddlProfesionales.SelectedItem.Value);
+            if (idProfesional > 0) idHorario = Int64.Parse(ddlDias.SelectedItem.Value);
+
+            if (idHorario > 0)
+            {
+                HorarioNegocio horNeg = new HorarioNegocio();
+                Horario horario = horNeg.listarHorarioSeleccionadoConSP(idHorario);
+
+                TimeSpan horaInicio = horario.horaInicio;
+                TimeSpan horaFin = horario.horaFin;
+                TimeSpan frecuencia = new TimeSpan(00, horario.frecuencia, 00);
+
+                TimeSpan ActualHr = TimeSpan.Parse(DateTime.Now.ToShortTimeString());
 
 
-        //}
+                List<TimeSpan> horas = new List<TimeSpan>();
+                while (horaInicio <= horaFin)
+                {
+                    horas.Add(horaInicio);
+                    horaInicio = horaInicio.Add(frecuencia);
+                }
 
-        private int diaSemana (string dia)
-         {
-             int result = -1;
+                ddlHora.DataSource = horas;
+                ddlHora.DataBind();
 
-             switch (dia)
-             {
-                 case "Domingo": result = 0;
-                     break;
-                 case "Lunes": result = 1;
-                     break;
-                 case "Martes": result = 2;
-                     break;
-                 case "Miércoles": result = 3;
-                     break;
-                 case "Jueves": result = 4;
-                     break;
-                 case "Viernes": result = 5;
-                     break;
-                 case "Sábado": result = 6;
-                     break;
-             }
-             return result;
-         }
+
+            }
+        }
+
+        protected void btnAgendar_Click(object sender, EventArgs e)
+        {
+            Int64 idPaciente = 0;
+            if (idEspecialidad > 0) idProfesional = Int64.Parse(ddlProfesionales.SelectedItem.Value);  //Idespecialidad lo carga en el LOAD
+            if (idProfesional > 0) idHorario = Int64.Parse(ddlDias.SelectedItem.Value);
+            if (idHorario > 0)
+            {
+                try
+                {
+                    idPaciente = Int64.Parse(ddlPaciente.SelectedItem.Value);
+                    Turno turno = new Turno();
+                    TurnoNegocio negocio = new TurnoNegocio();
+
+                    turno.paciente = new Usuario();
+                    turno.paciente.id = idPaciente;
+                    turno.profesional = new Profesional();
+                    turno.profesional.id = idProfesional;
+                    turno.especialidad = new Especialidad();
+                    turno.especialidad.id = idEspecialidad;
+                    turno.profesional.horarios = new List<Horario>();
+                    turno.profesional.horarios.Add(new Horario());
+                    turno.profesional.horarios[0].idHorario = idHorario;
+
+                    turno.fecha = DateTime.Parse(ddlFecha.SelectedItem.Value);
+                    turno.hora = TimeSpan.Parse(ddlHora.SelectedItem.Value);
+                    turno.observaciones = txtObservaciones.Text;
+
+                    negocio.agregarTurnoConSP(turno);
+                    Response.Redirect("TurnoForm.aspx", false);
+                }
+                catch (Exception ex)
+                {
+                    Session.Add("error", ex);
+                    throw;
+                }
+
+            }
+        }
+
 
     }
 }

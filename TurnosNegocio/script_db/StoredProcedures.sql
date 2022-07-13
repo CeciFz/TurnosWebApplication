@@ -189,4 +189,31 @@ GO
 
 --Exec SP_ModificarUsuario 104,'Perez','Juan','1999-06-26','M',1,36987589,1137429988,'perez@gmail.com',5,3
 
+Create procedure SP_AltaTurno(
+	@IdPaciente bigint,
+	@Fecha date,
+	@Hora time,
+	@IdProfesional bigint,
+	@IdEspecialidad int,
+	@IdHorario bigint,
+	@Observaciones varchar(max)
+) AS BEGIN
+	Insert into Turnos(IdPaciente,Fecha,Hora,IdProfesional,IdEspecialidad,IdHorario,Observaciones)
+	VALUES (@IdPaciente, @Fecha,@Hora,@IdProfesional,@IdEspecialidad,@IdHorario,@Observaciones)
+END
+
+create procedure SP_ListarTurnos AS BEGIN
+	--select IdTurno,IdPaciente,Fecha,Hora,IdProfesional,IdEspecialidad,IdHorario,Observaciones,
+	select t.IdTurno,u.Apellidos + ', ' + u.Nombres as Paciente, t.Fecha, t.Hora, pe.Profesional,
+		pe.Especialidad, t.idHorario, et.Descripcion as Estado from Turnos t
+			inner join Usuarios u on u.id = t.IdPaciente
+			inner join VW_ProfesionalesConEspecialidad pe on pe.IdUsuario = t.IdProfesional
+			inner join Estados_Turnos  et on et.Id = t.IdEstado
+END
+GO
+
+--exec SP_ListarTurnos
+--select * from Turnos
+--select * from Horarios
+--select * from VW_ProfesionalesConEspecialidad
 
