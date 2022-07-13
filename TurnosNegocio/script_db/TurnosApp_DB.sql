@@ -109,16 +109,16 @@ Create Table Horario_x_Profesional(
 go
 
 --drop Table Turnos
-Create Table Turnos(
-	IdTurnos bigint not null primary key identity(1,1),
+create Table Turnos(
+	IdTurno bigint not null primary key identity(1,1),
 	IdPaciente bigint not null Foreign Key References Usuarios(Id),
 	Fecha date not null Check (Fecha >= getdate()),
 	Hora time not null,     
 	IdProfesional bigint not null,
 	IdEspecialidad int not null,
 	IdHorario bigint not null,
-	Observaciones varchar(MAX) null,
-	IdEstado smallint not null Foreign Key References Estados_Turnos(Id),
+	Observaciones varchar(MAX) null default(null),
+	IdEstado smallint not null default(1) Foreign Key References Estados_Turnos(Id),
 	foreign key (IdProfesional, IdEspecialidad,IdHorario) 
 	references Horario_x_Profesional(IdProfesional, IdEspecialidad,IdHorario)
 )
