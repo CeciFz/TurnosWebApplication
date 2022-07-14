@@ -13,14 +13,10 @@ namespace TurnosAppWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblerror.Visible = false;
-            if (Session["error"] != null)
-            { lblerror.Visible = true; }
-            else if (Session["ingresos"] == null)
-            {
-                lblerror.Visible = false;
-                
-            }
+           
+            
+
+
             
         }
 
@@ -37,17 +33,19 @@ namespace TurnosAppWeb
 
             try
             {
-                ingresos = new Ingreso(TextUser.Text, Textpassword.Text,false);
-                if (negocio.Loguear(ingresos))
+                ingresos = new Ingreso(TextUser.Text, Textpassword.Text);
+                int tipo = negocio.Loguear(ingresos);
+                if (tipo>0)
                 {
-                    Session.Add("ingresos", ingresos);
+                    
+                    Session.Add("ingresos",tipo);
                    Response.Redirect("listados.aspx");
 
                 }
                 else
                 {
-                    Session.Add("error", "user o pass incorrectos");
-                      Response.Redirect("default.aspx");
+                    Session.Add("ingresos", null);
+                    Response.Redirect("default.aspx");
 
                 }
             }

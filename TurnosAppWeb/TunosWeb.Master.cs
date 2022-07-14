@@ -11,13 +11,22 @@ namespace TurnosAppWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+          // int probando;
+           
+
             if (Session["ingresos"] != null)
             { 
                 btnCerrarsession.Visible = true;
-            }
+
+                //probando = int.Parse(Session["ingresos"].ToString());
+            }else  if (Session["ingresos"] == null) { btnCerrarsession.Visible = false; }
+
         }
 
-        protected void btnCerrarsession_Click(object sender, EventArgs e)
+        
+
+
+protected void btnCerrarsession_Click(object sender, EventArgs e)
         {
             Session["ingresos"] = null;
             
