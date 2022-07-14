@@ -21,7 +21,7 @@ namespace TurnosAppWeb.Tablas
             {// no deja entrar tamp a tipo de usuario que le coloquemo probando==1?
                 int probando;
                 probando = int.Parse(Session["ingresos"].ToString());
-                if (probando == 0) { Response.Redirect("/default.aspx"); }
+                if (probando == 2) { Response.Redirect("/listados.aspx"); }
 
             }
             if (Request.QueryString["id"] != null && btnModificar.Visible == false)

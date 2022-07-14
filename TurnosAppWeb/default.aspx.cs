@@ -40,13 +40,14 @@ namespace TurnosAppWeb
                     
                     Session.Add("ingresos",tipo);
                    Response.Redirect("listados.aspx");
-
+                    lblerror.Visible = false;
                 }
                 else
                 {
+                    lblerror.Visible = true;
                     Session.Add("ingresos", null);
                     Response.Redirect("default.aspx");
-
+                    
                 }
             }
 

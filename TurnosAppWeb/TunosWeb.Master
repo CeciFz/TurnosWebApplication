@@ -44,8 +44,8 @@
                                         <li><a class="dropdown-item" href="../Tablas/UsuarioListado.aspx">Modificar Usuarios</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
-                                            <li><a class="dropdown-item" href="#">Alta Profesional</a></li>
-                                        <li><a class="dropdown-item" href="../Tablas/ProfesionalListado.aspx">Modificar Profesional</a></li>
+                                           <%  //<li><a class="dropdown-item" href="#">Alta Profesional</a></li>%>
+                                        <li><a class="dropdown-item" href="../Tablas/ProfesionalListado.aspx">Listar Profesionales</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
