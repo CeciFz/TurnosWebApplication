@@ -39,7 +39,7 @@
                                 OnSelectedIndexChanged="ddlDias_SelectedIndexChanged">
                             </asp:DropDownList>
                         </div>
-                        <div class="col mt-1">
+                        <div class="col mt-2">
                             <asp:Label ID="lblTurnosDisponibles" runat="server" CssClass="form-label" Text="Turnos Disponibles:"></asp:Label>
                             <div class=" d-inline-flex">
                                 <asp:DropDownList ID="ddlFecha" CssClass="form-select" runat="server" AutoPostBack="true"
@@ -48,8 +48,13 @@
                                 <asp:DropDownList ID="ddlHora" CssClass="form-select" runat="server" AutoPostBack="true"></asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col mt-2 text-center">
+                            <asp:Label ID="lblSinTurno" runat="server" CssClass="form-label" Text="Sin Turnos Disponibles para este día" Visible="false"></asp:Label>
+                        </div>
+                        <div class="col mt-2">
                             <asp:Label ID="lblObservaciones" runat="server" CssClass="form-label" Text="Observaciones:"></asp:Label>
+                        </div>
+                        <div class="col m-2">
                             <asp:TextBox ID="txtObservaciones" TextMode="MultiLine" runat="server"></asp:TextBox>
                         </div>
                         <%--                        </div>--%>

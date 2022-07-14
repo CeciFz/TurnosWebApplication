@@ -46,7 +46,7 @@ namespace TurnosAppWeb
                 }
 
                 idEspecialidad = Int32.Parse(ddlEspecialidad.SelectedItem.Value);
-
+                lblSinTurno.Visible = false;
 
             }
             catch (Exception ex)
@@ -225,6 +225,8 @@ namespace TurnosAppWeb
 
                 ddlHora.DataSource = horas;
                 ddlHora.DataBind();
+                if (ddlHora.Items.Count == 0) lblSinTurno.Visible = true;
+
 
 
             }
