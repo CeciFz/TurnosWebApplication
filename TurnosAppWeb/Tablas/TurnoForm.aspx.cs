@@ -62,7 +62,7 @@ namespace TurnosAppWeb
                 }
 
                 idEspecialidad = Int32.Parse(ddlEspecialidad.SelectedItem.Value);
-
+                lblSinTurno.Visible = false;
 
             }
             catch (Exception ex)
@@ -128,7 +128,7 @@ namespace TurnosAppWeb
 
                 if (hoy > diaSeleccionado)
                 {
-                    aux = 7 - diaSeleccionado;
+                    aux = 7 - hoy + diaSeleccionado;
                     firstDay = firstDay.AddDays(aux);
                 }
                 else if (hoy < diaSeleccionado)
@@ -138,7 +138,7 @@ namespace TurnosAppWeb
                 }
 
                 List<DateTime> date = new List<DateTime>();
-                for (int i = 0; i < 9; i++)
+                for (int i = 0; i < 8; i++)
                 {
                     date.Add(firstDay);
                     firstDay = firstDay.AddDays(7);
@@ -196,6 +196,12 @@ namespace TurnosAppWeb
 
             if (idHorario > 0)
             {
+                List<Turno> listaTurnosTomados = new List<Turno>();
+                TurnoNegocio negocio = new TurnoNegocio();
+
+                DateTime fechaSeleccionada = DateTime.Parse(ddlFecha.SelectedItem.Value);
+                listaTurnosTomados = negocio.turnosTomadosConSP(fechaSeleccionada, idProfesional, idEspecialidad, idHorario);
+
                 HorarioNegocio horNeg = new HorarioNegocio();
                 Horario horario = horNeg.listarHorarioSeleccionadoConSP(idHorario);
 
@@ -207,14 +213,36 @@ namespace TurnosAppWeb
 
 
                 List<TimeSpan> horas = new List<TimeSpan>();
-                while (horaInicio <= horaFin)
+
+                while (horaInicio < horaFin)
                 {
                     horas.Add(horaInicio);
                     horaInicio = horaInicio.Add(frecuencia);
                 }
 
+
+                int compara = 0;
+                if (listaTurnosTomados.Count > 0)
+                {
+                    foreach (Turno t1 in listaTurnosTomados)
+                    {
+                        horaInicio = horario.horaInicio;
+                        while (horaInicio < horaFin)
+                        {
+                            compara = TimeSpan.Compare(t1.hora, horaInicio);
+                            if (compara == 0)                                     // Si es = 0, son iguales (está tomado)
+                            {
+                                horas.Remove(horaInicio);
+                            }
+                            horaInicio = horaInicio.Add(frecuencia);
+                        }
+                    }
+                }
+
                 ddlHora.DataSource = horas;
                 ddlHora.DataBind();
+                if (ddlHora.Items.Count == 0) lblSinTurno.Visible = true;
+
 
 
             }
@@ -239,9 +267,10 @@ namespace TurnosAppWeb
                     turno.profesional.id = idProfesional;
                     turno.especialidad = new Especialidad();
                     turno.especialidad.id = idEspecialidad;
-                    turno.profesional.horarios = new List<Horario>();
-                    turno.profesional.horarios.Add(new Horario());
-                    turno.profesional.horarios[0].idHorario = idHorario;
+                    //turno.profesional.horarios = new List<Horario>();
+                    //turno.profesional.horarios.Add(new Horario());
+                    //turno.profesional.horarios[0].idHorario = idHorario;
+                    turno.idHorario = idHorario;
 
                     turno.fecha = DateTime.Parse(ddlFecha.SelectedItem.Value);
                     turno.hora = TimeSpan.Parse(ddlHora.SelectedItem.Value);

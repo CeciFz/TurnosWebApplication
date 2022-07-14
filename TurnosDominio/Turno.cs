@@ -14,6 +14,7 @@ namespace TurnosDominio
         public TimeSpan hora { get; set; }
         public Profesional profesional { get; set; }
         public Especialidad especialidad { get; set; }
+        public Int64 idHorario { get; set; }
         public string observaciones { get; set; }
         public EstadoTurno estado { get; set; }
 

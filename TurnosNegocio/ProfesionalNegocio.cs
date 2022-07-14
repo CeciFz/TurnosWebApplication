@@ -28,7 +28,7 @@ namespace TurnosNegocio
                     if (idEspecialidad == -1)
                     {
                         aux.apellidos = (string)datos.Lector["Apellidos"];
-                        aux.nombres = (string)datos.Lector["nombres"];
+                        aux.nombres = (string)datos.Lector["Nombres"];
                     }
                     else
                     {

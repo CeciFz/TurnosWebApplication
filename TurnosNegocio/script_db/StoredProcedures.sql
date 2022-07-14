@@ -13,7 +13,7 @@ create procedure SP_ListarProfesionales (
 	@IdEspecialidad int
 ) AS BEGIN
 	IF (@IdEspecialidad=-1) BEGIN
-		select Id, Apellidos, Nombres as NombreCompleto,Sexo,Telefono,Mail
+		select Id, Apellidos, Nombres,Sexo,Telefono,Mail
 		from VW_Usuarios 
 		inner join VW_UsuariosConPerfil up on up.IdUsuario = VW_Usuarios.Id
 		where IdPerfil = 4
@@ -201,14 +201,15 @@ Create procedure SP_AltaTurno(
 	Insert into Turnos(IdPaciente,Fecha,Hora,IdProfesional,IdEspecialidad,IdHorario,Observaciones)
 	VALUES (@IdPaciente, @Fecha,@Hora,@IdProfesional,@IdEspecialidad,@IdHorario,@Observaciones)
 END
+GO
 
-create procedure SP_ListarTurnos AS BEGIN
-	--select IdTurno,IdPaciente,Fecha,Hora,IdProfesional,IdEspecialidad,IdHorario,Observaciones,
+Create procedure SP_ListarTurnos AS BEGIN
 	select t.IdTurno,u.Apellidos + ', ' + u.Nombres as Paciente, t.Fecha, t.Hora, pe.Profesional,
 		pe.Especialidad, t.idHorario, et.Descripcion as Estado from Turnos t
 			inner join Usuarios u on u.id = t.IdPaciente
 			inner join VW_ProfesionalesConEspecialidad pe on pe.IdUsuario = t.IdProfesional
 			inner join Estados_Turnos  et on et.Id = t.IdEstado
+		order by t.Fecha, t.Hora, pe.Profesional,pe.Especialidad, Paciente
 END
 GO
 
@@ -216,4 +217,27 @@ GO
 --select * from Turnos
 --select * from Horarios
 --select * from VW_ProfesionalesConEspecialidad
+
+--exec SP_AltaTurno 1,'2022-07-19','15:00',65,1,8,null
+
+
+Create procedure SP_ValidaTurnoTomado(
+	@Fecha date,
+	@IdProfesional bigint,
+	@IdEspecialidad int,
+	@IdHorario bigint
+)AS BEGIN
+	Select Fecha, Hora, IdProfesional, IdEspecialidad, IdEstado from Turnos
+	where Fecha = @Fecha AND IdProfesional = @IdProfesional AND IdHorario = @IdHorario
+	AND IdEspecialidad = @IdEspecialidad AND IdEstado != 4 /* 4 = CANCELADO*/
+	order by Fecha, Hora
+END
+GO
+
+/*
+	Select Fecha, Hora, IdProfesional, IdEspecialidad, IdEstado from Turnos
+	where Fecha = '2022-07-21' AND IdProfesional = 13 AND
+	IdEspecialidad = 12 AND IdEstado != 4 /* 4= CANCELADO*/
+	order by Fecha, Hora
+*/
 

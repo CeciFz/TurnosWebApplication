@@ -109,10 +109,10 @@ Create Table Horario_x_Profesional(
 go
 
 --drop Table Turnos
-create Table Turnos(
+Create Table Turnos(
 	IdTurno bigint not null primary key identity(1,1),
 	IdPaciente bigint not null Foreign Key References Usuarios(Id),
-	Fecha date not null Check (Fecha >= getdate()),
+	Fecha date not null,
 	Hora time not null,     
 	IdProfesional bigint not null,
 	IdEspecialidad int not null,
