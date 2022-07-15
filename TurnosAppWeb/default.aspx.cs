@@ -35,12 +35,31 @@ namespace TurnosAppWeb
             {
                 ingresos = new Ingreso(TextUser.Text, Textpassword.Text);
                 int tipo = negocio.Loguear(ingresos);
-                if (tipo>0)
+                if (tipo==1)
                 {
                     
                     Session.Add("ingresos",tipo);
-                   Response.Redirect("listados.aspx");
+                   Response.Redirect("./Tablas/menuadmin.aspx");
                     lblerror.Visible = false;
+                }else if(tipo==2){
+                    Session.Add("ingresos", tipo);
+                    Response.Redirect("/Tablas/menugestion.aspx");
+                    lblerror.Visible = false;
+
+                }
+                else if (tipo == 3)
+                {
+                    Session.Add("ingresos", tipo);
+                    Response.Redirect("/Tablas/menuprofesional.aspx");
+                    lblerror.Visible = false;
+
+                }
+                else if (tipo == 4)
+                {
+                    Session.Add("ingresos", tipo);
+                    Response.Redirect("/Tablas/menupaciente.aspx");
+                    lblerror.Visible = false;
+
                 }
                 else
                 {
