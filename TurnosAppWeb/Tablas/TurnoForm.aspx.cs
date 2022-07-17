@@ -13,7 +13,7 @@ namespace TurnosAppWeb
 {
     public partial class TurnoForm : System.Web.UI.Page
     {
-        public List<Usuario> listaPacientes { get; set; }
+        public List<Usuario> listaPacientes { get; set; } 
         public List<Especialidad> listaEspecialidades { get; set; }
         private Int32 idEspecialidad { get; set; }
         private Int64 idProfesional { get; set; }
@@ -33,7 +33,6 @@ namespace TurnosAppWeb
 
             }
 
-
             UsuarioNegocio negocio = new UsuarioNegocio();
             EspecialidadNegocio espNeg = new EspecialidadNegocio();
             ProfesionalNegocio profNeg = new ProfesionalNegocio();
@@ -44,12 +43,12 @@ namespace TurnosAppWeb
                 if (!IsPostBack)
                 {
                     //crea listapaciente=lista basedato
-                    listaPacientes = negocio.listarUsuarios();
+                    listaPacientes = negocio.listarPacientes();
                     listaEspecialidades = espNeg.listarEspecialidades();
 
                     ddlPaciente.DataSource = listaPacientes;
                     ddlPaciente.DataValueField = "id";
-                    ddlPaciente.DataTextField = "apellidos";  // TODO: Rearmar para que muestre nombre completo
+                    ddlPaciente.DataTextField = "nombres";  
                     ddlPaciente.DataBind();
 
                     ddlEspecialidad.DataSource = listaEspecialidades;
@@ -69,6 +68,22 @@ namespace TurnosAppWeb
             {
 
                 Session.Add("error", ex);
+            }
+
+            if (Request.QueryString["id"] != null/* && btnModificar.Visible == false*/)
+            {
+                Int64 id = Int64.Parse(Request.QueryString["id"].ToString());
+                List<Turno> temporal = ((List<Turno>)Session["listaTurnos"]);
+                Turno seleccionado = temporal.Find(x => x.id.ToString() == "id");
+                ddlPaciente.SelectedValue = seleccionado.paciente.id.ToString();
+                ddlEspecialidad.SelectedValue = seleccionado.especialidad.id.ToString();
+                
+                ddlProfesionales.SelectedValue = seleccionado.profesional.id.ToString();
+                ddlDias.SelectedValue = seleccionado.idHorario.ToString();
+                ddlFecha.SelectedValue = seleccionado.fecha.ToString();
+                ddlHora.SelectedValue = seleccionado.hora.ToString();
+                
+
             }
         }
 

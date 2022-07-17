@@ -9,10 +9,10 @@
             <div class="card-header">
             </div>
             <div class="card-body">
-                <div class="col">
+<%--                <div class="col">
                     <label for="txtApellidos" class="form-label">Apellidos</label>
                     <asp:TextBox runat="server" ID="txtApellidos" CssClass="form-control" />
-                </div>
+                </div>--%>
                 <div class="col">
                     <label for="ddlPaciente" class="form-label">Paciente: </label>
                     <asp:DropDownList runat="server" ID="ddlPaciente" class="form-select"></asp:DropDownList>

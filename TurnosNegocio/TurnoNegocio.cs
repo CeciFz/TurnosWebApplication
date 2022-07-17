@@ -11,27 +11,30 @@ namespace TurnosNegocio
     public class TurnoNegocio
     {
         private AccesoDatos datos = new AccesoDatos();
-        /*
-        public List<Turno> listarTurnos()
+        
+        public List<Turno> listarTurnosConSP()
         {
             List<Turno> lista = new List<Turno>();
 
             try
             {
                 datos.setearSP("SP_ListarTurnos");
-                datos.ejecutarAccion();
+                datos.lecturaDatos();
 
                 while (datos.Lector.Read())
                 {
                     Turno aux = new Turno();
                     aux.id = (Int64)datos.Lector["IdTurno"];
                     aux.paciente = new Usuario();
+                    aux.paciente.id = (Int64)datos.Lector["IdPaciente"];
                     aux.paciente.nombres = (string)datos.Lector["Paciente"];
                     aux.fecha = (DateTime)datos.Lector["Fecha"];
                     aux.hora = (TimeSpan)datos.Lector["Hora"];
                     aux.profesional = new Profesional();
+                    aux.profesional.id = (Int64)datos.Lector["IdProfesional"];
                     aux.profesional.nombres = (string)datos.Lector["Profesional"];
                     aux.especialidad = new Especialidad();
+                    aux.especialidad.id = (Int32)datos.Lector["IdEspecialidad"];
                     aux.especialidad.descripcion = (string)datos.Lector["Especialidad"];
                     aux.idHorario = (Int64)datos.Lector["idHorario"];
                     aux.estado = new EstadoTurno();
@@ -52,7 +55,7 @@ namespace TurnosNegocio
             {
                 datos.cerrarConexion();
             }
-        }*/
+        }
 
         public void agregarTurnoConSP(Turno turno)
         {

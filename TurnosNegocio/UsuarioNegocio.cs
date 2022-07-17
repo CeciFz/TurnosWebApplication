@@ -153,44 +153,35 @@ namespace TurnosNegocio
             }
         }
 
-
-        public List<Usuario> listarPacientes()
+        /****************************PACIENTES*****************************************/
+        public List<Usuario> listarPacientes(Int64 idPaciente= -1)
         {
             List<Usuario> lista = new List<Usuario>();
 
             try
             {
-                datos.setearSP("SP_ListarUsuarios");
+                datos.setearSP("SP_ListarPacientes");
+                datos.SetearParametro("@IdPaciente", idPaciente);
                 datos.lecturaDatos();
                 while (datos.Lector.Read())
                 {
                     Usuario aux = new Usuario();
 
-                    cargarPerfilesUsuarios(aux);
+                    aux.id = (Int64)datos.Lector["Id"];
+                    aux.nombres = (string)datos.Lector["NombreCompleto"];
+                    
+                    aux.fechaNacimiento = (DateTime)datos.Lector["FechaNacimiento"];
+                    aux.sexo = (string)datos.Lector["Sexo"];
+                    aux.telefono = (string)datos.Lector["Telefono"];
+                    aux.mail = (string)datos.Lector["Mail"];
+                    aux.tipoDocumento = new TipoDocumento();
+                    aux.tipoDocumento.id = (Int16)datos.Lector["IdTipoDoc"];
+                    aux.tipoDocumento.descripcion = (string)datos.Lector["TipoDoc"];
+                    aux.nroDocumento = (Int64)datos.Lector["NroDocumento"];
 
-                    foreach (PerfilUsuario perfil in aux.perfileslUsuario)
-                    {
-                        if (perfil.id == 3)
-                        {
-                            aux.id = (Int64)datos.Lector["Id"];
-                            aux.apellidos = (string)datos.Lector["Apellidos"];
-                            aux.nombres = (string)datos.Lector["Nombres"];
-                            aux.fechaNacimiento = (DateTime)datos.Lector["FechaNacimiento"];
-                            aux.sexo = (string)datos.Lector["Sexo"];
-                            aux.telefono = (string)datos.Lector["Telefono"];
-                            aux.mail = (string)datos.Lector["Mail"];
-                            aux.tipoDocumento = new TipoDocumento();
-                            aux.tipoDocumento.id = (Int16)datos.Lector["IdTipoDoc"];
-                            aux.tipoDocumento.descripcion = (string)datos.Lector["TipoDoc"];
-                            aux.nroDocumento = (Int64)datos.Lector["NroDocumento"];
-
-                            aux.obraSocial = new ObraSocial();
-                            aux.obraSocial.id = (Int32)datos.Lector["IdObraSocial"];
-                            aux.obraSocial.descripcion = (string)datos.Lector["ObraSocial"];
-
-                            aux.fechaAlta = (DateTime)datos.Lector["FechaAlta"];
-                        }
-                    }
+                    aux.obraSocial = new ObraSocial();
+                    aux.obraSocial.id = (Int32)datos.Lector["IdObraSocial"];
+                    aux.obraSocial.descripcion = (string)datos.Lector["ObraSocial"];
 
                     lista.Add(aux);
                 }
@@ -207,6 +198,7 @@ namespace TurnosNegocio
                 datos.cerrarConexion();
             }
         }
+
 
     }
 }
