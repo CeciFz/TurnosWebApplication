@@ -8,8 +8,11 @@
     
 
     <div class="hero p-4 p-md-5 mb-2 text-white">
+
         <div class="col-md-12 d-flex flex-column justify-content-center">
-            <h1 class="display-4 align-self-center">TURNOS</h1>
+            <h1 class="display-4 align-self-center">BIENVENIDOS - TURNOS MEDICOS</h1>
+            
+            <p class="lead my-3 align-self-center"><asp:Image ImageUrl="https://cdn.icon-icons.com/icons2/944/PNG/512/medical-60_icon-icons.com_73946.png" CssClass="w-auto" runat="server" /></p>
             <p class="lead my-3 align-self-center">Por favor loguearse para poder ingresar al sistema de turnos.</p>
             <p class="lead mb-0 align-self-center text-center">Si es la primera vez que va a solicitar atención en nuestra institución primero deberá registrar sus datos y generar su usuario.</p>
         </div>

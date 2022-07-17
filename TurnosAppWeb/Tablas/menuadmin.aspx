@@ -5,10 +5,17 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <h1  style="color:brown; align-content:center">MENU PRINCIPAL ADMINISTRADOR</h1>
+    <div class="hero p-4 p-md-5 mb-2 text-white">
+
+        <div class="col-md-12 d-flex flex-column justify-content-center">
+            <h1 class="display-4 align-self-center">MENU PRINCIPAL</h1>
+            
+            <h3 class="display-4 align-self-center"> <asp:Image ImageUrl="https://cdn.icon-icons.com/icons2/714/PNG/512/profile_icon-icons.com_62220.png" CssClass="h-25" runat="server" />Administrador</h3>
+           </div>
+        <div class="col-15" style="width:auto; text-align: center">
     <br /><br />
 
-    <div>
+    <div style="margin:0 auto;">
         <div class="row">
   <div class="col-sm-4">
     <div class="card border-light mb-3" style="max-width: 18rem;">
@@ -16,7 +23,7 @@
         <h5 class="card-title">NUEVO TURNO</h5>
         <p class="card-text">Ingrese un nuevo turno al paciente</p>
         <div class="d-grid gap-2 col-6 mx-auto">
-              <a href="../Tablas/TurnoForm.aspx" class="btn btn-primary">Ingresar</a>
+              <a href="../Tablas/TurnoForm.aspx" class="btn btn-primary" >Ingresar</a>
         </div>
       </div>
     </div>
@@ -189,6 +196,12 @@
 
 
     </div>
+
+            </div>
+
+        <div class="col-2"> </div>
+
+        </div>
 
 </asp:Content>
       
