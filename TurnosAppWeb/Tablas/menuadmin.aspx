@@ -9,8 +9,8 @@
 
         <div class="col-md-12 d-flex flex-column justify-content-center">
             <h1 class="display-4 align-self-center">MENU PRINCIPAL</h1>
-            
-            <h3 class="display-4 align-self-center"> <asp:Image ImageUrl="https://cdn.icon-icons.com/icons2/714/PNG/512/profile_icon-icons.com_62220.png" CssClass="h-25" runat="server" />Administrador</h3>
+            <br /><br /><br /><br />
+            <h3 class="display-4 align-self-center"> <asp:Image ImageUrl="https://cdn.icon-icons.com/icons2/714/PNG/512/profile_icon-icons.com_62220.png" CssClass="w-25" runat="server" />Administrador</h3>
            </div>
         <div class="col-15" style="width:auto; text-align: center">
     <br /><br />

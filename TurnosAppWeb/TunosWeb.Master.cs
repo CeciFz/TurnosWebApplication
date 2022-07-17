@@ -32,5 +32,25 @@ protected void btnCerrarsession_Click(object sender, EventArgs e)
             
             Response.Redirect("/default.aspx");
         }
+
+        
+        protected void home_Click(object sender, EventArgs e)
+        {
+            if (Session["ingresos"] == null)
+            {
+                Response.Redirect("/default.aspx");
+            }
+            else if (Session["ingresos"] != null)
+            {// no deja entrar tamp a tipo de usuario que le coloquemo probando==1?
+                int probando;
+                probando = int.Parse(Session["ingresos"].ToString());
+                if (probando == 1) { Response.Redirect("/Tablas/menuadmin.aspx"); }
+                else if (probando == 2) { Response.Redirect("/Tablas/menugestion.aspx"); }
+                else if (probando == 3) { Response.Redirect("/Tablas/menuprofesional.aspx"); }
+                else if (probando == 4) { Response.Redirect("/Tablas/menupaciente.aspx"); }
+
+            }
+
+        }
     }
 }
