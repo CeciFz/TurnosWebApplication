@@ -9,34 +9,41 @@ create procedure SP_ListarUsuarios AS BEGIN
 END
 GO
 
-create procedure SP_ListarPacientes (
+Create procedure SP_ListarPacientes (
 	@IdPaciente int
 ) AS BEGIN
 	IF (@IdPaciente=-1) BEGIN
-		select Id, Apellidos + ', ' + Nombres as NombreCompleto,FechaNacimiento,Sexo,IdTipoDoc,
+		select Id, Apellidos + ', ' + Nombres as NombreCompleto,FechaNacimiento,
+		Case When Month(FechaNacimiento) > Month(getDate()) Then dateDiff(Year,FechaNacimiento, getDate())-1
+		When Month(FechaNacimiento) = Month(getDate()) AND Day(FechaNacimiento) > Day(getDate()) Then dateDiff(Year,FechaNacimiento, getDate())-1
+		Else dateDiff(Year,FechaNacimiento, getDate()) End As Edad,Genero,IdTipoDoc,
 		TipoDoc,NroDocumento,IdObraSocial,ObraSocial,Telefono,Mail from VW_Usuarios 
 		inner join VW_UsuariosConPerfil up on up.IdUsuario = VW_Usuarios.Id
 		where IdPerfil = 3
 	END ELSE BEGIN
-		select Id, Apellidos + ', ' + Nombres as NombreCompleto,Sexo,FechaNacimiento,IdTipoDoc,
-		TipoDoc,NroDocumento,IdObraSocial,ObraSocial,Telefono,Mail from VW_Usuarios 
-		inner join VW_UsuariosConPerfil up on up.IdUsuario = VW_Usuarios.Id
-		inner join Profesionales_x_Especialidad pe on pe.IdUsuario = up.IdUsuario
-		where IdPerfil = 3 AND IdEspecialidad = @IdPaciente
+		select u.Id, u.Apellidos + ', ' + u.Nombres as NombreCompleto,u.Genero,u.FechaNacimiento,
+		Case When Month(FechaNacimiento) > Month(getDate()) Then dateDiff(Year,FechaNacimiento, getDate())-1
+		When Month(FechaNacimiento) = Month(getDate()) AND Day(FechaNacimiento) > Day(getDate()) Then dateDiff(Year,FechaNacimiento, getDate())-1
+		Else dateDiff(Year,FechaNacimiento, getDate()) End As Edad, u.IdTipoDoc,
+		u.TipoDoc,u.NroDocumento,u.IdObraSocial,u.ObraSocial,u.Telefono,u.Mail from VW_Usuarios u
+		inner join VW_UsuariosConPerfil up on up.IdUsuario = u.Id
+		--inner join Profesionales_x_Especialidad pe on pe.IdUsuario = up.IdUsuario
+		where IdPerfil = 3 AND u.Id = @IdPaciente
 	END
 END
 GO
+
 
 create procedure SP_ListarProfesionales (
 	@IdEspecialidad int
 ) AS BEGIN
 	IF (@IdEspecialidad=-1) BEGIN
-		select Id, Apellidos, Nombres,Sexo,Telefono,Mail
+		select Id, Apellidos, Nombres,Genero,Telefono,Mail
 		from VW_Usuarios 
 		inner join VW_UsuariosConPerfil up on up.IdUsuario = VW_Usuarios.Id
 		where IdPerfil = 4
 	END ELSE BEGIN
-		select Id, Apellidos + ', ' + Nombres as NombreCompleto,Sexo,Telefono,Mail
+		select Id, Apellidos + ', ' + Nombres as NombreCompleto,Genero,Telefono,Mail
 		from VW_Usuarios 
 		inner join VW_UsuariosConPerfil up on up.IdUsuario = VW_Usuarios.Id
 		inner join Profesionales_x_Especialidad pe on pe.IdUsuario = up.IdUsuario
@@ -221,14 +228,42 @@ Create procedure SP_AltaTurno(
 END
 GO
 
-create procedure SP_ListarTurnos AS BEGIN
-	select t.IdTurno,t.IdPaciente, u.Apellidos + ', ' + u.Nombres as Paciente, t.Fecha, t.Hora, t.IdProfesional,
-		pe.Profesional, t.IdEspecialidad, pe.Especialidad, t.idHorario, et.Descripcion as Estado
+
+Create procedure SP_ModificarTurno(
+	@IdTurno bigint,
+	@IdEstado smallint,
+	@Observaciones varchar(max)
+) AS BEGIN
+	Update Turnos SET 
+		IdEstado =  @IdEstado,
+		Observaciones = @Observaciones
+		where IdTurno = @IdTurno
+END
+GO
+
+Create procedure SP_ListarTurnos (
+	@IdProfesional bigint,
+	@IdEspecialidad int
+	--@IdHorario bigint
+)AS BEGIN
+	IF (@IdProfesional=-1) BEGIN
+		select t.IdTurno,t.IdPaciente, u.Apellidos + ', ' + u.Nombres as Paciente, t.Fecha, t.Hora, t.IdProfesional,
+		pe.Profesional, t.IdEspecialidad, pe.Especialidad, t.idHorario, et.Descripcion as Estado, t.Observaciones
 		from Turnos t
 			inner join Usuarios u on u.id = t.IdPaciente
 			inner join VW_ProfesionalesConEspecialidad pe on pe.IdUsuario = t.IdProfesional
 			inner join Estados_Turnos  et on et.Id = t.IdEstado
 		order by t.Fecha, t.Hora, pe.Profesional,pe.Especialidad, Paciente, t.IdTurno
+	END ELSE BEGIN
+		select t.IdTurno,t.IdPaciente, u.Apellidos + ', ' + u.Nombres as Paciente, t.Fecha, t.Hora, t.IdProfesional,
+		pe.Profesional, t.IdEspecialidad, pe.Especialidad, t.idHorario,  t.IdEstado, et.Descripcion as Estado,
+		t.Observaciones from Turnos t
+			inner join Usuarios u on u.id = t.IdPaciente
+			inner join VW_ProfesionalesConEspecialidad pe on pe.IdUsuario = t.IdProfesional
+			inner join Estados_Turnos  et on et.Id = t.IdEstado
+		where pe.IdUsuario = @IdProfesional AND pe.IdEspecialidad = @IdEspecialidad
+		order by t.Fecha, t.Hora, pe.Profesional,pe.Especialidad, Paciente, t.IdTurno
+	END
 END
 GO
 
@@ -236,6 +271,7 @@ GO
 --select * from Turnos
 --select * from Horarios
 --select * from VW_ProfesionalesConEspecialidad
+--select * from Estados_Turnos
 
 --exec SP_AltaTurno 1,'2022-07-19','15:00',65,1,8,null
 

@@ -12,6 +12,7 @@ namespace TurnosDominio
         public string apellidos { get; set; }
         public string nombres { get; set; }        
         public DateTime fechaNacimiento { get; set; }
+        public int edad { get; set; }
         public string sexo { get; set; }
         public TipoDocumento tipoDocumento { get; set; }
         public Int64 nroDocumento { get; set; }

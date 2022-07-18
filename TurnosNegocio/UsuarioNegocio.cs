@@ -171,7 +171,8 @@ namespace TurnosNegocio
                     aux.nombres = (string)datos.Lector["NombreCompleto"];
                     
                     aux.fechaNacimiento = (DateTime)datos.Lector["FechaNacimiento"];
-                    aux.sexo = (string)datos.Lector["Sexo"];
+                    aux.edad = (int)datos.Lector["Edad"];
+                    aux.sexo = (string)datos.Lector["Genero"];
                     aux.telefono = (string)datos.Lector["Telefono"];
                     aux.mail = (string)datos.Lector["Mail"];
                     aux.tipoDocumento = new TipoDocumento();

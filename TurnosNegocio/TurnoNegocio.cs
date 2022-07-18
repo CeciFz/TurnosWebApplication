@@ -12,13 +12,15 @@ namespace TurnosNegocio
     {
         private AccesoDatos datos = new AccesoDatos();
         
-        public List<Turno> listarTurnosConSP()
-        {
+        public List<Turno> listarTurnosConSP(Int64 idProfesional = -1, Int32 idEspecialidad=-1)
+        { 
             List<Turno> lista = new List<Turno>();
 
             try
             {
                 datos.setearSP("SP_ListarTurnos");
+                datos.SetearParametro("@IdProfesional", idProfesional);
+                datos.SetearParametro("@IdEspecialidad", idEspecialidad);
                 datos.lecturaDatos();
 
                 while (datos.Lector.Read())
@@ -39,7 +41,8 @@ namespace TurnosNegocio
                     aux.idHorario = (Int64)datos.Lector["idHorario"];
                     aux.estado = new EstadoTurno();
                     aux.estado.descripcion = (String)datos.Lector["Estado"];
-                        
+                    aux.observaciones = (String)datos.Lector["Observaciones"];
+
                     lista.Add(aux);
                 }
 
@@ -69,6 +72,27 @@ namespace TurnosNegocio
                 datos.SetearParametro("@IdEspecialidad", turno.especialidad.id);
                 //datos.SetearParametro("@IdHorario", turno.profesional.horarios[0].idHorario);
                 datos.SetearParametro("@IdHorario", turno.idHorario);
+                datos.SetearParametro("@Observaciones", turno.observaciones);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void modificarTurnoConSP(Turno turno)
+        {
+            try
+            {
+                datos.setearSP("SP_ModificarTurno");
+                datos.SetearParametro("@IdTurno", turno.id);
+                datos.SetearParametro("@IdEstado", turno.estado.id);
                 datos.SetearParametro("@Observaciones", turno.observaciones);
                 datos.ejecutarAccion();
             }
