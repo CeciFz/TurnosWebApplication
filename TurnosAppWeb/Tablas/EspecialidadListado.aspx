@@ -14,7 +14,7 @@
             <Columns>
                 <asp:BoundField HeaderText="Id" DataField="id" />
                 <asp:BoundField HeaderText="Descripcion" DataField="descripcion" />
-                <asp:CommandField HeaderText="Editar" SelectText="Editar" ShowSelectButton="true" />
+                <asp:CommandField HeaderText="Editar" Visible="true" SelectText="Editar" ShowSelectButton="true" />
             </Columns>
         </asp:GridView>
     </div>

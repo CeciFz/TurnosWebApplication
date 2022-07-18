@@ -5,13 +5,14 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="hero p-4 p-md-5 mb-2 text-white">
+    <div class="hero p-2 p-md-8 mb-2 text-dark">
 
         <div class="col-md-12 d-flex flex-column justify-content-center">
-            <h1 class="display-4 align-self-center">MENU PRINCIPAL</h1>
-            <br /><br /><br /><br />
-            <h3 class="display-4 align-self-center"> <asp:Image ImageUrl="https://cdn.icon-icons.com/icons2/714/PNG/512/profile_icon-icons.com_62220.png" CssClass="w-25" runat="server" />Administrador</h3>
-           </div>
+            
+            <br /><br />
+            <h3 class="display-15 align-self-center"> <asp:Image ImageUrl="https://cdn.icon-icons.com/icons2/714/PNG/512/profile_icon-icons.com_62220.png" CssClass="w-25" runat="server" />Menu Administrador</h3>
+        
+        </div>
         <div class="col-15" style="width:auto; text-align: center">
     <br /><br />
 
