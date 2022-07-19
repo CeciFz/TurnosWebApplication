@@ -337,3 +337,44 @@ Create procedure SP_BuscarProfesional (
 END
 GO
 
+create procedure sp_agregaringreso(
+	@dni bigint,
+	@usuario varchar(50),
+	@pass varchar(50)
+	)
+as begin
+		declare @id bigint
+	
+	begin try
+		begin transaction
+
+			select @id=us.Id from Usuarios us where us.NroDocumento = @dni
+
+
+			if(@id != null) begin
+		
+				insert into Ingresos (Usuario,Pass,IdUsuario)
+				values (@usuario,@pass,@id)
+
+				return 1
+
+			end
+					else if (@id = null) begin
+			
+						raiserror ('usuario no encontrado',16,1)
+
+							end
+		commit transaction
+		end try
+
+		begin catch
+		rollback transaction
+		return 0
+
+		end catch
+
+
+end 
+go
+
+

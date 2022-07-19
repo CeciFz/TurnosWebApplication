@@ -15,18 +15,17 @@
                  </div>
             <div class="mb-3">
                 <label for="lbldni" class="form-label">DNI</label>
-                <input type="text" class="form-control" id="dni">
+                <input type="text" class="form-control" id="dniregistrar">
+                </div>
+
+            <div class="mb-3">
+                <label for="lblusuario" class="form-label">Usuario</label>
+                <input type="text" class="form-control" id="usuarioregistrar">
                 </div>
                
-
-
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-            </div>
-            <div class="mb-3">
+              <div class="mb-3">
                 <label for="lblcontraseña" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="contraseña">
+                <input type="password" class="form-control" id="passregistrar">
             </div>
 
             <div class="mb-3">
