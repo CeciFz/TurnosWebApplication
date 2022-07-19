@@ -13,10 +13,10 @@ namespace TurnosAppWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-                
-                
-            
+
+
+
+
 
 
 
@@ -32,59 +32,68 @@ namespace TurnosAppWeb
         protected void btnIniciarSesion_Click(object sender, EventArgs e)
         {
 
-            Ingreso ingresos;
+            Ingreso ingreso;
             IngresoNegocio negocio = new IngresoNegocio();
-
             try
             {
-                ingresos = new Ingreso(TextUser.Text, Textpassword.Text);
-                int tipo = negocio.Loguear(ingresos);
-                if (tipo==1)
+                ingreso = new Ingreso(TextUser.Text, Textpassword.Text);
+                ingreso = negocio.Loguear(ingreso);
+                
+
+
+                if (ingreso.tipoUsuario == 1)
                 {
-                    
-                    Session.Add("ingresos",tipo);
-                   Response.Redirect("./Tablas/menuadmin.aspx");
+                    Session.Add("ingresos", ingreso.tipoUsuario);
+                    Session.Add("IdUsuario", ingreso.usuario.id);
+                    Response.Redirect("./Gestion/MenuAdmin.aspx");
                     lblerror.Visible = false;
-                }else if(tipo==2){
-                    Session.Add("ingresos", tipo);
-                    Response.Redirect("/Tablas/menugestion.aspx");
+                }
+                else if (ingreso.tipoUsuario == 2)
+                {
+                    Session.Add("ingresos", ingreso.tipoUsuario);
+                    Session.Add("IdUsuario", ingreso.usuario.id);
+                    Response.Redirect("/Gestion/MenuGestion.aspx");
                     lblerror.Visible = false;
 
                 }
-                else if (tipo == 3)
+                else if (ingreso.tipoUsuario == 3)
                 {
-                    Session.Add("ingresos", tipo);
-                    Response.Redirect("/Tablas/menuprofesional.aspx");
+                    Session.Add("ingresos", ingreso.tipoUsuario);
+                    Session.Add("IdUsuario", ingreso.usuario.id);
+                    Response.Redirect("/Gestion/MenuPaciente.aspx");
                     lblerror.Visible = false;
 
                 }
-                else if (tipo == 4)
+                else if (ingreso.tipoUsuario == 4)
                 {
-                    Session.Add("ingresos", tipo);
-                    Response.Redirect("/Tablas/menupaciente.aspx");
+                    Session.Add("ingresos", ingreso.tipoUsuario);
+                    Session.Add("IdUsuario", ingreso.usuario.id);
+                    Response.Redirect("/Gestion/MenuProfesional.aspx");
                     lblerror.Visible = false;
 
                 }
-                else if (tipo == 0)
+                else if (ingreso.tipoUsuario == 0)
                 {
-                   
+
                     lblerror.Visible = true;
 
                 }
                 else
                 {
-                    
+
                     Session.Add("ingresos", null);
                     Response.Redirect("default.aspx");
-                    
+
                 }
+
+
             }
 
             catch (Exception ex)
             {
                 Session.Add("error", ex.ToString());
                 throw ex;
-                
+
             }
         }
     }

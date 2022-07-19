@@ -46,54 +46,58 @@ namespace TurnosNegocio
 
 
 
-        public int Loguear(Ingreso ingresos)
+        public Ingreso Loguear(Ingreso ingreso)
         {
 
             AccesoDatos datos = new AccesoDatos();
+            ingreso.tipoUsuario = 0;
+
             try
             {
-                datos.setearConsulta("select Id, TipoUser from vw_idperfilusuario  where Usuario=@user and Pass=@pass");
-                datos.SetearParametro("@user", ingresos.User);
-                datos.SetearParametro("@pass", ingresos.Pass);
-
-                // datos.ejecutarAccion();
+                datos.setearConsulta("select IdIngreso, TipoUser, IdUsuario from VW_IdPerfilUsuario where Usuario=@user and Pass=@pass");
+                datos.SetearParametro("@user", ingreso.user);
+                datos.SetearParametro("@pass", ingreso.pass);
                 datos.lecturaDatos();
 
                 while (datos.Lector.Read())
                 {
-                    ingresos.Id = (int)datos.Lector["Id"];
+                    ingreso.idIngreso = (int)datos.Lector["IdIngreso"];
                     //ingresos.TipoUsuario = (int)(datos.Lector["TipoUser"]) == 2 ? tipousuarios.admin : tipousuarios.normal;
+                    ingreso.usuario = new Usuario();
+                    ingreso.usuario.id = (Int64)datos.Lector["IdUsuario"];
+                    ingreso.tipoUsuario = (Int16)datos.Lector["TipoUser"];
 
-                    if ((Int16)(datos.Lector["TipoUser"]) == 1)
-                    {
-                       // ingresos.TipoUsuario = tipousuarios.admin;
-                        //ingresos.tipousuarios = 1;
-                        return 1;
-                    }
-                    else if ((Int16)(datos.Lector["TipoUser"]) == 2)
-                    {
-                       // ingresos.TipoUsuario = tipousuarios.gestion;
-                       // ingresos.tipousuarios = 2;
-                        return 2;
-                    }
-                    else if ((Int16)(datos.Lector["TipoUser"]) == 3)
-                    {
-                        //ingresos.TipoUsuario = tipousuarios.paciente;
-                       // ingresos.tipousuarios = 3;
-                        return 3;
-                    }
-                    else if ((Int16)(datos.Lector["TipoUser"]) == 4)
-                    {
-                        //ingresos.TipoUsuario = tipousuarios.profesional;
-                        //ingresos.tipousuarios = 4;
-                        return 4;
-                    }
+
+                    //if ((Int16)(datos.Lector["TipoUser"]) == 1)
+                    //{
+                    //    // ingresos.TipoUsuario = tipousuarios.admin;
+                    //    //ingresos.tipousuarios = 1;
+                    //    return 1;
+                    //}
+                    //else if ((Int16)(datos.Lector["TipoUser"]) == 2)
+                    //{
+                    //   // ingresos.TipoUsuario = tipousuarios.gestion;
+                    //   // ingresos.tipousuarios = 2;
+                    //    return 2;
+                    //}
+                    //else if ((Int16)(datos.Lector["TipoUser"]) == 3)
+                    //{
+                    //    //ingresos.TipoUsuario = tipousuarios.paciente;
+                    //   // ingresos.tipousuarios = 3;
+                    //    return 3;
+                    //}
+                    //else if ((Int16)(datos.Lector["TipoUser"]) == 4)
+                    //{
+                    //    //ingresos.TipoUsuario = tipousuarios.profesional;
+                    //    //ingresos.tipousuarios = 4;
+                    //    return 4;
+                    //}
 
                     
 
 
                 }
-                return 0;
+                return ingreso;
 
             }
             catch (Exception ex)
@@ -109,7 +113,7 @@ namespace TurnosNegocio
 
         }
 
-
+    
 
 
     }

@@ -20,12 +20,14 @@ namespace TurnosDominio
     public class Ingreso
     {
 
-        public int Id { get; set; }
-        public string User { get; set; }
+        public int idIngreso { get; set; }
+        public string user { get; set; }
 
-        public string Pass { get; set; }
+        public string pass { get; set; }
 
-        public Int16 tipousuarios  { get; set; }
+        public Int16 tipoUsuario  { get; set; }
+
+        public Usuario usuario{ get; set; }
 
 
         /* public Ingreso (string user, string pass, bool admin)
@@ -40,8 +42,8 @@ namespace TurnosDominio
            }*/
          public Ingreso (string user, string pass)
         {
-              User = user;
-               Pass = pass;
+              this.user = user;
+              this.pass = pass;
 
               //?operador ternario, if de una linea, envia true si es admin, sino false
           //TipoUsuario = admin? tipousuarios.admin : tipousuarios.gestion: tipousuarios.paciente;

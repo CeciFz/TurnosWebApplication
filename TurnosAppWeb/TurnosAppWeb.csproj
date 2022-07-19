@@ -67,11 +67,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Tablas\menuadmin.aspx" />
-    <Content Include="Tablas\menugestion.aspx" />
-    <Content Include="Tablas\menupaciente.aspx" />
-    <Content Include="Tablas\menuprofesional.aspx" />
-    <Content Include="PanelProfesional.aspx" />
+    <Content Include="Gestion\MenuAdmin.aspx" />
+    <Content Include="Gestion\MenuGestion.aspx" />
+    <Content Include="Gestion\MenuPaciente.aspx" />
+    <Content Include="Gestion\MenuProfesional.aspx" />
+    <Content Include="Gestion\PanelTurnosProfesional.aspx" />
     <Content Include="Tablas\ProfesionalListado.aspx" />
     <Content Include="Tablas\EspecialidadForm.aspx" />
     <Content Include="Tablas\EstadoTurnoForm.aspx" />
@@ -95,40 +95,40 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Tablas\menuadmin.aspx.cs">
-      <DependentUpon>menuadmin.aspx</DependentUpon>
+    <Compile Include="Gestion\MenuAdmin.aspx.cs">
+      <DependentUpon>MenuAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Tablas\menuadmin.aspx.designer.cs">
-      <DependentUpon>menuadmin.aspx</DependentUpon>
+    <Compile Include="Gestion\MenuAdmin.aspx.designer.cs">
+      <DependentUpon>MenuAdmin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Tablas\menugestion.aspx.cs">
-      <DependentUpon>menugestion.aspx</DependentUpon>
+    <Compile Include="Gestion\MenuGestion.aspx.cs">
+      <DependentUpon>MenuGestion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Tablas\menugestion.aspx.designer.cs">
-      <DependentUpon>menugestion.aspx</DependentUpon>
+    <Compile Include="Gestion\MenuGestion.aspx.designer.cs">
+      <DependentUpon>MenuGestion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Tablas\menupaciente.aspx.cs">
-      <DependentUpon>menupaciente.aspx</DependentUpon>
+    <Compile Include="Gestion\MenuPaciente.aspx.cs">
+      <DependentUpon>MenuPaciente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Tablas\menupaciente.aspx.designer.cs">
-      <DependentUpon>menupaciente.aspx</DependentUpon>
+    <Compile Include="Gestion\MenuPaciente.aspx.designer.cs">
+      <DependentUpon>MenuPaciente.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Tablas\menuprofesional.aspx.cs">
-      <DependentUpon>menuprofesional.aspx</DependentUpon>
+    <Compile Include="Gestion\MenuProfesional.aspx.cs">
+      <DependentUpon>MenuProfesional.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Tablas\menuprofesional.aspx.designer.cs">
-      <DependentUpon>menuprofesional.aspx</DependentUpon>
+    <Compile Include="Gestion\MenuProfesional.aspx.designer.cs">
+      <DependentUpon>MenuProfesional.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PanelProfesional.aspx.cs">
-      <DependentUpon>PanelProfesional.aspx</DependentUpon>
+    <Compile Include="Gestion\PanelTurnosProfesional.aspx.cs">
+      <DependentUpon>PanelTurnosProfesional.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PanelProfesional.aspx.designer.cs">
-      <DependentUpon>PanelProfesional.aspx</DependentUpon>
+    <Compile Include="Gestion\PanelTurnosProfesional.aspx.designer.cs">
+      <DependentUpon>PanelTurnosProfesional.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tablas\ProfesionalListado.aspx.cs">
       <DependentUpon>ProfesionalListado.aspx</DependentUpon>

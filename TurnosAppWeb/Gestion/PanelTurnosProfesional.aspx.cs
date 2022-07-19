@@ -22,8 +22,9 @@ namespace TurnosAppWeb
                  Response.Redirect("../default.aspx");
              }*/
 
-            Int64 idProf = 13;             //TODO: Esto lo debe capturar del Inicio de SESION!!
-            Int32 idEsp = 12;
+            Int64 idProf = (Int64)Session["IdUsuario"];         //Esto lo debe capturar del Inicio de SESION + boton apretado en menu profesional!
+            Int32 idEsp = 12;// (Int32)Session["IdEspecialidad"];
+
             listaFechasTurnos = new List<DateTime>();
 
             TurnoNegocio negocio = new TurnoNegocio();

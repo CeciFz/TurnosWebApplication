@@ -130,5 +130,43 @@ namespace TurnosNegocio
                 datosHorario.cerrarConexion();
             }
         }
+
+        public Profesional buscarProfesionalConSP (Int64 IdUsuario)
+        {
+            Profesional profesional = new Profesional();
+
+            try
+            {
+                datos.setearSP("SP_BuscarProfesional");
+                datos.SetearParametro("@IdProfesional", IdUsuario);
+                datos.lecturaDatos();
+
+                while (datos.Lector.Read())
+                {
+                    profesional.id = (Int64)datos.Lector["Id"];
+                    profesional.nombres = (string)datos.Lector["NombreCompleto"];
+                    profesional.sexo = (string)datos.Lector["Genero"];
+                    profesional.telefono = (string)datos.Lector["Telefono"];
+                    profesional.mail = (string)datos.Lector["Mail"];
+
+                    cargarEspecialidades(profesional);
+                    cargarHorarios(profesional);
+;
+                }
+                return profesional;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
+    
+   
 }

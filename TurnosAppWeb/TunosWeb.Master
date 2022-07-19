@@ -27,7 +27,7 @@
                                     <asp:Button id="home" OnClick="home_Click" CssClass="nav-link active"  Text="Home" runat="server" />
                                     
                                 </li>
-                                <li class="nav-item">
+<%--                                <li class="nav-item">
                                     <a class="nav-link" href="../Tablas/UsuarioListado.aspx">Usuarios</a>
                                 </li>
                                 <li class="nav-item">
@@ -35,7 +35,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="../Tablas/especialidadlistado.aspx">Especialidades</a>
-                                </li>
+                                </li>--%>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Administrar</a>
                                     <ul class="dropdown-menu">

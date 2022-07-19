@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TunosWeb.Master" AutoEventWireup="true" CodeBehind="menuadmin.aspx.cs" Inherits="TurnosAppWeb.Tablas.menuadmin" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TunosWeb.Master" AutoEventWireup="true" CodeBehind="MenuAdmin.aspx.cs" Inherits="TurnosAppWeb.Tablas.menuadmin" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 

@@ -313,12 +313,27 @@ Create procedure SP_ListarTurnosPacientes(
 END
 GO
 
-exec SP_ListarTurnosPacientes 46,'2022-07-22','10:00'
-delete from Turnos where IdTurno = 23
+--exec SP_ListarTurnosPacientes 46,'2022-07-22','10:00'
+--delete from Turnos where IdTurno = 23
 /*
 	Select Fecha, Hora, IdProfesional, IdEspecialidad, IdEstado from Turnos
 	where Fecha = '2022-07-21' AND IdProfesional = 13 AND
 	IdEspecialidad = 12 AND IdEstado != 4 /* 4= CANCELADO*/
 	order by Fecha, Hora
 */
+
+
+
+Create procedure SP_BuscarProfesional (
+	@IdProfesional int
+) AS BEGIN
+		select u.Id, u.Apellidos + ', ' + u.Nombres as NombreCompleto,u.Genero,
+		u.Telefono,u.Mail, pe.IdEspecialidad, e.Descripcion as Especialidad
+		from VW_Usuarios u
+		inner join VW_UsuariosConPerfil up on up.IdUsuario = u.Id
+		inner join Profesionales_x_Especialidad pe on pe.IdUsuario = u.Id
+		inner join Especialidades e on e.Id = pe.IdEspecialidad
+		where IdPerfil = 4 AND U.Id = @IdProfesional
+END
+GO
 

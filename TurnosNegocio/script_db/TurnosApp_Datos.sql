@@ -31,7 +31,7 @@ SET IDENTITY_INSERT [dbo].[Obras_Sociales] OFF
 /* USUARIOS */
 
 SET IDENTITY_INSERT [dbo].[Usuarios] ON 
-INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[Telefono],[Mail],[IdObraSocial]) VALUES (1,'facundo','zumsteind',N'28/01/1995' ,'M',1,38683736,1134520207,'zumsteind@gmail.com',6)
+INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[Telefono],[Mail],[IdObraSocial]) VALUES (1,'Facundo','Zumsteind',N'28/01/1995' ,'M',1,38683736,1134520207,'zumsteind@gmail.com',6)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[Telefono],[Mail],[IdObraSocial]) VALUES (2,'Longo','Enrico',N'09/08/1997' ,'M',1,39459251,11257562,'longo@gmail.com',1)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[Telefono],[Mail],[IdObraSocial]) VALUES (3,'Paredes','Helen',N'29/03/1988' ,'F',1,39459183,11235960,'peredeshelen@gmail.com',10)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (4,'González','Paolo',N'06/10/2002' ,'F',1,39259109,6)
@@ -42,7 +42,7 @@ INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[Id
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (9,'Costantini','Gianluca',N'22/05/1966' ,'F',1,33459099,9)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (10,'Ceccarelli','Angelo',N'10/09/1961' ,'M',1,39459192,2)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (11,'Henríquez','Alessandra',N'15/07/1993' ,'M',1,39459167,5)
-INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (12,'Olivares','Giancarlo',N'05/11/1956' ,'F',1,39459165,2)
+INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (12,'Olivares','Giancarlo',N'05/11/1956' ,'M',1,39459165,2)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (13,'Proietti','Andy',N'15/04/2009' ,'M',1,39459163,5)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (14,'Costa','Lara',N'17/07/1975' ,'F',1,39459161,4)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (15,'Espinoza','Daniela',N'03/07/1966' ,'M',1,39459159,2)
@@ -53,7 +53,7 @@ INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[Id
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (20,'Silva','Anna',N'13/07/1982' ,'M',1,39459149,6)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (21,'García','Genaro',N'10/09/1958' ,'M',1,39459147,9)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (22,'Montanari','Davor',N'03/06/2006' ,'F',1,39459145,6)
-INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (23,'Alvarado','Felipe',N'13/04/1960' ,'F',1,39459255,4)
+INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (23,'Alvarado','Felipe',N'13/04/1960' ,'M',1,39459255,4)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (24,'Lombardo','Melany',N'07/12/2005' ,'M',1,39459252,4)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (25,'Herrera','Dastin',N'14/12/1948' ,'F',3,39459249,1)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (26,'Bernardi','Alice',N'21/02/1945' ,'M',2,39459246,5)
@@ -76,7 +76,7 @@ INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[Id
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (43,'Peña','Lidia',N'25/05/1951' ,'M',1,39459103,6)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (44,'García','Margherita',N'31/08/1994' ,'F',1,39459101,3)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (45,'Figueroa','Flor',N'11/12/1994' ,'M',1,39459099,8)
-INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (46,'Sandoval','Ema',N'16/09/1954' ,'M',1,39459097,10)
+INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (46,'Sandoval','Ema',N'16/09/1954' ,'F',1,39459097,10)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (47,'Ricciardi','Matilde',N'21/11/1965' ,'F',1,39459095,10)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (48,'Serra','Giacomo',N'27/06/1950' ,'M',1,39459093,8)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (49,'Carrasco','Greta',N'06/12/1977' ,'M',1,39459091,1)
@@ -87,7 +87,7 @@ INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[Id
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (54,'Bravo','Gaia',N'19/12/1984' ,'F',1,39459081,10)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (55,'Leone','Cindy',N'03/10/1976' ,'M',1,39459079,1)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (56,'Herrera','Jhonatan',N'02/08/1992' ,'F',1,39459077,9)
-INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (57,'De Rosa','Camilla',N'01/03/1955' ,'M',1,39459075,2)
+INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (57,'De Rosa','Camilla',N'01/03/1955' ,'F',1,39459075,2)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (58,'López','Roberto',N'28/05/1996' ,'M',1,39459073,2)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (59,'Pino','León',N'24/05/1987' ,'M',1,39459071,7)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (60,'Valente','Monica',N'19/08/2010' ,'M',1,39459069,10)
@@ -112,7 +112,7 @@ INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[Id
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (79,'López','Josue',N'08/04/1996' ,'M',1,39459031,8)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (80,'Rodríguez','Francia',N'13/11/1987' ,'F',1,39459029,7)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (81,'Ruiz','Samuele',N'18/07/1960' ,'M',1,39459027,5)
-INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (82,'Giuliani','Caterina',N'19/11/1960' ,'M',1,39459025,2)
+INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (82,'Giuliani','Caterina',N'19/11/1960' ,'F',1,39459025,2)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (83,'Calabrese','Filippo',N'08/11/1984' ,'M',1,39459023,8)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (84,'Campos','Evans',N'26/06/1993' ,'M',1,39459021,7)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (85,'Soto','Gabriel',N'17/08/1947' ,'M',3,3945924,6)
@@ -123,7 +123,7 @@ INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[Id
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (90,'Poblete','Thyare',N'06/03/1954' ,'M',1,39459009,1)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (91,'Jiménez','Anahy',N'19/05/2008' ,'F',1,39459007,4)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (92,'Riquelme','Noemi',N'23/12/1950' ,'M',1,39459005,7)
-INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (93,'Rodríguez','Josepha',N'26/10/1993' ,'M',1,39459003,5)
+INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (93,'Rodríguez','Josepha',N'26/10/1993' ,'F',1,39459003,5)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (94,'Rizzo','Caroline',N'22/05/2000' ,'M',1,39459001,6)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (95,'Zúñiga','Mirko',N'09/04/1973' ,'F',5,22458999,9)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (96,'Ruggiero','Rodolfo',N'14/03/1994' ,'M',1,39458997,7)
@@ -188,14 +188,11 @@ SET IDENTITY_INSERT [dbo].[Perfiles_Usuarios] OFF
 
 
 /* PERFIL POR usuario */
-SET IDENTITY_INSERT [dbo].[Perfil_X_Usuario] ON 
-INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (1,1)
+INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (1,3)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (4,1)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (78,2)
-INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (6,2)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (60,2)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (92,2)
-INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (50,2)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (34,2)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (56,3)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (23,3)
@@ -262,7 +259,7 @@ INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (88,3)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (33,3)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (61,3)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (39,3)
-INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (12,3)
+INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (12,4) 
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (59,3)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (55,4)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (19,4)
@@ -288,9 +285,7 @@ INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (90,4)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (15,4)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (65,4)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (97,4)
-INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (94,4)
-
-
+INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (94,4)----
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (4,3)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (23,4)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (24,4)
@@ -302,19 +297,24 @@ INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (31,4)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (32,4)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (6,3)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (34,3)
-INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (50,3)
-INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (60,3)
+INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (50,1)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (78,3)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (92,3)
-SET IDENTITY_INSERT [dbo].[Perfil_X_Usuario] OFF
+
 
 SET IDENTITY_INSERT [dbo].[Ingresos] ON 
-INSERT [dbo].[Ingresos] ( [Id], [Usuario], [Pass],[idusuario]) VALUES (1,'admin','admin',1)
-INSERT [dbo].[Ingresos] ([Id], [Usuario], [Pass],[idusuario]) VALUES (2,'gestion','gestion',6)
+INSERT [dbo].[Ingresos] ( [Id], [Usuario], [Pass],[IdUsuario]) VALUES (1,'admin','admin',50)
+INSERT [dbo].[Ingresos] ([Id], [Usuario], [Pass],[IdUsuario]) VALUES (2,'gestion','gestion',60)
+INSERT [dbo].[Ingresos] ([Id], [Usuario], [Pass],[IdUsuario]) VALUES (3,'pac_Giorgi','pac_Giorgi',6)
+INSERT [dbo].[Ingresos] ([Id], [Usuario], [Pass],[IdUsuario]) VALUES (4,'pac_Palma','pac_Palma',7)
+INSERT [dbo].[Ingresos] ([Id], [Usuario], [Pass],[IdUsuario]) VALUES (5,'pac_Sandoval','pac_Sandoval',46)
+INSERT [dbo].[Ingresos] ([Id], [Usuario], [Pass],[IdUsuario]) VALUES (6,'prof_Proietti','prof_Proietti',13) 
+INSERT [dbo].[Ingresos] ([Id], [Usuario], [Pass],[IdUsuario]) VALUES (7,'prof_Henriquez','prof_Henriquez',11)
+INSERT [dbo].[Ingresos] ([Id], [Usuario], [Pass],[IdUsuario]) VALUES (8,'prof_SanMartin','prof_SanMartin',65)
 SET IDENTITY_INSERT [dbo].[Ingresos] OFF
-
+--Select * from Ingresos
+--delete from Ingresos
 /* HORARIOS */
-SET IDENTITY_INSERT [dbo].[Horarios] ON 
 INSERT [dbo].[Horarios] ([Día],[Hora_Inicio],[Hora_Fin],[Frecuencia]) VALUES ('Lunes','8:00','13:00',30)
 INSERT [dbo].[Horarios] ([Día],[Hora_Inicio],[Hora_Fin],[Frecuencia]) VALUES ('Miércoles','13:00','18:00',30)
 INSERT [dbo].[Horarios] ([Día],[Hora_Inicio],[Hora_Fin],[Frecuencia]) VALUES ('Viernes','10:00','15:00',30)
@@ -323,12 +323,10 @@ INSERT [dbo].[Horarios] ([Día],[Hora_Inicio],[Hora_Fin],[Frecuencia]) VALUES ('
 INSERT [dbo].[Horarios] ([Día],[Hora_Inicio],[Hora_Fin],[Frecuencia]) VALUES ('Jueves','14:00','18:00',60)
 INSERT [dbo].[Horarios] ([Día],[Hora_Inicio],[Hora_Fin],[Frecuencia]) VALUES ('Lunes','7:00','11:00',30)
 INSERT [dbo].[Horarios] ([Día],[Hora_Inicio],[Hora_Fin],[Frecuencia]) VALUES ('Martes','14:00','19:00',30)
-SET IDENTITY_INSERT [dbo].[Horarios] OFF
 
 
 
 /* PROFESIONAL X ESPECIALIDAD */
-SET IDENTITY_INSERT [dbo].[Profesionales_X_Especialidad] ON 
 INSERT [dbo].[Profesionales_X_Especialidad] ([IdUsuario], [IdEspecialidad]) VALUES (55,3)
 INSERT [dbo].[Profesionales_X_Especialidad] ([IdUsuario], [IdEspecialidad]) VALUES (19,17)
 INSERT [dbo].[Profesionales_X_Especialidad] ([IdUsuario], [IdEspecialidad]) VALUES (70,11)
@@ -354,10 +352,10 @@ INSERT [dbo].[Profesionales_X_Especialidad] ([IdUsuario], [IdEspecialidad]) VALU
 INSERT [dbo].[Profesionales_X_Especialidad] ([IdUsuario], [IdEspecialidad]) VALUES (65,1)
 INSERT [dbo].[Profesionales_X_Especialidad] ([IdUsuario], [IdEspecialidad]) VALUES (97,6)
 INSERT [dbo].[Profesionales_X_Especialidad] ([IdUsuario], [IdEspecialidad]) VALUES (94,2)
-SET IDENTITY_INSERT [dbo].[Profesionales_X_Especialidad] OFF
+
+
 
 /* HORARIO X PROFESIONAL */
-SET IDENTITY_INSERT [dbo].[Horario_x_Profesional] ON 
 INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (11,1,1)
 INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (11,1,2)
 INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (11,1,3)
@@ -369,7 +367,6 @@ INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorar
 INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (25,10,8)
 INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (65,1,8)
 INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (55,3,8)
-SET IDENTITY_INSERT [dbo].[Horario_x_Profesional] OFF
 
 
 
@@ -389,7 +386,7 @@ INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspeci
 INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (2,'2022-08-09','17:30',55,3,8,'',1)
 INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (7,'2022-07-19','16:30',65,1,8,'',1)
 INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (34,'2022-07-18','09:30',11,1,1,'sss',1)
-INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (65,'2022-07-21','08:00',13,12,5,'',1)
+INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (7,'2022-07-21','08:00',13,12,5,'',1)
 INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (46,'2022-07-21','09:00',13,12,5,'',1)
 INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (1,'2022-07-21','10:00',13,12,5,'',1)
 INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (1,'2022-07-21','11:00',13,12,5,'',1)
@@ -399,7 +396,7 @@ INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspeci
 INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (1,'2022-08-02','16:30',65,1,8,'',1)
 INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (1,'2022-08-02','17:30',65,1,8,'',1)
 INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (57,'2022-07-21','14:00',13,12,6,'',1)
-INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (93,'2022-07-21','15:00',13,12,6,'',1)
+INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (46,'2022-07-21','15:00',13,12,6,'',1)
 INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (1,'2022-07-21','16:00',13,12,6,'',1)
 INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (1,'2022-07-21','17:00',13,12,6,'Paciente primera vez',1)
 INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (3,'2022-07-18','09:00',11,1,1,'scasd',1)
