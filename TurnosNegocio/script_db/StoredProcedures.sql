@@ -228,7 +228,6 @@ Create procedure SP_AltaTurno(
 END
 GO
 
-
 Create procedure SP_ModificarTurno(
 	@IdTurno bigint,
 	@IdEstado smallint,
@@ -241,6 +240,7 @@ Create procedure SP_ModificarTurno(
 END
 GO
 
+
 Create procedure SP_ListarTurnos (
 	@IdProfesional bigint,
 	@IdEspecialidad int
@@ -248,15 +248,15 @@ Create procedure SP_ListarTurnos (
 )AS BEGIN
 	IF (@IdProfesional=-1) BEGIN
 		select t.IdTurno,t.IdPaciente, u.Apellidos + ', ' + u.Nombres as Paciente, t.Fecha, t.Hora, t.IdProfesional,
-		pe.Profesional, t.IdEspecialidad, pe.Especialidad, t.idHorario, et.Descripcion as Estado, t.Observaciones
-		from Turnos t
+		pe.Profesional, t.IdEspecialidad, pe.Especialidad, t.idHorario, t.IdEstado, et.Descripcion as Estado, 
+		t.Observaciones	from Turnos t
 			inner join Usuarios u on u.id = t.IdPaciente
 			inner join VW_ProfesionalesConEspecialidad pe on pe.IdUsuario = t.IdProfesional
 			inner join Estados_Turnos  et on et.Id = t.IdEstado
 		order by t.Fecha, t.Hora, pe.Profesional,pe.Especialidad, Paciente, t.IdTurno
 	END ELSE BEGIN
 		select t.IdTurno,t.IdPaciente, u.Apellidos + ', ' + u.Nombres as Paciente, t.Fecha, t.Hora, t.IdProfesional,
-		pe.Profesional, t.IdEspecialidad, pe.Especialidad, t.idHorario,  t.IdEstado, et.Descripcion as Estado,
+		pe.Profesional, t.IdEspecialidad, pe.Especialidad, t.idHorario, t.IdEstado, et.Descripcion as Estado,
 		t.Observaciones from Turnos t
 			inner join Usuarios u on u.id = t.IdPaciente
 			inner join VW_ProfesionalesConEspecialidad pe on pe.IdUsuario = t.IdProfesional
@@ -267,7 +267,7 @@ Create procedure SP_ListarTurnos (
 END
 GO
 
---exec SP_ListarTurnos
+--exec SP_ListarTurnos -1,-1
 --select * from Turnos
 --select * from Horarios
 --select * from VW_ProfesionalesConEspecialidad
@@ -296,3 +296,4 @@ GO
 	order by Fecha, Hora
 */
 
+Select * from Estados_Turnos

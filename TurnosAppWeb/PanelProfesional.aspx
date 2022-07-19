@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="col-md-12 ">
         <div class="col-md-10 my-2 text-center">
             <h1>Gestión de Turnos </h1>
@@ -31,7 +32,7 @@
                             </div>
                             <asp:GridView ID="dgvlistaTurnosProfesional" OnSelectedIndexChanged="dgvlistaTurnosProfesional_SelectedIndexChanged" DataKeyNames="id" runat="server" CssClass="table thead-light table-borderer table-sm table-hover mb-5" AutoGenerateColumns="false">
                                 <Columns>
-                                    <%--                                    <asp:BoundField HeaderText="IdTurno" DataField="id" />
+                                    <%--<asp:BoundField HeaderText="IdTurno" DataField="id" />
                                     <asp:BoundField HeaderText="IdPaciente" DataField="paciente.id" />--%>
                                     <asp:BoundField HeaderText="Hora" DataField="hora" DataFormatString="{0:hh\:mm}" />
                                     <asp:BoundField HeaderText="Paciente" DataField="paciente.nombres" />
@@ -45,8 +46,12 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-5 d-flex flex-column gap-4">
+        <div class="col-md-6 d-flex flex-column gap-4">
             <div class="col-md-12 px-4">
+<%--                <div class="col d-flex justify-content-center gap-4">
+                    <asp:Button Visible="false" Text="⏪" runat="server" CssClass="p-0 m-0 fs-2 pb-1 bg-transparent" ID="btnSiguiente" CommandArgument='<%#Eval("id")%>' CommandName="TurnoId" OnClick="btnSiguiente_Click" />
+                    <asp:Button Visible="false" Text="⏭️" runat="server" CssClass="p-0 m-0 fs-2 pb-1 bg-transparent" ID="btnAnterior" CommandArgument='<%#Eval("id")%>' CommandName="TurnoId" OnClick="btnAnterior_Click" />
+                </div>--%>
                 <asp:Repeater runat="server" ID="repPaciente">
                     <ItemTemplate>
                         <div class="card border-secondary">
@@ -71,19 +76,25 @@
                                 <h5 class="card-title">Notas turno: <%#Eval("fecha", "{0: dd/MM/yyyy}") %> - <%#Eval("hora") %></h5>
                             </div>
                             <div class="card-body d-flex flex-column">
-                                <div class="col">
-                                    <label cssclass="card-text" for="ddlEstadoTurno" class="form-label">Estado del turno: </label>
-                                    <asp:DropDownList CssClass="card-text" runat="server" ID="ddlEstadoTurno" class="form-select"></asp:DropDownList>
-                                </div>
-                                <div class="col">
-                                    <label for="txtObservaciones" class="form-label">Observaciones:</label>
-                                    <asp:TextBox runat="server" TextMode="MultiLine" ID="txtObservaciones" CssClass="form-control" />
-                                </div>
-                                <asp:Button Text="Actualizar" runat="server" CssClass="btn btn-primary mt-3 align-self-center" ID="btnModificar" CommandArgument='<%#Eval("id")%>' CommandName="UsuarioId" OnClick="btnModificar_Click" />
+                                <asp:UpdatePanel runat="server">
+                                    <ContentTemplate>
+                                        <div class="col">
+                                            <label cssclass="card-text" for="ddlEstadoTurno" class="form-label">Asistencia al turno: </label>
+                                            <asp:Button Text="Asistió" runat="server" CssClass="btn btn-primary mx-4 mb-3" ID="btnAsistio" CommandArgument='<%#Eval("id")%>' CommandName="TurnoId" OnClick="btnActualizarEstado_Click" />
+                                            <asp:Button Text="No asistió" runat="server" CssClass="btn btn-primary mb-3" ID="btnNoAsistio" CommandArgument='<%#Eval("id")%>' CommandName="TurnoId" OnClick="btnActualizarEstado_Click" />
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
                             </div>
+                            <div class="col">
+                                <label for="txtObservaciones" class="form-label">Observaciones:</label>
+                                <asp:TextBox runat="server" TextMode="MultiLine" ID="txtObservaciones" CssClass="form-control" />
+                            </div>
+                            <asp:Button Text="Guardar cambios" runat="server" CssClass="btn btn-primary mt-3 align-self-center" ID="btnModificar" CommandArgument='<%#Eval("id")%>' CommandName="TurnoId" OnClick="btnModificar_Click" />
+                        </div>
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>
+
             </div>
         </div>
     </div>

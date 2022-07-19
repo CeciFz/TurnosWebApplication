@@ -40,6 +40,7 @@ namespace TurnosNegocio
                     aux.especialidad.descripcion = (string)datos.Lector["Especialidad"];
                     aux.idHorario = (Int64)datos.Lector["idHorario"];
                     aux.estado = new EstadoTurno();
+                    aux.estado.id = (Int16)datos.Lector["IdEstado"];
                     aux.estado.descripcion = (String)datos.Lector["Estado"];
                     aux.observaciones = (String)datos.Lector["Observaciones"];
 
@@ -86,14 +87,14 @@ namespace TurnosNegocio
             }
         }
 
-        public void modificarTurnoConSP(Turno turno)
+        public void modificarTurnoConSP(Int64 idTurno, Int16 idEstado, String observaciones)
         {
             try
             {
                 datos.setearSP("SP_ModificarTurno");
-                datos.SetearParametro("@IdTurno", turno.id);
-                datos.SetearParametro("@IdEstado", turno.estado.id);
-                datos.SetearParametro("@Observaciones", turno.observaciones);
+                datos.SetearParametro("@IdTurno", idTurno);
+                datos.SetearParametro("@IdEstado", idEstado);
+                datos.SetearParametro("@Observaciones", observaciones);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
