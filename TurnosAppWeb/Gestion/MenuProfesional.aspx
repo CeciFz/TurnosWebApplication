@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TunosWeb.Master" AutoEventWireup="true" CodeBehind="MenuProfesional.aspx.cs" Inherits="TurnosAppWeb.Tablas.menuprofesional" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TunosWeb.Master" AutoEventWireup="true" CodeBehind="MenuProfesional.aspx.cs" Inherits="TurnosAppWeb.Tablas.MenuProfesional" EnableEventValidation="false"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -16,5 +16,4 @@
             <asp:Button Text='<%#Eval("descripcion")%>' CommandArgument='<%#Eval("id")%>' CommandName="id" OnClick="btnEspecialidad_Click" runat="server" CssClass="btn btn-primary mx-4 mb-3" ID="btnEspecialidad" />
         </ItemTemplate>
     </asp:Repeater>
-        <a href="/Gestion/PanelTurnosProfesional.aspx">Gestionar turnos</a>
 </asp:Content>

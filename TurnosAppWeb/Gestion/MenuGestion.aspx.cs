@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace TurnosAppWeb.Tablas
 {
-    public partial class menugestion : System.Web.UI.Page
+    public partial class MenuGestion : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

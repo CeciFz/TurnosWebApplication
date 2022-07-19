@@ -11,7 +11,7 @@ namespace TurnosAppWeb.Tablas
 {
 
 
-    public partial class menugestion
+    public partial class MenuGestion
     {
     }
 }

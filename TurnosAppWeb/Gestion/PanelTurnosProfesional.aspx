@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TunosWeb.Master" AutoEventWireup="true" CodeBehind="PanelTurnosProfesional.aspx.cs" Inherits="TurnosAppWeb.PanelProfesional" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TunosWeb.Master" AutoEventWireup="true" CodeBehind="PanelTurnosProfesional.aspx.cs" Inherits="TurnosAppWeb.PanelTurnosProfesional"  %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

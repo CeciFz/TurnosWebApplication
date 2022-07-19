@@ -11,7 +11,7 @@ namespace TurnosAppWeb.Tablas
 {
 
 
-    public partial class menuprofesional
+    public partial class MenuProfesional
     {
 
         /// <summary>

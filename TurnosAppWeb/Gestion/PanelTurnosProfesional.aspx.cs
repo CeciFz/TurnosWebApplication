@@ -9,7 +9,7 @@ using TurnosNegocio;
 
 namespace TurnosAppWeb
 {
-    public partial class PanelProfesional : System.Web.UI.Page
+    public partial class PanelTurnosProfesional : System.Web.UI.Page
     {
         public List<Turno> listaTurnosProfesional { get; set; }
         public List<Usuario> listaPacientes { get; set; }
@@ -23,7 +23,7 @@ namespace TurnosAppWeb
              }*/
 
             Int64 idProf = (Int64)Session["IdUsuario"];         //Esto lo debe capturar del Inicio de SESION + boton apretado en menu profesional!
-            Int32 idEsp = 12;// (Int32)Session["IdEspecialidad"];
+            Int32 idEsp = (Int32)Session["IdEspecialidad"];
 
             listaFechasTurnos = new List<DateTime>();
 

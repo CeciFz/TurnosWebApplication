@@ -11,7 +11,7 @@ namespace TurnosAppWeb
 {
 
 
-    public partial class PanelProfesional
+    public partial class PanelTurnosProfesional
     {
 
         /// <summary>

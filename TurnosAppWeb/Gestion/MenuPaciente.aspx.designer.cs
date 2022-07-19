@@ -11,7 +11,7 @@ namespace TurnosAppWeb.Tablas
 {
 
 
-    public partial class menupaciente
+    public partial class MenuPaciente
     {
     }
 }

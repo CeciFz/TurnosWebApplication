@@ -9,7 +9,7 @@ using TurnosNegocio;
 
 namespace TurnosAppWeb.Tablas
 {
-    public partial class menuprofesional : System.Web.UI.Page
+    public partial class MenuProfesional : System.Web.UI.Page
     {
         public Profesional infoProfesional { get; set; }
         protected void Page_Load(object sender, EventArgs e)
@@ -31,7 +31,7 @@ namespace TurnosAppWeb.Tablas
         {
             Int32 idEspecialidad = Int32.Parse(((Button)sender).CommandArgument);
             Session.Add("IdEspecialidad", idEspecialidad);
-            Response.Redirect("./Gestion/PanelTurnosProfesional.aspx");
+            Response.Redirect("./PanelTurnosProfesional.aspx",false);
         }
     }
 }
