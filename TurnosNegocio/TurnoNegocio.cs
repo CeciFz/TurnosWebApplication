@@ -108,23 +108,69 @@ namespace TurnosNegocio
             }
         }
 
-        public List<Turno> turnosTomadosConSP(DateTime fechaSeleccionada, Int64 idProfesional, Int32 idEspecialidad, Int64 idHorario)
+        public List<Turno> listarTurnosFiltradosConSP(DateTime fechaSeleccionada, Int64 idProfesional, Int32 idEspecialidad, Int64 idHorario,Int64 idPaciente=-1)
         {
             List<Turno> lista = new List<Turno>();
 
             try
             {
-                datos.setearSP("SP_ValidaTurnoTomado");
+                datos.setearSP("SP_FiltroTurnos");
                 datos.SetearParametro("@Fecha", fechaSeleccionada);
                 datos.SetearParametro("@IdProfesional", idProfesional);
                 datos.SetearParametro("@IdEspecialidad", idEspecialidad);
                 datos.SetearParametro("@IdHorario", idHorario);
+                datos.SetearParametro("@IdPaciente", idPaciente);
                 //datos.ejecutarAccion();
                 datos.lecturaDatos();
 
                 while (datos.Lector.Read())
                 {
                     Turno aux = new Turno();
+                    aux.paciente = new Usuario();
+                    aux.paciente.id = (Int64)datos.Lector["IdPaciente"];
+                    aux.fecha = (DateTime)datos.Lector["Fecha"];
+                    aux.hora = (TimeSpan)datos.Lector["Hora"];
+                    aux.profesional = new Profesional();
+                    aux.profesional.id = (Int64)datos.Lector["IdProfesional"];
+                    aux.especialidad = new Especialidad();
+                    aux.especialidad.id = (Int32)datos.Lector["IdEspecialidad"];
+                    aux.estado = new EstadoTurno();
+                    aux.estado.id = (Int16)datos.Lector["IdEstado"];
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        
+        public List<Turno> listaTurnosPacienteConSP(Int64 idPaciente,DateTime fecha, TimeSpan hora)
+        {
+            List<Turno> lista = new List<Turno>();
+
+            try
+            {
+                datos.setearSP("SP_ListarTurnosPacientes");
+                datos.SetearParametro("@IdPaciente", idPaciente);
+                datos.SetearParametro("@Fecha", fecha);
+                datos.SetearParametro("@Hora", hora);
+                datos.lecturaDatos();
+
+                while (datos.Lector.Read())
+                {
+                    Turno aux = new Turno();
+                    aux.paciente = new Usuario();
+                    aux.paciente.id = (Int64)datos.Lector["IdPaciente"];
                     aux.fecha = (DateTime)datos.Lector["Fecha"];
                     aux.hora = (TimeSpan)datos.Lector["Hora"];
                     aux.profesional = new Profesional();

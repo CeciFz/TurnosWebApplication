@@ -64,7 +64,7 @@
                                 <p class="card-text">Obra Social: <%#Eval("obrasocial.descripcion")%> </p>
                                 <p class="card-text">Fecha de nacimiento: <%#Eval("fechaNacimiento", "{0: dd/MM/yyyy}")%> </p>
                             </div>
-                        </div>
+                        </div>                                                             
                     </ItemTemplate>
                 </asp:Repeater>
             </div>

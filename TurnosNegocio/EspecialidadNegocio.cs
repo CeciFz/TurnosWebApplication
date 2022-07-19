@@ -18,7 +18,7 @@ namespace TurnosNegocio
 
             try
             {
-                datos.setearConsulta("select Id, Descripcion, Activo from Especialidades");
+                datos.setearConsulta("select Id, Descripcion, Activo from Especialidades order by Descripcion");
                 datos.lecturaDatos();
 
                 while (datos.Lector.Read())

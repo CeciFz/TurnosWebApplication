@@ -20,6 +20,7 @@ Create procedure SP_ListarPacientes (
 		TipoDoc,NroDocumento,IdObraSocial,ObraSocial,Telefono,Mail from VW_Usuarios 
 		inner join VW_UsuariosConPerfil up on up.IdUsuario = VW_Usuarios.Id
 		where IdPerfil = 3
+		order by NombreCompleto
 	END ELSE BEGIN
 		select u.Id, u.Apellidos + ', ' + u.Nombres as NombreCompleto,u.Genero,u.FechaNacimiento,
 		Case When Month(FechaNacimiento) > Month(getDate()) Then dateDiff(Year,FechaNacimiento, getDate())-1
@@ -29,12 +30,13 @@ Create procedure SP_ListarPacientes (
 		inner join VW_UsuariosConPerfil up on up.IdUsuario = u.Id
 		--inner join Profesionales_x_Especialidad pe on pe.IdUsuario = up.IdUsuario
 		where IdPerfil = 3 AND u.Id = @IdPaciente
+		order by NombreCompleto
 	END
 END
 GO
 
 
-create procedure SP_ListarProfesionales (
+Create procedure SP_ListarProfesionales (
 	@IdEspecialidad int
 ) AS BEGIN
 	IF (@IdEspecialidad=-1) BEGIN
@@ -42,12 +44,14 @@ create procedure SP_ListarProfesionales (
 		from VW_Usuarios 
 		inner join VW_UsuariosConPerfil up on up.IdUsuario = VW_Usuarios.Id
 		where IdPerfil = 4
+		Order By Apellidos
 	END ELSE BEGIN
 		select Id, Apellidos + ', ' + Nombres as NombreCompleto,Genero,Telefono,Mail
 		from VW_Usuarios 
 		inner join VW_UsuariosConPerfil up on up.IdUsuario = VW_Usuarios.Id
 		inner join Profesionales_x_Especialidad pe on pe.IdUsuario = up.IdUsuario
 		where IdPerfil = 4 AND IdEspecialidad = @IdEspecialidad
+		Order By NombreCompleto
 	END
 END
 GO
@@ -214,7 +218,7 @@ GO
 
 --Exec SP_ModificarUsuario 104,'Perez','Juan','1999-06-26','M',1,36987589,1137429988,'perez@gmail.com',5,3
 
-Create procedure SP_AltaTurno(
+create procedure SP_AltaTurno(
 	@IdPaciente bigint,
 	@Fecha date,
 	@Hora time,
@@ -276,19 +280,41 @@ GO
 --exec SP_AltaTurno 1,'2022-07-19','15:00',65,1,8,null
 
 
-Create procedure SP_ValidaTurnoTomado(
+Create procedure SP_FiltroTurnos(
 	@Fecha date,
 	@IdProfesional bigint,
 	@IdEspecialidad int,
-	@IdHorario bigint
+	@IdHorario bigint,
+	@IdPaciente bigint
 )AS BEGIN
-	Select Fecha, Hora, IdProfesional, IdEspecialidad, IdEstado from Turnos
-	where Fecha = @Fecha AND IdProfesional = @IdProfesional AND IdHorario = @IdHorario
-	AND IdEspecialidad = @IdEspecialidad AND IdEstado != 4 /* 4 = CANCELADO*/
-	order by Fecha, Hora
+	IF (@IdPaciente=-1) BEGIN
+		Select IdTurno,IdPaciente, Fecha, Hora, IdProfesional, IdEspecialidad, IdEstado from Turnos
+		where Fecha = @Fecha AND IdProfesional = @IdProfesional AND IdHorario = @IdHorario
+		AND IdEspecialidad = @IdEspecialidad AND IdEstado != 4 /* 4 = CANCELADO*/
+		order by Fecha, Hora
+	END ELSE BEGIN
+		Select IdTurno,IdPaciente, Fecha, Hora, IdProfesional, IdEspecialidad, IdEstado from Turnos
+		where Fecha >= GETDATE() AND IdProfesional = @IdProfesional	AND IdEspecialidad = @IdEspecialidad
+		AND IdEstado != 4 AND IdPaciente = @IdPaciente
+		order by Fecha, Hora
+	END
 END
 GO
 
+
+Create procedure SP_ListarTurnosPacientes(
+	@IdPaciente bigint,
+	@Fecha date,
+	@Hora time(7)
+)AS BEGIN
+	Select IdTurno,IdPaciente, Fecha, Hora, IdProfesional, IdEspecialidad, IdEstado from Turnos
+		where Fecha = @Fecha AND hora = @Hora AND IdEstado != 4 AND IdPaciente = @IdPaciente 
+		order by IdPaciente, Fecha, Hora
+END
+GO
+
+exec SP_ListarTurnosPacientes 46,'2022-07-22','10:00'
+delete from Turnos where IdTurno = 23
 /*
 	Select Fecha, Hora, IdProfesional, IdEspecialidad, IdEstado from Turnos
 	where Fecha = '2022-07-21' AND IdProfesional = 13 AND
@@ -296,4 +322,3 @@ GO
 	order by Fecha, Hora
 */
 
-Select * from Estados_Turnos
