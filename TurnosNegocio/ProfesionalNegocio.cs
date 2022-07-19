@@ -34,7 +34,7 @@ namespace TurnosNegocio
                     {
                         aux.nombres = (string)datos.Lector["NombreCompleto"];
                     }
-                    aux.sexo = (string)datos.Lector["Sexo"];
+                    aux.sexo = (string)datos.Lector["Genero"];
                     aux.telefono = (string)datos.Lector["Telefono"];
                     aux.mail = (string)datos.Lector["Mail"];
 

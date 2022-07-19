@@ -2,8 +2,11 @@ Use turnosApp
 go
 
 /* VISTA PACIENTES */
-Create View VW_Pacientes AS
-	Select u.Apellidos, u.Nombres, u.FechaNacimiento, u.Sexo, u.IdTipoDocumento,u.telefono,u.mail,
+create View VW_Pacientes AS
+	Select u.Apellidos, u.Nombres, u.FechaNacimiento,u.Sexo,
+	case When u.Sexo = 'F' then 'Mujer'
+	When u.Sexo = 'M' then 'Hombre'
+	When u.Sexo = 'O' then 'No binaria' end as Genero, u.IdTipoDocumento,u.telefono,u.mail,
 	u.IdObraSocial, u.FechaAlta, pu.IdPerfilUsuario
 	from Usuarios u
 	inner join Perfil_X_Usuario pu on u.Id = pu.IdUsuario
@@ -31,8 +34,12 @@ go
 
 
 /* VISTA Usuarios */
-CREATE View VW_Usuarios AS
-	Select u.Id, u.Apellidos, u.Nombres, u.FechaNacimiento, u.Sexo, td.Id as 'IdTipoDoc', td.Descripcion as 'TipoDoc',
+create View VW_Usuarios AS
+	Select u.Id, u.Apellidos, u.Nombres, u.FechaNacimiento, u.Sexo, 
+	case When u.Sexo = 'F' then 'Mujer'
+	When u.Sexo = 'M' then 'Hombre'
+	When u.Sexo = 'O' then 'No binaria' end as Genero,
+	td.Id as 'IdTipoDoc', td.Descripcion as 'TipoDoc',
 	u.NroDocumento, os.Id as 'IdObraSocial', os.Descripcion as 'ObraSocial', 
 	ISNULL(u.Telefono,'no informado') as Telefono,
 	ISNULL(u.Mail,'no informado') as Mail, u.FechaAlta
