@@ -13,16 +13,20 @@ namespace TurnosAppWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+            
+                
+                
             
 
 
-            
+
+
+
         }
 
         protected void btnResgistrarse_Click(object sender, EventArgs e)
         {
-            
+            Response.Redirect("/Tablas/registro.aspx");
         }
 
         protected void btnIniciarSesion_Click(object sender, EventArgs e)
@@ -61,9 +65,15 @@ namespace TurnosAppWeb
                     lblerror.Visible = false;
 
                 }
+                else if (tipo == 0)
+                {
+                   
+                    lblerror.Visible = true;
+
+                }
                 else
                 {
-                    lblerror.Visible = true;
+                    
                     Session.Add("ingresos", null);
                     Response.Redirect("default.aspx");
                     

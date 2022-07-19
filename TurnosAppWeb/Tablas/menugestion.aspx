@@ -5,7 +5,7 @@
 
     
     <div class ="now">
-        <div class="col-9"> <h1 class="t_grafica"  style="color:Highlight; text-align: center">MENU PRINCIPAL Gestión</h1> </div>
+        <div class="col-9"> <h1 class="t_grafica"  style="color:Highlight; text-align: center"><asp:Image ImageUrl="https://cdn-icons.flaticon.com/png/512/3212/premium/3212997.png?token=exp=1658195147~hmac=75f47cd9050ebd1fae56c47cc0353df1" CssClass="w-25" runat="server" />Menu-Gestión</h1> </div>
 
         <div class="col-15" style="width:auto; text-align: center">
 

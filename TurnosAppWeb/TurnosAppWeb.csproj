@@ -77,6 +77,7 @@
     <Content Include="Tablas\EstadoTurnoListado.aspx" />
     <Content Include="Tablas\PerfilUsuarioForm.aspx" />
     <Content Include="Tablas\PerfilUsuarioListado.aspx" />
+    <Content Include="Tablas\registro.aspx" />
     <Content Include="Tablas\TipoDocumentoForm.aspx" />
     <Content Include="Tablas\TipoDocumentoListado.aspx" />
     <Content Include="Tablas\TurnoListado.aspx" />
@@ -162,6 +163,13 @@
     </Compile>
     <Compile Include="Tablas\PerfilUsuarioListado.aspx.designer.cs">
       <DependentUpon>PerfilUsuarioListado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tablas\registro.aspx.cs">
+      <DependentUpon>registro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tablas\registro.aspx.designer.cs">
+      <DependentUpon>registro.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tablas\TipoDocumentoForm.aspx.cs">
       <DependentUpon>TipoDocumentoForm.aspx</DependentUpon>

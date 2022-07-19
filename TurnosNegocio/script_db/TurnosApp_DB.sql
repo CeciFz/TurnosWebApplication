@@ -47,9 +47,9 @@ go
 
 create table Ingresos(
 Id int not null primary key identity (1,1),
-Usuario varchar (50) unique null,
-Pass varchar (50) null,
-TipoUser int null,
+Usuario varchar (50) unique not null,
+Pass varchar (50) not null,
+idusuario bigint not null foreign key references Usuarios(Id)
 )
 
 go

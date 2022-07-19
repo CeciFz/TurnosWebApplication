@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TurnosDominio
 {
-    public enum tipousuarios
+   /* public enum tipousuarios
     {
       //  normal = 1,
      //   admin = 2
@@ -15,7 +15,7 @@ namespace TurnosDominio
         gestion = 2,
         paciente = 3,
         profesional = 4
-    }
+    }*/
 
     public class Ingreso
     {
@@ -25,7 +25,7 @@ namespace TurnosDominio
 
         public string Pass { get; set; }
 
-        public tipousuarios TipoUsuario { get; set; }
+        public Int16 tipousuarios  { get; set; }
 
 
         /* public Ingreso (string user, string pass, bool admin)

@@ -70,6 +70,12 @@ create View VW_HorariosDeProfesionales AS
     inner join Especialidades esp on esp.Id = hxp.IdEspecialidad
 Go
 
+create view vw_idperfilusuario as(
+select ing.Id as Id,perfil.Id as TipoUser,ing.Usuario as Usuario,ing.Pass as Pass from Ingresos ing 
+inner join Usuarios us on us.Id=ing.idusuario
+inner join Perfil_X_Usuario pxu on pxu.IdUsuario = us.Id
+inner join Perfiles_Usuarios perfil on perfil.Id=pxu.IdPerfilUsuario)
+go
 /*
 select * from Horarios
 select * from Perfiles_Usuarios

@@ -52,7 +52,7 @@ namespace TurnosNegocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("select Id, TipoUser from Ingresos where Usuario=@user and Pass=@pass");
+                datos.setearConsulta("select Id, TipoUser from vw_idperfilusuario  where Usuario=@user and Pass=@pass");
                 datos.SetearParametro("@user", ingresos.User);
                 datos.SetearParametro("@pass", ingresos.Pass);
 
@@ -64,32 +64,37 @@ namespace TurnosNegocio
                     ingresos.Id = (int)datos.Lector["Id"];
                     //ingresos.TipoUsuario = (int)(datos.Lector["TipoUser"]) == 2 ? tipousuarios.admin : tipousuarios.normal;
 
-                    if ((int)(datos.Lector["TipoUser"]) == 1)
+                    if ((Int16)(datos.Lector["TipoUser"]) == 1)
                     {
-                        ingresos.TipoUsuario = tipousuarios.admin;
+                       // ingresos.TipoUsuario = tipousuarios.admin;
+                        //ingresos.tipousuarios = 1;
                         return 1;
                     }
-                    else if ((int)(datos.Lector["TipoUser"]) == 2)
+                    else if ((Int16)(datos.Lector["TipoUser"]) == 2)
                     {
-                        ingresos.TipoUsuario = tipousuarios.gestion;
+                       // ingresos.TipoUsuario = tipousuarios.gestion;
+                       // ingresos.tipousuarios = 2;
                         return 2;
                     }
-                    else if ((int)(datos.Lector["TipoUser"]) == 3)
+                    else if ((Int16)(datos.Lector["TipoUser"]) == 3)
                     {
-                        ingresos.TipoUsuario = tipousuarios.paciente;
+                        //ingresos.TipoUsuario = tipousuarios.paciente;
+                       // ingresos.tipousuarios = 3;
                         return 3;
                     }
-                    else if ((int)(datos.Lector["TipoUser"]) == 4)
+                    else if ((Int16)(datos.Lector["TipoUser"]) == 4)
                     {
-                        ingresos.TipoUsuario = tipousuarios.profesional;
+                        //ingresos.TipoUsuario = tipousuarios.profesional;
+                        //ingresos.tipousuarios = 4;
                         return 4;
                     }
+
                     
 
 
-                   
                 }
                 return 0;
+
             }
             catch (Exception ex)
             {

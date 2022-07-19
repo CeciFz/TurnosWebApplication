@@ -31,7 +31,7 @@ SET IDENTITY_INSERT [dbo].[Obras_Sociales] OFF
 /* USUARIOS */
 
 SET IDENTITY_INSERT [dbo].[Usuarios] ON 
-INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[Telefono],[Mail],[IdObraSocial]) VALUES (1,'Maldonado','Alex',N'24/03/1994' ,'M',1,30459252,11250202,'Maldonado@gmail.com',6)
+INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[Telefono],[Mail],[IdObraSocial]) VALUES (1,'facundo','zumsteind',N'28/01/1995' ,'M',1,38683736,1134520207,'zumsteind@gmail.com',6)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[Telefono],[Mail],[IdObraSocial]) VALUES (2,'Longo','Enrico',N'09/08/1997' ,'M',1,39459251,11257562,'longo@gmail.com',1)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[Telefono],[Mail],[IdObraSocial]) VALUES (3,'Paredes','Helen',N'29/03/1988' ,'F',1,39459183,11235960,'peredeshelen@gmail.com',10)
 INSERT [dbo].[Usuarios] ([Id],[Apellidos],[Nombres],[FechaNacimiento],[Sexo],[IdTipoDocumento],[NroDocumento],[IdObraSocial]) VALUES (4,'González','Paolo',N'06/10/2002' ,'F',1,39259109,6)
@@ -163,8 +163,7 @@ SET IDENTITY_INSERT [dbo].[Especialidades] OFF
 
 
 
-INSERT [dbo].[Ingresos] ( [Usuario], [Pass], [TipoUser]) VALUES ('utn','utn',2)
-INSERT [dbo].[Ingresos] ( [Usuario], [Pass], [TipoUser]) VALUES ('utn1','utn1',1)
+
 
 
 
@@ -186,7 +185,10 @@ INSERT [dbo].[Perfiles_Usuarios] ([Id], [Descripcion]) VALUES (4, N'Profesional'
 SET IDENTITY_INSERT [dbo].[Perfiles_Usuarios] OFF
 
 
+
+
 /* PERFIL POR usuario */
+SET IDENTITY_INSERT [dbo].[Perfil_X_Usuario] ON 
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (1,1)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (4,1)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (78,2)
@@ -288,7 +290,7 @@ INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (65,4)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (97,4)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (94,4)
 
-INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (1,3)
+
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (4,3)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (23,4)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (24,4)
@@ -304,9 +306,15 @@ INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (50,3)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (60,3)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (78,3)
 INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (92,3)
+SET IDENTITY_INSERT [dbo].[Perfil_X_Usuario] OFF
 
+SET IDENTITY_INSERT [dbo].[Ingresos] ON 
+INSERT [dbo].[Ingresos] ( [Id], [Usuario], [Pass],[idusuario]) VALUES (1,'admin','admin',1)
+INSERT [dbo].[Ingresos] ([Id], [Usuario], [Pass],[idusuario]) VALUES (2,'gestion','gestion',6)
+SET IDENTITY_INSERT [dbo].[Ingresos] OFF
 
 /* HORARIOS */
+SET IDENTITY_INSERT [dbo].[Horarios] ON 
 INSERT [dbo].[Horarios] ([Día],[Hora_Inicio],[Hora_Fin],[Frecuencia]) VALUES ('Lunes','8:00','13:00',30)
 INSERT [dbo].[Horarios] ([Día],[Hora_Inicio],[Hora_Fin],[Frecuencia]) VALUES ('Miércoles','13:00','18:00',30)
 INSERT [dbo].[Horarios] ([Día],[Hora_Inicio],[Hora_Fin],[Frecuencia]) VALUES ('Viernes','10:00','15:00',30)
@@ -315,11 +323,12 @@ INSERT [dbo].[Horarios] ([Día],[Hora_Inicio],[Hora_Fin],[Frecuencia]) VALUES ('
 INSERT [dbo].[Horarios] ([Día],[Hora_Inicio],[Hora_Fin],[Frecuencia]) VALUES ('Jueves','14:00','18:00',60)
 INSERT [dbo].[Horarios] ([Día],[Hora_Inicio],[Hora_Fin],[Frecuencia]) VALUES ('Lunes','7:00','11:00',30)
 INSERT [dbo].[Horarios] ([Día],[Hora_Inicio],[Hora_Fin],[Frecuencia]) VALUES ('Martes','14:00','19:00',30)
-
+SET IDENTITY_INSERT [dbo].[Horarios] OFF
 
 
 
 /* PROFESIONAL X ESPECIALIDAD */
+SET IDENTITY_INSERT [dbo].[Profesionales_X_Especialidad] ON 
 INSERT [dbo].[Profesionales_X_Especialidad] ([IdUsuario], [IdEspecialidad]) VALUES (55,3)
 INSERT [dbo].[Profesionales_X_Especialidad] ([IdUsuario], [IdEspecialidad]) VALUES (19,17)
 INSERT [dbo].[Profesionales_X_Especialidad] ([IdUsuario], [IdEspecialidad]) VALUES (70,11)
@@ -345,9 +354,10 @@ INSERT [dbo].[Profesionales_X_Especialidad] ([IdUsuario], [IdEspecialidad]) VALU
 INSERT [dbo].[Profesionales_X_Especialidad] ([IdUsuario], [IdEspecialidad]) VALUES (65,1)
 INSERT [dbo].[Profesionales_X_Especialidad] ([IdUsuario], [IdEspecialidad]) VALUES (97,6)
 INSERT [dbo].[Profesionales_X_Especialidad] ([IdUsuario], [IdEspecialidad]) VALUES (94,2)
-
+SET IDENTITY_INSERT [dbo].[Profesionales_X_Especialidad] OFF
 
 /* HORARIO X PROFESIONAL */
+SET IDENTITY_INSERT [dbo].[Horario_x_Profesional] ON 
 INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (11,1,1)
 INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (11,1,2)
 INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (11,1,3)
@@ -359,6 +369,8 @@ INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorar
 INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (25,10,8)
 INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (65,1,8)
 INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (55,3,8)
+SET IDENTITY_INSERT [dbo].[Horario_x_Profesional] OFF
+
 
 
 /*
