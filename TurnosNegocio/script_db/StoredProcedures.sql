@@ -61,20 +61,20 @@ Create procedure SP_ListarHorariosProfesionales (
 	@IdProfesional bigint
 ) AS BEGIN
 	IF (@IdProfesional=-1) BEGIN
-		Select pe.IdUsuario as IDProfesional, isnull(h.IdHorario,0) as IdHorario, isnull((
+		Select pe.IdUsuario as IDProfesional, pe.IdEspecialidad, isnull(hp.IdHorario,0) as IdHorario, isnull((
 		h.Día +' de '+ Cast(h.Hora_Inicio as varchar(5)) + ' a ' +  Cast(h.Hora_Fin as varchar(5))),
 		'Sin atención') as Horario, isnull(h.Frecuencia,0) as Frecuencia, pe.Habilitado as Activo,
 		isnull(h.Día,0)as Día, isnull(h.Hora_Inicio,'00:00') as Hora_Inicio, isnull(h.Hora_Fin,'00:00') as Hora_Fin
 		from Profesionales_x_Especialidad pe
-		left Join Horario_x_Profesional hp on hp.IdProfesional = pe.IdUsuario
+		left Join Horario_x_Profesional hp on hp.IdProfesional = pe.IdUsuario and hp.IdEspecialidad = pe.IdEspecialidad
 		left Join Horarios h on h.IdHorario = hp.IdHorario
 	END ELSE BEGIN
-		Select pe.IdUsuario as IDProfesional, isnull(h.IdHorario,0) as IdHorario, isnull((
+		Select pe.IdUsuario as IDProfesional, pe.IdEspecialidad, isnull(hp.IdHorario,0) as IdHorario, isnull((
 		h.Día +' de '+ Cast(h.Hora_Inicio as varchar(5)) + ' a ' +  Cast(h.Hora_Fin as varchar(5))),
 		'Sin atención') as Horario, isnull(h.Frecuencia,0) as Frecuencia, pe.Habilitado as Activo,
 		isnull(h.Día,0)as Día, isnull(h.Hora_Inicio,'00:00') as Hora_Inicio, isnull(h.Hora_Fin,'00:00') as Hora_Fin
 		from Profesionales_x_Especialidad pe
-		left Join Horario_x_Profesional hp on hp.IdProfesional = pe.IdUsuario
+		left Join Horario_x_Profesional hp on hp.IdProfesional = pe.IdUsuario and hp.IdEspecialidad = pe.IdEspecialidad
 		left Join Horarios h on h.IdHorario = hp.IdHorario
 		where pe.IdUsuario = @IdProfesional AND pe.IdEspecialidad = @IdEspecialidad
 	END

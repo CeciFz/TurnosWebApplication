@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Drawing;
 using TurnosDominio;
 using TurnosNegocio;
 
@@ -18,11 +19,7 @@ namespace TurnosAppWeb.Gestion
         private Int64 idProfesional { get; set; }
         private Int32 idEspecialidad { get; set; }
         private Int64 idHorario { get; set; }
-        DropDownList ddlProfesionales { get; set; }
-        DropDownList ddlDias { get; set; }
-        DropDownList ddlFecha { get; set; }
-        DropDownList ddlHora { get; set; }
-        Label lblSinTurno { get; set; }
+        private bool isTurno { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             /* if (Session["ingresos"] == null)
@@ -31,7 +28,6 @@ namespace TurnosAppWeb.Gestion
              }*/
 
             listaFechasTurnos = new List<DateTime>();
-
             TurnoNegocio negocio = new TurnoNegocio();
             listaTurnos = negocio.listarTurnosConSP();
 
@@ -44,105 +40,90 @@ namespace TurnosAppWeb.Gestion
 
             }
 
-            //lblProfesional.Text = "Profesional: " + ((Profesional)Session["InfoProfesional"]).nombres;
-
             repTurnos.DataSource = listaFechasTurnos;
             repTurnos.DataBind();
 
-
+            isTurno = false;
         }
 
         protected void dgvlistaTurnosGeneral_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UsuarioNegocio negocio = new UsuarioNegocio();
+            UsuarioNegocio usNeg = new UsuarioNegocio();
+
             GridView grid = (GridView)sender;
-
             RepeaterItem repeater = (RepeaterItem)((GridView)sender).Parent;
-            int i = repeater.ItemIndex;
+            //int i = repeater.ItemIndex;
             grid = (GridView)repeater.FindControl("dgvlistaTurnosGeneral");
-            string id = grid.SelectedDataKey.Value.ToString();
+            string idTurno = grid.SelectedDataKey.Value.ToString();
+            Session["idTurno"] = idTurno;
 
-            List<Turno> listaTurnosFiltrados = listaTurnos.FindAll(x => x.id.ToString() == id);
+            grid.SelectedRow.BackColor = Color.Black;
+            grid.SelectedRow.ForeColor = Color.White;
 
-            Turno turno = listaTurnosFiltrados[0];
-            Session["idEstado"] = turno.estado.id;
-            idPaciente = turno.paciente.id;
-            idEspecialidad = turno.especialidad.id;
-            Session["idEspecialidad"] = idEspecialidad;
-            idProfesional = turno.profesional.id;
-            listaPacientes = negocio.listarPacientes(idPaciente);
-            Session["hora"] = turno.hora;
-            Session["fecha"] = turno.fecha;
+            List<Turno> listaTurnosFiltrados = listaTurnos.FindAll(x => x.id.ToString() == idTurno);
+            Session["turno"] = listaTurnosFiltrados;
 
+            idPaciente = ((List<Turno>)Session["turno"])[0].paciente.id;
+            idEspecialidad = ((List<Turno>)Session["turno"])[0].especialidad.id;
+            idProfesional = ((List<Turno>)Session["turno"])[0].profesional.id;
+            idHorario = ((List<Turno>)Session["turno"])[0].idHorario;
+            isTurno = true;
+
+            cargaTurno();
+            listaPacientes = usNeg.listarPacientes(idPaciente);
             repPaciente.DataSource = listaPacientes;
             repPaciente.DataBind();
 
-            repDetalleTurno.DataSource = listaTurnosFiltrados;
-            repDetalleTurno.DataBind();
 
-            /////////////////////////////////////////////////////
-            /// PRIMERO PRECARGA DDL
+
+        }
+
+        private void cargaTurno()
+        {
             ProfesionalNegocio profNeg = new ProfesionalNegocio();
             HorarioNegocio horNeg = new HorarioNegocio();
-
-            ddlProfesionales = (DropDownList)repDetalleTurno.Items[0].FindControl("ddlProfesionales");
-            ddlDias = (DropDownList)repDetalleTurno.Items[0].FindControl("ddlDias");
-            ddlFecha = (DropDownList)repDetalleTurno.Items[0].FindControl("ddlFecha");
-            ddlHora = (DropDownList)repDetalleTurno.Items[0].FindControl("ddlHora");
-            lblSinTurno = (Label)repDetalleTurno.Items[0].FindControl("lblSinTurno");
+            DateTime fecha = ((List<Turno>)Session["turno"])[0].fecha;
+            TimeSpan hora = ((List<Turno>)Session["turno"])[0].hora;
 
             try
             {
-                ddlProfesionales.DataSource = profNeg.listarProfesionalesConSP();
+                lblSinTurno.Visible = false;
+                lblTurnoNoAgendado.Visible = false;
+                lblTurnoRepetido.Visible = false;
+                lblTurno.Text = "Turno: " + fecha.ToString("dd/MM/yyyy") + " - " + hora.ToString("hh\\:mm") + " Hrs";
+                lblEspecialidad.Text = ((List<Turno>)Session["turno"])[0].especialidad.descripcion;
+                ddlProfesionales.DataSource = profNeg.listarProfesionalesConSP(idEspecialidad);
                 ddlProfesionales.DataValueField = "id";
                 ddlProfesionales.DataTextField = "nombres";
                 ddlProfesionales.DataBind();
+                ddlProfesionales.SelectedValue = idProfesional.ToString();
 
                 ddlDias.DataSource = horNeg.listarHorariosConSP(idEspecialidad, idProfesional);
                 ddlDias.DataValueField = "idHorario";
                 ddlDias.DataTextField = "descripcion";
                 ddlDias.DataBind();
+                ddlDias.SelectedValue = idHorario.ToString();
+
+                List<DateTime> date = listaDias(idHorario);
+                ddlFecha.DataSource = date;
+                ddlFecha.DataBind();
+                ddlFecha.SelectedValue = fecha.ToString();
+
+                List<TimeSpan> horas = listaHoras(idProfesional, idEspecialidad, idHorario);
+                ddlHora.DataSource = horas;
+                ddlHora.DataBind();
+                ddlHora.SelectedValue = hora.ToString();
 
                 lblSinTurno.Visible = false;
-
-                ddlProfesionales.SelectedValue = turno.profesional.id.ToString();
-                ddlDias.SelectedValue = turno.idHorario.ToString();
-                ddlDias_SelectedIndexChanged(sender, e);
+                lblTurnoNoAgendado.Visible = false;
+                txtObservaciones.Text = ((List<Turno>)Session["turno"])[0].observaciones;
+                DivTurnos.Visible = true;
             }
             catch (Exception ex)
             {
 
                 Session.Add("error", ex);
             }
-
-            /*Button btnSi = (Button)repDetalleTurno.Items[0].FindControl("btnAsistio");
-            Button btnNo = (Button)repDetalleTurno.Items[0].FindControl("btnNoAsistio");
-
-
-            if (turno.estado.id == 5)
-            {
-                btnSi.Text = "Asistió ✔️";
-                btnSi.CssClass = "btn btn-success mx-4 mb-3";
-            }
-            else if (turno.estado.id == 3)
-            {
-                btnNo.Text = "No Asistió ✔️";
-                btnNo.CssClass = "btn btn-success mb-3";
-            }*/
-
-            //////////////////////////
-            ///
-
-//            lblTurnoTomado.Visible = false;
-
-            Label lblEspecialidad = (Label)repDetalleTurno.Items[0].FindControl("lblEspecialidad");
-            lblEspecialidad.Text = turno.especialidad.descripcion;
-          
-            ddlHora.SelectedValue = turno.hora.ToString();           
-
-            TextBox txt = (TextBox)repDetalleTurno.Items[0].FindControl("txtObservaciones");
-            txt.Text = turno.observaciones;
-
         }
 
         protected void repTurnos_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -164,7 +145,7 @@ namespace TurnosAppWeb.Gestion
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
-            Int64 idTurno = Int64.Parse(((Button)sender).CommandArgument);
+          /*  Int64 idTurno = Int64.Parse(((Button)sender).CommandArgument);
             TextBox txt = (TextBox)repDetalleTurno.Items[0].FindControl("txtObservaciones");
             Int16 idEstado = (Int16)Session["idEstado"];
 
@@ -181,12 +162,12 @@ namespace TurnosAppWeb.Gestion
                 throw ex;
             }
 
-            Page_Load(sender, e);
+            Page_Load(sender, e);*/
         }
         /// VER ESTE: VER SI ACA USO PARA MODIFICAR TURNO
         protected void btnAsistio_Click(object sender, EventArgs e)
         {
-            Int64 idTurno = Int64.Parse(((Button)sender).CommandArgument);
+          /*  Int64 idTurno = Int64.Parse(((Button)sender).CommandArgument);
 
             try
             {
@@ -219,21 +200,20 @@ namespace TurnosAppWeb.Gestion
             {
 
                 throw ex;
-            }
+            }*/
         }
 
         protected void ddlProfesionales_SelectedIndexChanged(object sender, EventArgs e)
         {
             idProfesional = Int64.Parse(ddlProfesionales.SelectedItem.Value);
-            idEspecialidad = (Int32)Session["idEspecialidad"];
+            idEspecialidad = ((List<Turno>)Session["turno"])[0].especialidad.id;
 
             HorarioNegocio horNeg = new HorarioNegocio();
             List<Horario> diasAtencion = horNeg.listarHorariosConSP(idEspecialidad, idProfesional);
 
-            DropDownList ddlDias = (DropDownList)repDetalleTurno.Items[0].FindControl("ddlHora");
             ddlDias.DataSource = diasAtencion;
             ddlDias.DataValueField = "idHorario";
-            ddlDias.DataTextField = "dia";
+            ddlDias.DataTextField = "descripcion";
             ddlDias.DataBind();
             if (ddlDias.Items.Count > 1) ddlDias.Items.Insert(0, new ListItem("Seleccione una opción", "0"));
 
@@ -249,41 +229,18 @@ namespace TurnosAppWeb.Gestion
 
         protected void ddlDias_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (idEspecialidad > 0) idProfesional = Int64.Parse(ddlProfesionales.SelectedItem.Value);
-            if (idProfesional > 0) idHorario = Int64.Parse(ddlDias.SelectedItem.Value);
+            if (!isTurno)
+            {
+                idEspecialidad = ((List<Turno>)Session["turno"])[0].especialidad.id;
+                idProfesional = Int64.Parse(ddlProfesionales.SelectedItem.Value);
+                if (idProfesional > 0) idHorario = Int64.Parse(ddlDias.SelectedItem.Value);
+            }
 
             if (idHorario > 0)
             {
-                HorarioNegocio horNeg = new HorarioNegocio();
-
-                Horario horario = horNeg.listarHorarioSeleccionadoConSP(idHorario);
-                int hoy = (int)DateTime.Now.DayOfWeek;
-                int diaSeleccionado = diaSemana(horario.dia);
-                int aux = 0;
-
-                DateTime firstDay = DateTime.Today;
-
-                if (hoy > diaSeleccionado)
-                {
-                    aux = 7 - hoy + diaSeleccionado;
-                    firstDay = firstDay.AddDays(aux);
-                }
-                else if (hoy < diaSeleccionado)
-                {
-                    aux = diaSeleccionado - hoy;
-                    firstDay = firstDay.AddDays(aux);
-                }
-
-                List<DateTime> date = new List<DateTime>();
-                for (int i = 0; i < 8; i++)
-                {
-                    date.Add(firstDay);
-                    firstDay = firstDay.AddDays(7);
-                }
-
+                List<DateTime> date = listaDias(idHorario);
                 ddlFecha.DataSource = date;
                 ddlFecha.DataBind();
-                ddlFecha.SelectedValue = ((DateTime)Session["fecha"]).ToString();   //////////////VERRRR SI ME MOLESTA AL CAMBIAR TURNO
                 ddlFecha_SelectedIndexChanged(sender, e);
             }
             else
@@ -295,6 +252,37 @@ namespace TurnosAppWeb.Gestion
             }
         }
 
+        private List<DateTime> listaDias(Int64 idHorario)
+        {
+            HorarioNegocio horNeg = new HorarioNegocio();
+            Horario horario = horNeg.listarHorarioSeleccionadoConSP(idHorario);
+            int hoy = (int)DateTime.Now.DayOfWeek;
+            int diaSeleccionado = diaSemana(horario.dia);
+            int aux = 0;
+
+            DateTime firstDay = DateTime.Today;
+
+            if (hoy > diaSeleccionado)
+            {
+                aux = 7 - hoy + diaSeleccionado;
+                firstDay = firstDay.AddDays(aux);
+            }
+            else if (hoy < diaSeleccionado)
+            {
+                aux = diaSeleccionado - hoy;
+                firstDay = firstDay.AddDays(aux);
+            }
+
+            List<DateTime> list = new List<DateTime>();
+
+            for (int i = 0; i < 8; i++)
+            {
+                list.Add(firstDay);
+                firstDay = firstDay.AddDays(7);
+            }
+
+            return list;
+        }
 
         private int diaSemana(string dia)
         {
@@ -329,126 +317,129 @@ namespace TurnosAppWeb.Gestion
 
         protected void ddlFecha_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (idEspecialidad > 0) idProfesional = Int64.Parse(ddlProfesionales.SelectedItem.Value);
-            if (idProfesional > 0) idHorario = Int64.Parse(ddlDias.SelectedItem.Value);
+            lblSinTurno.Visible = false;
+            if (!isTurno)
+            {
+                idEspecialidad = ((List<Turno>)Session["turno"])[0].especialidad.id;
+                idProfesional = Int64.Parse(ddlProfesionales.SelectedItem.Value);
+                if (idProfesional > 0) idHorario = Int64.Parse(ddlDias.SelectedItem.Value);
+            }
 
             if (idHorario > 0)
             {
-                List<Turno> listaTurnosTomados = new List<Turno>();
-                TurnoNegocio negocio = new TurnoNegocio();
-
-                DateTime fechaSeleccionada = DateTime.Parse(ddlFecha.SelectedItem.Value);
-                listaTurnosTomados = negocio.listarTurnosFiltradosConSP(fechaSeleccionada, idProfesional, idEspecialidad, idHorario);
-
-                HorarioNegocio horNeg = new HorarioNegocio();
-                Horario horario = horNeg.listarHorarioSeleccionadoConSP(idHorario);
-
-                TimeSpan horaInicio = horario.horaInicio;
-                TimeSpan horaFin = horario.horaFin;
-                TimeSpan frecuencia = new TimeSpan(00, horario.frecuencia, 00);
-
-                TimeSpan ActualHr = TimeSpan.Parse(DateTime.Now.ToShortTimeString());
-
-
-                List<TimeSpan> horas = new List<TimeSpan>();
-
-                while (horaInicio < horaFin)
-                {
-                    horas.Add(horaInicio);
-                    horaInicio = horaInicio.Add(frecuencia);
-                }
-
-
-                int compara = 0;
-                if (listaTurnosTomados.Count > 0)
-                {
-                    foreach (Turno t1 in listaTurnosTomados)
-                    {
-                        horaInicio = horario.horaInicio;
-                        while (horaInicio < horaFin)
-                        {
-                            compara = TimeSpan.Compare(t1.hora, horaInicio);
-                            if (compara == 0)                                     // Si es = 0, son iguales (está tomado)
-                            {
-                                horas.Remove(horaInicio);
-                            }
-                            horaInicio = horaInicio.Add(frecuencia);
-                        }
-                    }
-                }
-                TimeSpan horaTurno = (TimeSpan)Session["hora"];
-                horas.Add(horaTurno);
-
+                List<TimeSpan> horas = listaHoras(idProfesional, idEspecialidad, idHorario);
                 ddlHora.DataSource = horas;
                 ddlHora.DataBind();
                 if (ddlHora.Items.Count == 0) lblSinTurno.Visible = true;
             }
         }
 
+        private List<TimeSpan> listaHoras(Int64 idProfesional, Int32 idEspecialidad, Int64 idHorario)
+        {
+            List<Turno> listaTurnosTomados = new List<Turno>();
+            TurnoNegocio negocio = new TurnoNegocio();
+
+            DateTime fechaSeleccionada = DateTime.Parse(ddlFecha.SelectedItem.Value);
+            listaTurnosTomados = negocio.listarTurnosFiltradosConSP(fechaSeleccionada, idProfesional, idEspecialidad, idHorario);
+
+            HorarioNegocio horNeg = new HorarioNegocio();
+            Horario horario = horNeg.listarHorarioSeleccionadoConSP(idHorario);
+
+            TimeSpan horaInicio = horario.horaInicio;
+            TimeSpan horaFin = horario.horaFin;
+            TimeSpan frecuencia = new TimeSpan(00, horario.frecuencia, 00);
+
+            TimeSpan ActualHr = TimeSpan.Parse(DateTime.Now.ToShortTimeString());
+
+            List<TimeSpan> listaHoras = new List<TimeSpan>();
+
+            while (horaInicio < horaFin)
+            {
+                listaHoras.Add(horaInicio);
+                horaInicio = horaInicio.Add(frecuencia);
+            }
+
+            TimeSpan horaTurno = ((List<Turno>)Session["turno"])[0].hora;
+            int compara = 0;
+            if (listaTurnosTomados.Count > 0)
+            {
+                foreach (Turno t1 in listaTurnosTomados)
+                {
+                    horaInicio = horario.horaInicio;
+                    while (horaInicio < horaFin)
+                    {
+                        compara = TimeSpan.Compare(t1.hora, horaInicio);
+                        if (compara == 0)                                     // Si es = 0, son iguales (está tomado)
+                        {
+                            if (!isTurno) listaHoras.Remove(horaInicio);
+                            else if (isTurno && horaTurno != horaInicio) listaHoras.Remove(horaInicio);
+                        }
+                        horaInicio = horaInicio.Add(frecuencia);
+                    }
+                }
+            }
+
+            return listaHoras;
+        }
+
         //txtFechaNac.Text = seleccionado.fechaNacimiento.ToString("yyyy-MM-dd");
 
         protected void btnReAgendar_Click(object sender, EventArgs e)
         {
-            Label lblTurnoRepetido = (Label)repDetalleTurno.Items[0].FindControl("lblTurnoRepetido");
-            Label lblTurnoTomado = (Label)repDetalleTurno.Items[0].FindControl("lblTurnoTomado");
-            Button btnAceptar = (Button)repDetalleTurno.Items[0].FindControl("btnAceptar");
-            Button btnCancelar = (Button)repDetalleTurno.Items[0].FindControl("btnCancelar");
-
-
             //Int64 idPaciente = Int64.Parse(ddlPaciente.SelectedItem.Value);
-            if (idEspecialidad > 0) idProfesional = Int64.Parse(ddlProfesionales.SelectedItem.Value);
-            if (idProfesional > 0) idHorario = Int64.Parse(ddlDias.SelectedItem.Value);
+            /* if (idEspecialidad > 0) idProfesional = Int64.Parse(ddlProfesionales.SelectedItem.Value);
+             if (idProfesional > 0) idHorario = Int64.Parse(ddlDias.SelectedItem.Value);
 
-            if (idHorario > 0 && idPaciente > 0)
-            {
-                try
-                {
-                    Turno turno = new Turno();
-                    TurnoNegocio negocio = new TurnoNegocio();
+             if (idHorario > 0 && idPaciente > 0)
+             {
+                 try
+                 {
+                     Turno turno = new Turno();
+                     TurnoNegocio negocio = new TurnoNegocio();
 
-                    turno.paciente = new Usuario();
-                    turno.paciente.id = idPaciente;
-                    turno.profesional = new Profesional();
-                    turno.profesional.id = idProfesional;
-                    turno.especialidad = new Especialidad();
-                    turno.especialidad.id = idEspecialidad;
-                    turno.idHorario = idHorario;
+                     turno.paciente = new Usuario();
+                     turno.paciente.id = idPaciente;
+                     turno.profesional = new Profesional();
+                     turno.profesional.id = idProfesional;
+                     turno.especialidad = new Especialidad();
+                     turno.especialidad.id = idEspecialidad;
+                     turno.idHorario = idHorario;
 
-                    turno.fecha = DateTime.Parse(ddlFecha.SelectedItem.Value);
-                    turno.hora = TimeSpan.Parse(ddlHora.SelectedItem.Value);
-                    //turno.observaciones = txtObservaciones.Text;
+                     turno.fecha = DateTime.Parse(ddlFecha.SelectedItem.Value);
+                     turno.hora = TimeSpan.Parse(ddlHora.SelectedItem.Value);
+                     //turno.observaciones = txtObservaciones.Text;
 
-                    bool repetido = validaTurnoRepetido(idPaciente, turno.fecha, idProfesional, idEspecialidad);
-                    bool tieneOtroTurno = validaOtroTurno(idPaciente, turno.fecha, turno.hora);
+                     bool repetido = validaTurnoRepetido(idPaciente, turno.fecha, idProfesional, idEspecialidad);
+                     bool tieneOtroTurno = validaOtroTurno(idPaciente, turno.fecha, turno.hora);
 
 
-                    if (!tieneOtroTurno)
-                    {
-                        if (!repetido)
-                        {
-                            //negocio.agregarTurnoConSP(turno);
-                            Response.Redirect("TurnoForm.aspx", false);
-                        }
-                        else
-                        {
-                            Session.Add("Turno", turno);
-                            lblTurnoRepetido.Visible = true;
-                            btnAceptar.Visible = true;
-                            btnCancelar.Visible = true;
-                        }
+                     if (!tieneOtroTurno)
+                     {
+                         if (!repetido)
+                         {
+                             //negocio.agregarTurnoConSP(turno);
+                             Response.Redirect("TurnoForm.aspx", false);
+                         }
+                         else
+                         {
+                             Session.Add("Turno", turno);
+                             lblTurnoRepetido.Visible = true;
+                             btnAceptar.Visible = true;
+                             btnCancelar.Visible = true;
+                         }
 
-                    }
-                    else
-                    {
-                        lblTurnoTomado.Visible = true;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Session.Add("error", ex);
-                    throw;
-                }
-            }
+                     }
+                     else
+                     {
+                         lblTurnoNoAgendado.Visible = true;
+                     }
+                 }
+                 catch (Exception ex)
+                 {
+                     Session.Add("error", ex);
+                     throw;
+                 }
+             }*/
         }
 
         private bool validaOtroTurno(Int64 idPaciente, DateTime fecha, TimeSpan hora)
@@ -471,7 +462,7 @@ namespace TurnosAppWeb.Gestion
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            try
+           /* try
             {
                 TurnoNegocio negocio = new TurnoNegocio();
                 negocio.agregarTurnoConSP((Turno)Session["Turno"]);
@@ -481,12 +472,32 @@ namespace TurnosAppWeb.Gestion
             {
 
                 throw ex;
-            }
+            }*/
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("PanelTurnosGeneral.aspx", false);
+          /*  Response.Redirect("PanelTurnosGeneral.aspx", false);*/
         }
     }
 }
+
+
+
+
+
+/***********  BOTON ASISTENCIA *****/
+/*Button btnSi = (Button)repDetalleTurno.Items[0].FindControl("btnAsistio");
+Button btnNo = (Button)repDetalleTurno.Items[0].FindControl("btnNoAsistio");
+
+
+if (turno.estado.id == 5)
+{
+    btnSi.Text = "Asistió ✔️";
+    btnSi.CssClass = "btn btn-success mx-4 mb-3";
+}
+else if (turno.estado.id == 3)
+{
+    btnNo.Text = "No Asistió ✔️";
+    btnNo.CssClass = "btn btn-success mb-3";
+}*/           

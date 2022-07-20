@@ -73,7 +73,7 @@ namespace TurnosAppWeb
                 Session.Add("error", ex);
             }
 
-            if (Request.QueryString["id"] != null/* && btnModificar.Visible == false*/)
+          /*  if (Request.QueryString["id"] != null)
             {
                 Int64 id = Int64.Parse(Request.QueryString["id"].ToString());
                 List<Turno> temporal = ((List<Turno>)Session["listaTurnos"]);
@@ -86,7 +86,7 @@ namespace TurnosAppWeb
                 ddlFecha.SelectedValue = seleccionado.fecha.ToString();
                 ddlHora.SelectedValue = seleccionado.hora.ToString();
 
-            }
+            }*/
 
             lblTurnoTomado.Visible = false;
 

@@ -15,7 +15,6 @@ namespace TurnosDominio
         public Int16 frecuencia { get; set; }
         public bool activo { get; set; }
         public string descripcion { get; set; }
-
         public override string ToString()
         {
             return dia + " " + horaInicio + " a " + horaFin;

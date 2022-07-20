@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TunosWeb.Master" AutoEventWireup="true" CodeBehind="MenuProfesional.aspx.cs" Inherits="TurnosAppWeb.Tablas.MenuProfesional" EnableEventValidation="false"%>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TunosWeb.Master" AutoEventWireup="true" CodeBehind="MenuProfesional.aspx.cs" Inherits="TurnosAppWeb.Tablas.MenuProfesional" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
