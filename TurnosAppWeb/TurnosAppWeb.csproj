@@ -71,6 +71,7 @@
     <Content Include="Gestion\MenuGestion.aspx" />
     <Content Include="Gestion\MenuPaciente.aspx" />
     <Content Include="Gestion\MenuProfesional.aspx" />
+    <Content Include="Gestion\PanelTurnosGeneral.aspx" />
     <Content Include="Gestion\PanelTurnosPaciente.aspx" />
     <Content Include="Gestion\PanelTurnosProfesional.aspx" />
     <Content Include="Tablas\ProfesionalListado.aspx" />
@@ -123,6 +124,13 @@
     </Compile>
     <Compile Include="Gestion\MenuProfesional.aspx.designer.cs">
       <DependentUpon>MenuProfesional.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gestion\PanelTurnosGeneral.aspx.cs">
+      <DependentUpon>PanelTurnosGeneral.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gestion\PanelTurnosGeneral.aspx.designer.cs">
+      <DependentUpon>PanelTurnosGeneral.aspx</DependentUpon>
     </Compile>
     <Compile Include="Gestion\PanelTurnosPaciente.aspx.cs">
       <DependentUpon>PanelTurnosPaciente.aspx</DependentUpon>

@@ -34,7 +34,7 @@
         <h5 class="card-title">MODIFICAR TURNO</h5>
         <p class="card-text">Modificar turno a paciente</p>
        <div class="d-grid gap-2 col-6 mx-auto">
-              <a href="../Tablas/TurnoListado.aspx" class="btn btn-primary">Ingresar</a>
+              <a href="./PanelTurnosGeneral.aspx" class="btn btn-primary">Ingresar</a>
         </div>
       </div>
     </div>

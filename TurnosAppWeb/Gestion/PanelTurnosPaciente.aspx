@@ -16,8 +16,6 @@
             <div class="card-body">
                 <asp:GridView ID="dgvlistaTurnosPaciente" OnSelectedIndexChanged="dgvlistaTurnosPaciente_SelectedIndexChanged" DataKeyNames="id" runat="server" CssClass="table thead-light table-borderer table-sm table-hover mb-5" AutoGenerateColumns="false">
                     <Columns>
-                        <%--<asp:BoundField HeaderText="IdTurno" DataField="id" />
-                                    <asp:BoundField HeaderText="IdPaciente" DataField="paciente.id" />--%>
                         <asp:BoundField HeaderText="Fecha" DataField="fecha" DataFormatString="{0:dd/MM/yyyy}" />
                         <asp:BoundField HeaderText="Hora" DataField="hora" DataFormatString="{0:hh\:mm}" />
                         <asp:BoundField HeaderText="Paciente" DataField="paciente.nombres" />
