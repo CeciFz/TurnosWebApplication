@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TurnosDominio;
+using TurnosNegocio;
 
 
 namespace TurnosNegocio
@@ -113,7 +114,45 @@ namespace TurnosNegocio
 
         }
 
-    
+        
+         public int agregaringresoConSP(Int64 dni, string usuario,string contraseña)
+        {    AccesoDatos datos = new AccesoDatos();
+            int ing;
+            try
+            {
+                datos.setearSP("sp_agregaringreso");
+                datos.SetearParametro("@dni", dni);
+                datos.SetearParametro("@usuario",usuario );
+                datos.SetearParametro("@pass",contraseña );
+                 datos.ejecutarAccion();
+
+                
+                
+
+                  ing =(int)datos.Lector["sp_agregaringreso"];
+
+                if (ing == 1) { return 1; }
+                return 0;
+                
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+            
+
+        }
+
+
 
 
     }
