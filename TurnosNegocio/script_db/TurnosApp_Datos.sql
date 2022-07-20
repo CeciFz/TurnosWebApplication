@@ -137,7 +137,7 @@ SET IDENTITY_INSERT [dbo].[Usuarios] OFF
 
 /* ESPECIALIDADES */
 SET IDENTITY_INSERT [dbo].[Especialidades] ON 
-INSERT [dbo].[Especialidades] (Id, Descripcion) VALUES (1, 'Médica Clínico')
+INSERT [dbo].[Especialidades] (Id, Descripcion) VALUES (1, 'Médica Clínica')
 INSERT [dbo].[Especialidades] (Id, Descripcion) VALUES (2, 'Cardiología')
 INSERT [dbo].[Especialidades] (Id, Descripcion) VALUES (3, 'Gastroenterología')
 INSERT [dbo].[Especialidades] (Id, Descripcion) VALUES (4, 'Pediatría')
@@ -305,12 +305,13 @@ INSERT [dbo].[Perfil_X_Usuario] ([IdUsuario], [IdPerfilUsuario]) VALUES (92,3)
 SET IDENTITY_INSERT [dbo].[Ingresos] ON 
 INSERT [dbo].[Ingresos] ( [Id], [Usuario], [Pass],[IdUsuario]) VALUES (1,'admin','admin',50)
 INSERT [dbo].[Ingresos] ([Id], [Usuario], [Pass],[IdUsuario]) VALUES (2,'gestion','gestion',60)
-INSERT [dbo].[Ingresos] ([Id], [Usuario], [Pass],[IdUsuario]) VALUES (3,'pac_Giorgi','pac_Giorgi',6)
+INSERT [dbo].[Ingresos] ([Id], [Usuario], [Pass],[IdUsuario]) VALUES (3,'pac_Rizzo','pac_Rizzo',6)
 INSERT [dbo].[Ingresos] ([Id], [Usuario], [Pass],[IdUsuario]) VALUES (4,'pac_Palma','pac_Palma',7)
 INSERT [dbo].[Ingresos] ([Id], [Usuario], [Pass],[IdUsuario]) VALUES (5,'pac_Sandoval','pac_Sandoval',46)
-INSERT [dbo].[Ingresos] ([Id], [Usuario], [Pass],[IdUsuario]) VALUES (6,'prof_Proietti','prof_Proietti',13) 
-INSERT [dbo].[Ingresos] ([Id], [Usuario], [Pass],[IdUsuario]) VALUES (7,'prof_Henriquez','prof_Henriquez',11)
-INSERT [dbo].[Ingresos] ([Id], [Usuario], [Pass],[IdUsuario]) VALUES (8,'prof_SanMartin','prof_SanMartin',65)
+INSERT [dbo].[Ingresos] ([Id], [Usuario], [Pass],[IdUsuario]) VALUES (6,'pac_Giorgi','pac_Giorgi',72)
+INSERT [dbo].[Ingresos] ([Id], [Usuario], [Pass],[IdUsuario]) VALUES (7,'prof_Proietti','prof_Proietti',13) 
+INSERT [dbo].[Ingresos] ([Id], [Usuario], [Pass],[IdUsuario]) VALUES (8,'prof_Henriquez','prof_Henriquez',11)
+INSERT [dbo].[Ingresos] ([Id], [Usuario], [Pass],[IdUsuario]) VALUES (9,'prof_SanMartin','prof_SanMartin',65)
 SET IDENTITY_INSERT [dbo].[Ingresos] OFF
 --Select * from Ingresos
 --delete from Ingresos
@@ -352,6 +353,7 @@ INSERT [dbo].[Profesionales_X_Especialidad] ([IdUsuario], [IdEspecialidad]) VALU
 INSERT [dbo].[Profesionales_X_Especialidad] ([IdUsuario], [IdEspecialidad]) VALUES (65,1)
 INSERT [dbo].[Profesionales_X_Especialidad] ([IdUsuario], [IdEspecialidad]) VALUES (97,6)
 INSERT [dbo].[Profesionales_X_Especialidad] ([IdUsuario], [IdEspecialidad]) VALUES (94,2)
+INSERT [dbo].[Profesionales_X_Especialidad] ([IdUsuario], [IdEspecialidad]) VALUES (11,9)
 
 
 
@@ -367,6 +369,7 @@ INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorar
 INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (25,10,8)
 INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (65,1,8)
 INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (55,3,8)
+INSERT [dbo].[Horario_x_Profesional] ([IdProfesional], [IdEspecialidad],[IdHorario]) VALUES (11,9,5)
 
 
 
@@ -380,19 +383,20 @@ SELECT * FROM Horarios
 SELECT * FROM TURNOS
 SELECT * FROM Profesionales_X_Especialidad
 */
+--delete from Turnos
 
 /*  TURNOS */
 INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (12,'2022-07-14','15:00',13,12,6,'PRUEBA OBS DESDE GESTION TURNOS 14/07 - 1500kk',5)
 INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (2,'2022-08-09','17:30',55,3,8,'',1)
 INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (7,'2022-07-19','16:30',65,1,8,'',1)
-INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (34,'2022-07-18','09:30',11,1,1,'sss',1)
+INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (6,'2022-07-18','09:30',11,1,1,'sss',1)
 INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (7,'2022-07-21','08:00',13,12,5,'',1)
 INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (46,'2022-07-21','09:00',13,12,5,'',1)
 INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (1,'2022-07-21','10:00',13,12,5,'',1)
 INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (1,'2022-07-21','11:00',13,12,5,'',1)
 INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (1,'2022-08-02','14:00',65,1,8,'',1)
-INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (45,'2022-08-02','14:30',65,1,8,'',1)
-INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (83,'2022-08-02','15:00',65,1,8,'',1)
+INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (6,'2022-08-02','14:30',65,1,8,'',1)
+INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (6,'2022-08-02','15:00',65,1,8,'',1)
 INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (1,'2022-08-02','16:30',65,1,8,'',1)
 INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (1,'2022-08-02','17:30',65,1,8,'',1)
 INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (57,'2022-07-21','14:00',13,12,6,'',1)
@@ -400,8 +404,8 @@ INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspeci
 INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (1,'2022-07-21','16:00',13,12,6,'',1)
 INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (1,'2022-07-21','17:00',13,12,6,'Paciente primera vez',1)
 INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (3,'2022-07-18','09:00',11,1,1,'scasd',1)
-INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (82,'2022-08-04','09:00',13,12,5,'PROBANDO OBSERVACIONESs',1)
-INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (71,'2022-08-04','11:00',13,12,5,'OBSERVACIONES 2',1)
+INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (6,'2022-08-04','09:00',13,12,5,'PROBANDO OBSERVACIONESs',1)
+INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (6,'2022-08-04','11:00',13,12,5,'OBSERVACIONES 2',1)
 INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (46,'2022-07-22','09:00',2,13,4,'ree',1)
 INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (46,'2022-07-22','10:00',2,13,4,'',1)
 INSERT [dbo].[Turnos] ([IdPaciente], [Fecha], [Hora], [IdProfesional], [IdEspecialidad], [IdHorario], [Observaciones], [IdEstado]) VALUES (10,'2022-07-25','08:00',11,1,1,'',1)

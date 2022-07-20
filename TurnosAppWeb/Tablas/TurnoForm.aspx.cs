@@ -73,7 +73,7 @@ namespace TurnosAppWeb
                 Session.Add("error", ex);
             }
 
-            if (Request.QueryString["id"] != null/* && btnModificar.Visible == false*/)
+          /*  if (Request.QueryString["id"] != null)
             {
                 Int64 id = Int64.Parse(Request.QueryString["id"].ToString());
                 List<Turno> temporal = ((List<Turno>)Session["listaTurnos"]);
@@ -86,7 +86,7 @@ namespace TurnosAppWeb
                 ddlFecha.SelectedValue = seleccionado.fecha.ToString();
                 ddlHora.SelectedValue = seleccionado.hora.ToString();
 
-            }
+            }*/
 
             lblTurnoTomado.Visible = false;
 
@@ -116,7 +116,7 @@ namespace TurnosAppWeb
 
             ddlDias.DataSource = diasAtencion;
             ddlDias.DataValueField = "idHorario";
-            ddlDias.DataTextField = "dia";
+            ddlDias.DataTextField = "descripcion";
             ddlDias.DataBind();
             if (ddlDias.Items.Count > 1) ddlDias.Items.Insert(0, new ListItem("Seleccione una opción", "0"));
 
@@ -329,9 +329,9 @@ namespace TurnosAppWeb
         private bool validaOtroTurno(Int64 idPaciente, DateTime fecha, TimeSpan hora)
         {
             TurnoNegocio negocio = new TurnoNegocio();
-            List<Turno> listaTurnosPaciente = negocio.listaTurnosPacienteConSP(idPaciente, fecha, hora);
+            List<Turno> controlTurnosPaciente = negocio.controlTurnosPacienteConSP(idPaciente, fecha, hora);
 
-            if (listaTurnosPaciente.Count == 0) return false;
+            if (controlTurnosPaciente.Count == 0) return false;
             else return true;
         } 
 
