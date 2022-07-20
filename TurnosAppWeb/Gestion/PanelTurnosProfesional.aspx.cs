@@ -41,8 +41,8 @@ namespace TurnosAppWeb
 
             }
 
-            lblProfesional.Text = "Profesional: " + listaTurnosProfesional[0].profesional.ToString();
-            lblEspecialidad.Text = "Especialidad: " + listaTurnosProfesional[0].especialidad.ToString();
+            lblProfesional.Text = "Profesional: " + ((Profesional)Session["InfoProfesional"]).nombres;
+            lblEspecialidad.Text = "Especialidad: " + ((Profesional)Session["InfoProfesional"]).especialidades.Find(x => x.id == idEsp);
 
             repTurnos.DataSource = listaFechasTurnos;
             repTurnos.DataBind();

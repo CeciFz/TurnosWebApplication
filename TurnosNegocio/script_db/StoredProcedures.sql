@@ -245,7 +245,7 @@ END
 GO
 
 
-Create procedure SP_ListarTurnos (
+Create procedure SP_ListarTurnos (  
 	@IdProfesional bigint,
 	@IdEspecialidad int
 	--@IdHorario bigint
@@ -265,11 +265,40 @@ Create procedure SP_ListarTurnos (
 			inner join Usuarios u on u.id = t.IdPaciente
 			inner join VW_ProfesionalesConEspecialidad pe on pe.IdUsuario = t.IdProfesional
 			inner join Estados_Turnos  et on et.Id = t.IdEstado
-		where pe.IdUsuario = @IdProfesional AND pe.IdEspecialidad = @IdEspecialidad
+		where t.IdProfesional = @IdProfesional AND t.IdEspecialidad = @IdEspecialidad
 		order by t.Fecha, t.Hora, pe.Profesional,pe.Especialidad, Paciente, t.IdTurno
 	END
 END
 GO
+
+
+Create procedure SP_ListarTurnosPaciente (  
+	@IdPaciente bigint,
+	@ConHistorial bit
+)AS BEGIN
+	IF (@ConHistorial = 1) BEGIN
+		select t.IdTurno,t.IdPaciente, u.Apellidos + ', ' + u.Nombres as Paciente, t.Fecha, t.Hora, t.IdProfesional,
+		pe.Profesional, t.IdEspecialidad, pe.Especialidad, t.idHorario, t.IdEstado, et.Descripcion as Estado
+		from Turnos t
+			inner join Usuarios u on u.id = t.IdPaciente
+			inner join VW_ProfesionalesConEspecialidad pe on pe.IdUsuario = t.IdProfesional
+			inner join Estados_Turnos  et on et.Id = t.IdEstado
+		where t.IdPaciente = @IdPaciente AND T.Fecha < GETDATE()
+		order by t.Fecha, t.Hora, pe.Profesional,pe.Especialidad
+	END ELSE BEGIN
+			select t.IdTurno,t.IdPaciente, u.Apellidos + ', ' + u.Nombres as Paciente, t.Fecha, t.Hora, t.IdProfesional,
+		pe.Profesional, t.IdEspecialidad, pe.Especialidad, t.idHorario, t.IdEstado, et.Descripcion as Estado
+		from Turnos t
+			inner join Usuarios u on u.id = t.IdPaciente
+			inner join VW_ProfesionalesConEspecialidad pe on pe.IdUsuario = t.IdProfesional
+			inner join Estados_Turnos  et on et.Id = t.IdEstado
+		where t.IdPaciente = @IdPaciente AND t.IdEstado != 4  AND T.Fecha >= GETDATE()
+		order by t.Fecha, t.Hora, pe.Profesional,pe.Especialidad
+	END
+END
+GO
+
+exec SP_ListarTurnosPaciente 6,1
 
 --exec SP_ListarTurnos -1,-1
 --select * from Turnos
@@ -301,8 +330,7 @@ Create procedure SP_FiltroTurnos(
 END
 GO
 
-
-Create procedure SP_ListarTurnosPacientes(
+Create procedure SP_ControlTurnosPacientes(
 	@IdPaciente bigint,
 	@Fecha date,
 	@Hora time(7)
@@ -336,4 +364,3 @@ Create procedure SP_BuscarProfesional (
 		where IdPerfil = 4 AND U.Id = @IdProfesional
 END
 GO
-

@@ -329,9 +329,9 @@ namespace TurnosAppWeb
         private bool validaOtroTurno(Int64 idPaciente, DateTime fecha, TimeSpan hora)
         {
             TurnoNegocio negocio = new TurnoNegocio();
-            List<Turno> listaTurnosPaciente = negocio.listaTurnosPacienteConSP(idPaciente, fecha, hora);
+            List<Turno> controlTurnosPaciente = negocio.controlTurnosPacienteConSP(idPaciente, fecha, hora);
 
-            if (listaTurnosPaciente.Count == 0) return false;
+            if (controlTurnosPaciente.Count == 0) return false;
             else return true;
         } 
 
