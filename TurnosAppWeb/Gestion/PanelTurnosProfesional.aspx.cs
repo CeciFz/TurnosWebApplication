@@ -142,7 +142,7 @@ namespace TurnosAppWeb
                 TurnoNegocio negocio = new TurnoNegocio();
                 String observaciones = txt.Text;
 
-                negocio.modificarTurnoConSP(idTurno, idEstado, observaciones);
+                negocio.actualizarTurnoConSP(idTurno, idEstado, observaciones);
                 //   Response.Redirect("PanelProfesional.aspx", false);
             }
             catch (Exception ex)

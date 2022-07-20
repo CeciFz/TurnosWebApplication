@@ -44,6 +44,7 @@ namespace TurnosAppWeb.Gestion
             repTurnos.DataBind();
 
             isTurno = false;
+            btnReAgendar.Visible = false;
         }
 
         protected void dgvlistaTurnosGeneral_SelectedIndexChanged(object sender, EventArgs e)
@@ -57,8 +58,8 @@ namespace TurnosAppWeb.Gestion
             string idTurno = grid.SelectedDataKey.Value.ToString();
             Session["idTurno"] = idTurno;
 
-            grid.SelectedRow.BackColor = Color.Black;
             grid.SelectedRow.ForeColor = Color.White;
+            grid.SelectedRow.BackColor = Color.Black;
 
             List<Turno> listaTurnosFiltrados = listaTurnos.FindAll(x => x.id.ToString() == idTurno);
             Session["turno"] = listaTurnosFiltrados;
@@ -73,9 +74,7 @@ namespace TurnosAppWeb.Gestion
             listaPacientes = usNeg.listarPacientes(idPaciente);
             repPaciente.DataSource = listaPacientes;
             repPaciente.DataBind();
-
-
-
+            btnReAgendar.Visible = false;
         }
 
         private void cargaTurno()
@@ -143,28 +142,6 @@ namespace TurnosAppWeb.Gestion
             }
         }
 
-        protected void btnModificar_Click(object sender, EventArgs e)
-        {
-          /*  Int64 idTurno = Int64.Parse(((Button)sender).CommandArgument);
-            TextBox txt = (TextBox)repDetalleTurno.Items[0].FindControl("txtObservaciones");
-            Int16 idEstado = (Int16)Session["idEstado"];
-
-            try
-            {
-                TurnoNegocio negocio = new TurnoNegocio();
-                String observaciones = txt.Text;
-
-                negocio.modificarTurnoConSP(idTurno, idEstado, observaciones);
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-
-            Page_Load(sender, e);*/
-        }
-        /// VER ESTE: VER SI ACA USO PARA MODIFICAR TURNO
         protected void btnAsistio_Click(object sender, EventArgs e)
         {
           /*  Int64 idTurno = Int64.Parse(((Button)sender).CommandArgument);
@@ -205,6 +182,7 @@ namespace TurnosAppWeb.Gestion
 
         protected void ddlProfesionales_SelectedIndexChanged(object sender, EventArgs e)
         {
+            btnReAgendar.Visible = true;
             idProfesional = Int64.Parse(ddlProfesionales.SelectedItem.Value);
             idEspecialidad = ((List<Turno>)Session["turno"])[0].especialidad.id;
 
@@ -229,6 +207,7 @@ namespace TurnosAppWeb.Gestion
 
         protected void ddlDias_SelectedIndexChanged(object sender, EventArgs e)
         {
+            btnReAgendar.Visible = true;
             if (!isTurno)
             {
                 idEspecialidad = ((List<Turno>)Session["turno"])[0].especialidad.id;
@@ -254,6 +233,7 @@ namespace TurnosAppWeb.Gestion
 
         private List<DateTime> listaDias(Int64 idHorario)
         {
+            btnReAgendar.Visible = true;
             HorarioNegocio horNeg = new HorarioNegocio();
             Horario horario = horNeg.listarHorarioSeleccionadoConSP(idHorario);
             int hoy = (int)DateTime.Now.DayOfWeek;
@@ -317,6 +297,7 @@ namespace TurnosAppWeb.Gestion
 
         protected void ddlFecha_SelectedIndexChanged(object sender, EventArgs e)
         {
+            btnReAgendar.Visible = true;
             lblSinTurno.Visible = false;
             if (!isTurno)
             {
@@ -382,47 +363,41 @@ namespace TurnosAppWeb.Gestion
             return listaHoras;
         }
 
-        //txtFechaNac.Text = seleccionado.fechaNacimiento.ToString("yyyy-MM-dd");
-
         protected void btnReAgendar_Click(object sender, EventArgs e)
         {
-            //Int64 idPaciente = Int64.Parse(ddlPaciente.SelectedItem.Value);
-            /* if (idEspecialidad > 0) idProfesional = Int64.Parse(ddlProfesionales.SelectedItem.Value);
+            idPaciente = ((List<Turno>)Session["turno"])[0].paciente.id;
+            idEspecialidad = ((List<Turno>)Session["turno"])[0].especialidad.id;
+            idProfesional = Int64.Parse(ddlProfesionales.SelectedItem.Value);
              if (idProfesional > 0) idHorario = Int64.Parse(ddlDias.SelectedItem.Value);
 
-             if (idHorario > 0 && idPaciente > 0)
+             if (idHorario > 0)
              {
                  try
                  {
-                     Turno turno = new Turno();
-                     TurnoNegocio negocio = new TurnoNegocio();
+                    Turno turno = new Turno();
+                    TurnoNegocio negocio = new TurnoNegocio();
+                     
+                    turno.id = ((List<Turno>)Session["turno"])[0].id;
+                    turno.profesional = new Profesional();
+                    turno.profesional.id = idProfesional;
+                    turno.fecha = DateTime.Parse(ddlFecha.SelectedItem.Value);
+                    turno.hora = TimeSpan.Parse(ddlHora.SelectedItem.Value);
+                    turno.observaciones = txtObservaciones.Text;
+                    turno.idHorario = idHorario;
 
-                     turno.paciente = new Usuario();
-                     turno.paciente.id = idPaciente;
-                     turno.profesional = new Profesional();
-                     turno.profesional.id = idProfesional;
-                     turno.especialidad = new Especialidad();
-                     turno.especialidad.id = idEspecialidad;
-                     turno.idHorario = idHorario;
-
-                     turno.fecha = DateTime.Parse(ddlFecha.SelectedItem.Value);
-                     turno.hora = TimeSpan.Parse(ddlHora.SelectedItem.Value);
-                     //turno.observaciones = txtObservaciones.Text;
-
-                     bool repetido = validaTurnoRepetido(idPaciente, turno.fecha, idProfesional, idEspecialidad);
-                     bool tieneOtroTurno = validaOtroTurno(idPaciente, turno.fecha, turno.hora);
-
+                    bool repetido = validaTurnoRepetido(idPaciente, turno.fecha, idProfesional, idEspecialidad);
+                    bool tieneOtroTurno = validaOtroTurno(idPaciente, turno.fecha, turno.hora);
 
                      if (!tieneOtroTurno)
                      {
                          if (!repetido)
                          {
-                             //negocio.agregarTurnoConSP(turno);
-                             Response.Redirect("TurnoForm.aspx", false);
+                             negocio.modificarTurnoConSP(turno);
+                             Response.Redirect("PanelTurnosGeneral.aspx", false);
                          }
                          else
                          {
-                             Session.Add("Turno", turno);
+                             Session.Add("TurnoNoAgendado", turno);
                              lblTurnoRepetido.Visible = true;
                              btnAceptar.Visible = true;
                              btnCancelar.Visible = true;
@@ -439,7 +414,7 @@ namespace TurnosAppWeb.Gestion
                      Session.Add("error", ex);
                      throw;
                  }
-             }*/
+             }
         }
 
         private bool validaOtroTurno(Int64 idPaciente, DateTime fecha, TimeSpan hora)
@@ -462,22 +437,41 @@ namespace TurnosAppWeb.Gestion
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-           /* try
+            try
             {
                 TurnoNegocio negocio = new TurnoNegocio();
-                negocio.agregarTurnoConSP((Turno)Session["Turno"]);
+                negocio.modificarTurnoConSP((Turno)Session["TurnoNoAgendado"]);
                 Response.Redirect("PanelTurnosGeneral.aspx", false);
             }
             catch (Exception ex)
             {
 
                 throw ex;
-            }*/
+            }
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-          /*  Response.Redirect("PanelTurnosGeneral.aspx", false);*/
+            Response.Redirect("PanelTurnosGeneral.aspx", false);
+        }
+
+        protected void btnSiCancela_Click(object sender, EventArgs e)
+        {
+            //MODAL CANCELAR TURNO
+
+            Int64 IdTurno = ((List<Turno>)Session["turno"])[0].id;
+            String observ = txtObservaciones.Text;
+            try
+            {
+                TurnoNegocio negocio = new TurnoNegocio();
+                negocio.cancelarTurnoConSP(IdTurno, observ);
+                Response.Redirect("PanelTurnosGeneral.aspx", false);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

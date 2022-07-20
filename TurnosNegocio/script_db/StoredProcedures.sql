@@ -55,7 +55,6 @@ Create procedure SP_ListarProfesionales (
 	END
 END
 GO
-
 Create procedure SP_ListarHorariosProfesionales (
 	@IdEspecialidad int,
 	@IdProfesional bigint
@@ -236,13 +235,43 @@ create procedure SP_AltaTurno(
 END
 GO
 
-Create procedure SP_ModificarTurno(
+Create procedure SP_ModificarTurno(  --Especialidad y paciente no cambian!
+	@IdTurno bigint,
+	@Fecha date,
+	@Hora time,
+	@IdProfesional bigint,
+	@IdHorario bigint,
+	@Observaciones varchar(max)
+) AS BEGIN
+	Update Turnos SET 
+		Fecha = @Fecha,
+		Hora = @Hora,
+		IdProfesional = @IdProfesional,
+		IdHorario = @IdHorario,
+		IdEstado = 2,
+		Observaciones = @Observaciones
+		where IdTurno = @IdTurno
+END
+GO
+
+Create procedure SP_ActualizaTurno(
 	@IdTurno bigint,
 	@IdEstado smallint,
 	@Observaciones varchar(max)
 ) AS BEGIN
 	Update Turnos SET 
 		IdEstado =  @IdEstado,
+		Observaciones = @Observaciones
+		where IdTurno = @IdTurno
+END
+GO
+
+Create procedure SP_CancelaTurno(
+	@IdTurno bigint,
+	@Observaciones varchar(max)
+) AS BEGIN
+	Update Turnos SET 
+		IdEstado =  4,
 		Observaciones = @Observaciones
 		where IdTurno = @IdTurno
 END
@@ -302,7 +331,7 @@ Create procedure SP_ListarTurnosPaciente (
 END
 GO
 
-exec SP_ListarTurnosPaciente 6,1
+
 
 --exec SP_ListarTurnos -1,-1
 --select * from Turnos

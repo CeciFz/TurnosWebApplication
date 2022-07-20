@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="col-md-12 container">
-            <h1 class="text-center">Gestión de Turnos </h1>
+        <h1 class="text-center">Gestión de Turnos </h1>
         <hr />
     </div>
     <div class="col-md-12 d-flex gap-4 justify-content-center">
@@ -39,7 +39,8 @@
                     </asp:Repeater>
                 </div>
             </div>
-        </div>  <%--LISTA TURNOS--%>
+        </div>
+        <%--LISTA TURNOS--%>
         <%--SEPARACION--%>
         <%--SEPARACION--%>
         <div runat="server" id="DivTurnos" visible="false" class="col-md-4 d-flex flex-column gap-4">
@@ -75,61 +76,83 @@
                                     </asp:DropDownList>
                                 </div>
                                 <div class="col d-flex align-items-baseline gap-1">
-<%--                                    <asp:Label ID="lblDias" runat="server" CssClass="form-label p-1"></asp:Label>--%>
+                                    <%--                                    <asp:Label ID="lblDias" runat="server" CssClass="form-label p-1"></asp:Label>--%>
                                     <asp:DropDownList ID="ddlDias" CssClass="form-check-inline p-1" runat="server" AutoPostBack="true"
                                         OnSelectedIndexChanged="ddlDias_SelectedIndexChanged">
                                     </asp:DropDownList>
                                 </div>
                                 <div class="col d-flex align-items-baseline gap-1">
-<%--                                    <asp:Label ID="lblTurnosDisponibles" runat="server" CssClass="form-label p-1"></asp:Label>--%>
+                                    <%--                                    <asp:Label ID="lblTurnosDisponibles" runat="server" CssClass="form-label p-1"></asp:Label>--%>
                                     <div class=" d-inline-flex">
                                         <asp:DropDownList ID="ddlFecha" DataTextFormatString="{0: dd/MM/yyyy}" CssClass="form-check-inline p-1" runat="server" AutoPostBack="true"
                                             OnSelectedIndexChanged="ddlFecha_SelectedIndexChanged">
                                         </asp:DropDownList>
-                                        <asp:DropDownList ID="ddlHora" CssClass="form-check-inline p-1 mb-2" runat="server" AutoPostBack="true">
+                                        <asp:DropDownList ID="ddlHora" DataTextFormatString="{0:hh\:mm}" CssClass="form-check-inline p-1" runat="server" AutoPostBack="true">
                                         </asp:DropDownList>
                                     </div>
                                 </div>
                                 <div class="col text-center">
                                     <asp:Label ID="lblSinTurno" runat="server" CssClass="form-check-inline p-2 text-bg-secondary rounded-4" Text=" ⚠️ Agenda completa" Visible="false"></asp:Label>
                                 </div>
-<%--                                <div class="col d-flex align-items-baseline gap-1">--%>
-                                    <label for="txtObservaciones" class="p-1  align-self-start">Observaciones:</label>
-                                    <asp:TextBox runat="server" TextMode="MultiLine" ID="txtObservaciones" CssClass="form-control" />
-<%--                                </div>--%>
-                            <asp:Button Text="Modificar" runat="server" CssClass="btn btn-primary mt-2" ID="btnReAgendar" OnClick="btnReAgendar_Click" />
+                                <%--                                <div class="col d-flex align-items-baseline gap-1">--%>
+                                <label for="txtObservaciones" class="p-1  align-self-start">Observaciones:</label>
+                                <asp:TextBox runat="server" TextMode="MultiLine" ID="txtObservaciones" CssClass="form-control" />
+                                <%--                                </div>--%>
+                                <asp:Button Text="Modificar" runat="server" CssClass="btn btn-primary mt-2" ID="btnReAgendar" OnClick="btnReAgendar_Click" />
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                    Cancelar Turno
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="staticBackdropLabel">⚠️ Cancelación de turno </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Al confirmar se va a cancelar el turno seleccionado. ¿Desea continuar?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                <asp:Button type="button" Text="Confirmar" runat="server" CssClass="btn btn-danger" ID="Button2" OnClick="btnSiCancela_Click" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <%--<asp:Button Text="Guardar cambios" runat="server" CssClass="btn btn-primary mt-3 align-self-center" ID="btnModificar" CommandArgument='<%#Eval("id")%>' CommandName="TurnoId" OnClick="btnModificar_Click" />--%>
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>
-            </div> <%--DETALLE TURNO--%>
-        <%--SEPARACION--%>
-        <%--SEPARACION--%>
-        <asp:Repeater runat="server" ID="repPaciente">
-            <ItemTemplate>
-                <div class="card border-secondary">
-                    <div class="card-header">
-                        <h5 class="card-title"><strong>Paciente: <%#Eval("apellidos") %>, <%#Eval("nombres") %> </strong></h5>
-                        <label class="card-text me-2"><%#Eval("tipoDocumento.descripcion")%>: </label>
-                        <label class="card-text"><%#Eval("nroDocumento")%> </label>
-                    </div>
-                    <div class="card-body p-4">
+            </div>   <%--DETALLE TURNO--%>
+            <%--SEPARACION--%>
+            <%--SEPARACION--%>
+            <asp:Repeater runat="server" ID="repPaciente">
+                <ItemTemplate>
+                    <div class="card border-secondary">
+                        <div class="card-header">
+                            <h5 class="card-title"><strong>Paciente: <%#Eval("apellidos") %>, <%#Eval("nombres") %> </strong></h5>
+                            <label class="card-text me-2"><%#Eval("tipoDocumento.descripcion")%>: </label>
+                            <label class="card-text"><%#Eval("nroDocumento")%> </label>
+                        </div>
+                        <div class="card-body p-4">
 
-                        <p class="d-flex justify-content-between">
-                            <label class="card-text">Fecha de nac.: <%#Eval("fechaNacimiento", "{0: dd/MM/yyyy}")%> </label>
-                            <label class="card-text">Edad: <%#Eval("edad")%> años</label>
-                        </p>
-                        <p class="d-flex justify-content-between">
-                            <label class="card-text">Género: <%#Eval("sexo")%> </label>
-                            <label class="card-text">Obra Social: <%#Eval("obrasocial.descripcion")%> </label>
-                        </p>
-                        <p class="card-text">Teléfono: <%#Eval("telefono")%> </p>
-                        <p class="card-text">Mail: <%#Eval("mail")%> </p>
+                            <p class="d-flex justify-content-between">
+                                <label class="card-text">Fecha de nac.: <%#Eval("fechaNacimiento", "{0: dd/MM/yyyy}")%> </label>
+                                <label class="card-text">Edad: <%#Eval("edad")%> años</label>
+                            </p>
+                            <p class="d-flex justify-content-between">
+                                <label class="card-text">Género: <%#Eval("sexo")%> </label>
+                                <label class="card-text">Obra Social: <%#Eval("obrasocial.descripcion")%> </label>
+                            </p>
+                            <p class="card-text">Teléfono: <%#Eval("telefono")%> </p>
+                            <p class="card-text">Mail: <%#Eval("mail")%> </p>
+                        </div>
                     </div>
-                </div>
-            </ItemTemplate>
-        </asp:Repeater>  <%--DETALLE PACIENTE--%>
- </div> <%--DIV DE TURNO + PACIENTE--%>
-    </div>
+                </ItemTemplate>
+            </asp:Repeater>  <%--DETALLE PACIENTE--%>
+        </div>   <%--DIV DE TURNO + PACIENTE--%>
+    </div>   <%--DIV DE PAGINA--%>
 </asp:Content>

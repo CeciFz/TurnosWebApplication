@@ -86,14 +86,57 @@ namespace TurnosNegocio
                 datos.cerrarConexion();
             }
         }
-
-        public void modificarTurnoConSP(Int64 idTurno, Int16 idEstado, String observaciones)
+        
+        public void modificarTurnoConSP(Turno turno)
         {
             try
             {
                 datos.setearSP("SP_ModificarTurno");
+                datos.SetearParametro("@IdTurno", turno.id);
+                datos.SetearParametro("@Fecha", turno.fecha);
+                datos.SetearParametro("@Hora", turno.hora);
+                datos.SetearParametro("@IdProfesional", turno.profesional.id);
+                datos.SetearParametro("@IdHorario", turno.idHorario);
+                datos.SetearParametro("@Observaciones", turno.observaciones);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void actualizarTurnoConSP(Int64 idTurno, Int16 idEstado, String observaciones)
+        {
+            try
+            {
+                datos.setearSP("SP_ActualizaTurno");
                 datos.SetearParametro("@IdTurno", idTurno);
                 datos.SetearParametro("@IdEstado", idEstado);
+                datos.SetearParametro("@Observaciones", observaciones);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void cancelarTurnoConSP(Int64 idTurno, String observaciones)
+        {
+            try
+            {
+                datos.setearSP("SP_CancelaTurno");
+                datos.SetearParametro("@IdTurno", idTurno);
                 datos.SetearParametro("@Observaciones", observaciones);
                 datos.ejecutarAccion();
             }
