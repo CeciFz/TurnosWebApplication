@@ -114,39 +114,78 @@ namespace TurnosNegocio
 
         }
 
-        
-         public int agregaringresoConSP(Int64 dni, string usuario,string contraseña)
-        {    AccesoDatos datos = new AccesoDatos();
-            int ing;
+
+        public Int64 idusuarioSP(Int64 dni)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Int64 ing;
             try
             {
-                datos.setearSP("sp_agregaringreso");
+                datos.setearSP("sp_idusuario_idingresos");
                 datos.SetearParametro("@dni", dni);
-                datos.SetearParametro("@usuario",usuario );
-                datos.SetearParametro("@pass",contraseña );
-                 datos.ejecutarAccion();
-
-                
-                
-
-                  ing =(int)datos.Lector["sp_agregaringreso"];
-
-                if (ing == 1) { return 1; }
-                return 0;
-                
+                datos.lecturaDatos();
 
 
 
+                //  while (datos.Lector.Read())
+                //  {
+                //     ing = (int)datos.Lector["id"];
+
+                //    return ing;
+                // }
+                //  return -2;
+
+                while (datos.Lector.Read())
+                {
+                    ing = (Int64)datos.Lector["id"];
+                    return ing;
+                }
+                return -1;
             }
-            catch (Exception ex)
+            catch (Exception )
             {
 
-                throw ex;
+                return -1;
             }
             finally
             {
                 datos.cerrarConexion();
             }
+
+
+
+        }
+
+
+
+
+
+
+
+        public int agregaringresoConSP( string usuario,string contraseña,Int64 idusuario)
+        {    AccesoDatos datos = new AccesoDatos();
+           
+            try
+           {
+                datos.setearSP("sp_agregaringreso");
+               
+                datos.SetearParametro("@usuario",usuario );
+                datos.SetearParametro("@pass",contraseña );
+                datos.SetearParametro("@idusuario",idusuario);
+                datos.ejecutarAccion();
+
+                return 1;
+
+            }
+           catch (Exception )
+           {
+
+                return -1;
+            }
+            finally
+           {
+                datos.cerrarConexion();
+           }
 
             
 

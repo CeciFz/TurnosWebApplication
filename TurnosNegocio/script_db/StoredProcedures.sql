@@ -337,39 +337,32 @@ Create procedure SP_BuscarProfesional (
 END
 GO
 
-create procedure sp_agregaringreso(
-	@dni bigint,
-	@usuario varchar(50),
-	@pass varchar(50)
+create procedure sp_idusuario_idingresos(
+		@dni bigint
 	)
 as begin
-		declare @id bigint
+		
+	select us.Id from Usuarios us where us.NroDocumento=@dni
+		
+end
+
+GO
+
+
+
+
+
+create procedure sp_agregaringreso(
 	
-	begin try
+	@usuario varchar(50),
+	@pass varchar(50),
+	@idusuario bigint
+	)
+as begin
 		
+	
+	insert into Ingresos (Usuario,Pass,IdUsuario)
+				values (@usuario,@pass,@idusuario)
+end
 
-			select @id=us.Id from Usuarios us where us.NroDocumento = @dni
-
-
-			if(@id >0 ) begin
-		
-				insert into Ingresos (Usuario,Pass,IdUsuario)
-				values (@usuario,@pass,@id)
-
-				return 1
-
-			end else if (@id<=0) begin 
-			return 0
-				end
-		
-		end try
-
-		begin catch
-		
-		return -1
-		
-		end catch
-
-
-end 
-go
+GO

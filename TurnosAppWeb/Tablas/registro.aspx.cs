@@ -19,14 +19,39 @@ namespace TurnosAppWeb.Tablas
         {
             IngresoNegocio negocio = new IngresoNegocio();
 
-            Int32 ing;
-            
-            
+            try
+            {
+                Int64 ing;
 
-            ing = negocio.agregaringresoConSP(Int64.Parse(dniregistrar.Text), usuarioregistrar.Text, passregistrar.Text);
+                ing = negocio.idusuarioSP(Int64.Parse(dniregistrar.Text));
 
-            if (ing == 1) { lblregistro.Visible = true; }
-            else if (ing == 0) { Lblnoregistro.Visible = true; }
+                //ing = negocio.agregaringresoConSP(Int64.Parse(dniregistrar.Text), usuarioregistrar.Text, passregistrar.Text);
+
+                if (ing < 0) { Lblnoregistro.Visible = true; }
+                else
+                {
+                    Int64 ingreso;
+                    ingreso = negocio.agregaringresoConSP(usuarioregistrar.Text, passregistrar.Text, ing);
+
+                    if (ingreso == 1)
+                    {
+                        Lblnoregistro.Visible = false;
+                        lblregistro.Visible = true;
+                        Response.Redirect("/default.aspx");
+                    }
+                    else if (ingreso == -1) { Lblnoregistro.Visible = true; }
+
+
+                }
+            }
+            catch (Exception)
+            {
+               
+
+            }
+
+           
+            
 
 
 
