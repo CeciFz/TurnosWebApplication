@@ -73,7 +73,7 @@ namespace TurnosAppWeb
         protected void btnModificar_Click(object sender, EventArgs e)
         {
             string id = ((Button)sender).CommandArgument;
-            Response.Redirect("ProfesionalForm.aspx?id=" + id);
+            Response.Redirect("UsuarioForm.aspx?id=" + id);
         }
     }
 }
