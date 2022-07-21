@@ -16,7 +16,7 @@ namespace TurnosAppWeb
         public List<Horario> horarios { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["ingresos"] == null)
+           /* if (Session["ingresos"] == null)
             {
                 Response.Redirect("/default.aspx");
             }
@@ -27,7 +27,7 @@ namespace TurnosAppWeb
                 if (probando == 0) { Response.Redirect("/default.aspx"); }
 
             }
-
+           */
             if (!IsPostBack)
             {
                 if (Session["listaProfesionales"] == null)
@@ -68,6 +68,12 @@ namespace TurnosAppWeb
             dgvlistaProfesionales.DataBind();
 
             repProfesional.DataBind();
+        }
+
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+            string id = ((Button)sender).CommandArgument;
+            Response.Redirect("ProfesionalForm.aspx?id=" + id);
         }
     }
 }

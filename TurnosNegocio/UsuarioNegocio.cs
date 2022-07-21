@@ -93,7 +93,7 @@ namespace TurnosNegocio
             }
         }
 
-        public void agregarUsuarioConSP(Usuario usuario, Int16 perfil)
+        public void agregarUsuarioConSP(Usuario usuario, Int16 perfil, Int32 IdEsp =-1, Int64 IdHorario=-1)
         {
 
             try
@@ -109,6 +109,8 @@ namespace TurnosNegocio
                 datos.SetearParametro("@Mail", usuario.mail);
                 datos.SetearParametro("@IdObraSocial", usuario.obraSocial.id);
                 datos.SetearParametro("@IdPerfilUsuario", perfil);
+                datos.SetearParametro("@IdEspecialidad", IdEsp);
+                datos.SetearParametro("@IdHorario", IdHorario);
 
                 datos.ejecutarAccion();
             }
@@ -122,7 +124,7 @@ namespace TurnosNegocio
                 datos.cerrarConexion();
             }
         }
-        public void modificarUsuarioConSP(Usuario usuario, Int16 perfil)
+        public void modificarUsuarioConSP(Usuario usuario, Int16 perfil, Int32 IdEsp = -1, Int64 IdHorario = -1)
         {
 
             try
@@ -139,6 +141,8 @@ namespace TurnosNegocio
                 datos.SetearParametro("@Mail", usuario.mail);
                 datos.SetearParametro("@IdObraSocial", usuario.obraSocial.id);
                 datos.SetearParametro("@IdPerfilUsuario", perfil);
+                datos.SetearParametro("@IdEspecialidad", IdEsp);
+                datos.SetearParametro("@IdHorario", IdHorario);
 
                 datos.ejecutarAccion();
             }

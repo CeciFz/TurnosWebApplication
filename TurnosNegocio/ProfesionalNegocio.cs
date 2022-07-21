@@ -26,7 +26,12 @@ namespace TurnosNegocio
                     
                     aux.id = (Int64)datos.Lector["Id"];
 
-                    aux.nombres = (string)datos.Lector["NombreCompleto"];
+                    if (idEspecialidad > -1 )aux.nombres = (string)datos.Lector["NombreCompleto"];
+                    else
+                    {
+                        aux.nombres = (string)datos.Lector["Nombres"];
+                        aux.apellidos = (string)datos.Lector["Apellidos"];
+                    }
                     
                     aux.sexo = (string)datos.Lector["Genero"];
                     aux.telefono = (string)datos.Lector["Telefono"];

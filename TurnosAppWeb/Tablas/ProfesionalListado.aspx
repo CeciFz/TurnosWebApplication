@@ -26,27 +26,34 @@
                             <h5 class="card-title"><%#Eval("apellidos") %>, <%#Eval("nombres") %> </h5>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">Sexo: <%#Eval("sexo")%> </p>
-                            <p class="card-text">Teléfono: <%#Eval("telefono")%> </p>
-                            <p class="card-text">Mail: <%#Eval("mail")%> </p>
-                            <div>
-                                <label class="card-text">Especialidades: </label>
-                                <%foreach (TurnosDominio.Especialidad esp in especialidad)
-                                    { %>
-<%--                                <asp:textbox cssclass="card-text" id="txtEspecialidad" runat="server">"esp.descripcion"</asp:textbox>--%>
-                                <lbl class="card-text" id="txtEspecialidad"><%:esp.descripcion %></lbl>
-                                <%} %>
+                            <div class="d-flex d-flex-column justify-content-between">
+                                <div>
+                                    <p class="card-text">Sexo: <%#Eval("sexo")%> </p>
+                                    <p class="card-text">Teléfono: <%#Eval("telefono")%> </p>
+                                    <p class="card-text">Mail: <%#Eval("mail")%> </p>
+                                </div>
+                                <div>
+                                    <label class="card-text">Especialidades: </label>
+                                    <%foreach (TurnosDominio.Especialidad esp in especialidad)
+                                        { %>
+                                    <%--                                <asp:textbox cssclass="card-text" id="txtEspecialidad" runat="server">"esp.descripcion"</asp:textbox>--%>
+                                    <li class="card-text ms-4" id="txtEspecialidad"><%:esp.descripcion %> </li>
+                                    <%} %>
+
+                                    <br />
+                                    <label class="card-text">Horarios: </label>
+                                    <%foreach (TurnosDominio.Horario hr in horarios)
+                                        { %>
+                                    <%--                                <asp:textbox cssclass="card-text" id="txtEspecialidad" runat="server">"esp.descripcion"</asp:textbox>--%>
+                                    <li class="card-text ms-4" id="txtHorarios"><%:hr.dia + " de " + hr.horaInicio + " a " + hr.horaFin %> </li>
+                                    <%} %>
+                                </div>
                             </div>
                             <div>
-                                <label class="card-text">Horarios: </label>
-                                <%foreach (TurnosDominio.Horario hr in horarios)
-                                    { %>
-<%--                                <asp:textbox cssclass="card-text" id="txtEspecialidad" runat="server">"esp.descripcion"</asp:textbox>--%>
-                                <lbl class="card-text" id="txtHorarios"><%:hr.dia + " de " + hr.horaInicio + " a " + hr.horaFin %></lbl>
-                                <%} %>
+                                <asp:Button Text="Modificar" runat="server" CssClass="btn btn-primary my border-secondary mt-4" ID="btnModificar" CommandArgument='<%#Eval("Id")%>' CommandName="UsuarioId" OnClick="btnModificar_Click" />
                             </div>
-<%--                            <asp:Button Text="Editar" runat="server" CssClass="btn btn-primary" ID="btnModificar" CommandArgument='<%#Eval("Id")%>' CommandName="UsuarioId" OnClick="btnModificar_Click" />--%>
                         </div>
+                    </div>
                     </div>
                 </ItemTemplate>
             </asp:Repeater>
