@@ -24,6 +24,9 @@ namespace TurnosAppWeb.Tablas
                 if (probando == 2) { Response.Redirect("/listados.aspx"); }
 
             }
+
+
+
             if (Request.QueryString["id"] != null && btnModificar.Visible == false)
             {
                 Int16 id = Int16.Parse(Request.QueryString["id"].ToString());

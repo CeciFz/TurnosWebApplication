@@ -36,55 +36,8 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="../Tablas/especialidadlistado.aspx">Especialidades</a>
                                 </li>--%>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Administrar</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="../Tablas/TurnoForm.aspx">Nuevo Turno</a></li>
-                                        <li><a class="dropdown-item" href="../Tablas/TurnoListado.aspx">Modificar Turno</a></li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li><a class="dropdown-item" href="../Tablas/UsuarioForm.aspx">Alta Usuarios</a></li>
-                                        <li><a class="dropdown-item" href="../Tablas/UsuarioListado.aspx">Modificar Usuarios</a></li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                           <%  //<li><a class="dropdown-item" href="#">Alta Profesional</a></li>%>
-                                        <li><a class="dropdown-item" href="../Tablas/ProfesionalListado.aspx">Listar Profesionales</a></li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li><a class="dropdown-item" href="../Tablas/ObraSocialForm.aspx">Alta Obra Social</a></li>
-                                        <li><a class="dropdown-item" href="../Tablas/ObraSocialListado.aspx">Modificar Obra Social</a></li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li><a class="dropdown-item" href="#">Alta Especialidad</a></li>
-                                        <li><a class="dropdown-item" href="../Tablas/EspecialidadListado.aspx">Modificar Especialidad</a></li>
-                                        <li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li><a class="dropdown-item" href="../Tablas/EstadoTurnoForm.aspx">Alta Estado Turno</a></li>
-                                        <li><a class="dropdown-item" href="../Tablas/EstadoTurnoListado.aspx">Modificar Estado Turno</a></li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li><a class="dropdown-item" href="../Tablas/TipoDocumentoForm.aspx">Alta Tipo Documento</a></li>
-                                        <li><a class="dropdown-item" href="../Tablas/TipoDocumentoListado.aspx">Modificar Tipo Documento</a></li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li><a class="dropdown-item" href="../Tablas/PerfilUsuarioForm.aspx">Alta Perfil Usuario</a></li>
-                                        <li><a class="dropdown-item" href="../Tablas/PerfilUsuarioListado.aspx">Modificar Perfil Usuario</a></li>
-                                        <li>
-
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li><a class="dropdown-item" href="#">------</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
+                                
+                        <hr class="dropdown-divider">
                         <asp:Button ID="btnCerrarsession" runat="server" Text="CERRAR SESSIÓN" OnClick="btnCerrarsession_Click" class="btn btn-dark" Visible="false" />
                         <% //<a class="nav-link active" aria-current="page" href="/default.aspx">CERRAR SESSIÓN</a> %>
                     </div>

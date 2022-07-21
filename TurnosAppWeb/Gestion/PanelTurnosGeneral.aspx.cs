@@ -22,6 +22,31 @@ namespace TurnosAppWeb.Gestion
         private bool isTurno { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if (Session["ingresos"] == null)
+            {
+                Response.Redirect("/default.aspx");
+            }
+            else if (Session["ingresos"] != null)
+            {// no deja entrar tamp a tipo de usuario que le coloquemo probando==1?
+                int probando;
+                probando = int.Parse(Session["ingresos"].ToString());
+                if (probando == 3) { Response.Redirect("/default.aspx"); }
+
+            }
+            else if (Session["ingresos"] != null)
+            {// no deja entrar tamp a tipo de usuario que le coloquemo probando==1?
+                int probando;
+                probando = int.Parse(Session["ingresos"].ToString());
+                if (probando == 4) { Response.Redirect("/default.aspx"); }
+
+            }
+            
+
+
+
+
+
             /* if (Session["ingresos"] == null)
              {
                  Response.Redirect("../default.aspx");
