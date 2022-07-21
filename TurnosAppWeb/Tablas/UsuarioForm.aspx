@@ -3,6 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
     <div class="row col-md-12">
         <% if (btnModificar.Visible == false)
             {  %>
@@ -58,13 +60,30 @@
                 <asp:DropDownList runat="server" ID="ddlObraSocial" class="form-select"></asp:DropDownList>
             </div>
         </div>
-        <div class="row row-cols-3 mb-2">
-            <div class="col">
-                <label for="ddlPerfilusuario" class="form-label">Tipo usuario</label>
-                <asp:DropDownList runat="server" ID="ddlPerfilusuario" class="form-select"></asp:DropDownList>
-            </div>
-        </div>
-        <div class="row row-cols-3 justify-content-end">
+        <asp:UpdatePanel runat="server">
+            <ContentTemplate>
+                <div class="row row-cols-3 mb-2">
+                    <div class="col">
+                        <label for="ddlPerfilusuario" class="form-label">Tipo usuario</label>
+                        <asp:DropDownList runat="server" ID="ddlPerfilusuario" class="form-select" AutoPostBack="true"
+                            OnSelectedIndexChanged="ddlPerfilusuario_SelectedIndexChanged">
+                        </asp:DropDownList>
+                    </div>
+
+                    <div class="col">
+                        <asp:Label Text="Especialidad" ID="lblEspecialidad" for="ddlEspecialidad" runat="server" CssClass="form-label" Visible="false" />
+                        <asp:DropDownList runat="server" ID="ddlEspecialidad" class="form-select" Visible="false">
+                        </asp:DropDownList>
+                    </div>
+                    <div class="col">
+                        <asp:Label Text="Horario de atención" ID="lblHorarios" for="ddlHorarios" runat="server" CssClass="form-label" Visible="false" />
+                        <asp:DropDownList runat="server" ID="ddlHorarios" class="form-select" Visible="false"></asp:DropDownList>
+                    </div>
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+        <br />
+        <div class="row row-cols-3  justify-content-end">
             <asp:Button ID="btnRegistrar" runat="server" Text="Registrar" OnClick="btnRegistrar_Click" CssClass="btn btn-primary" />
             <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" CssClass="btn btn-primary" Visible="false" />
         </div>

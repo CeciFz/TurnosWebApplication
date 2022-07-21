@@ -41,20 +41,34 @@ Create procedure SP_ListarProfesionales (
 ) AS BEGIN
 	IF (@IdEspecialidad=-1) BEGIN
 		select Id, Apellidos, Nombres, Apellidos + ', ' + Nombres as NombreCompleto,
-		Genero,Telefono,Mail		from VW_Usuarios 
+		Genero,Telefono,Mail from VW_Usuarios 
 		inner join VW_UsuariosConPerfil up on up.IdUsuario = VW_Usuarios.Id
 		where IdPerfil = 4
-		Order By Apellidos
+		Order By Apellidos, Nombres ASC
 	END ELSE BEGIN
 		select Id, Apellidos + ', ' + Nombres as NombreCompleto,Genero,Telefono,Mail
 		from VW_Usuarios 
 		inner join VW_UsuariosConPerfil up on up.IdUsuario = VW_Usuarios.Id
 		inner join Profesionales_x_Especialidad pe on pe.IdUsuario = up.IdUsuario
 		where IdPerfil = 4 AND IdEspecialidad = @IdEspecialidad
-		Order By NombreCompleto
+		Order By NombreCompleto ASC
 	END
 END
 GO
+/*
+Create procedure SP_CargarEspecialidades (
+	@IdProfesional bigint
+) AS BEGIN
+		select Id, pco.Profesional, isnull(pco.IdEspecialidad,0) as IdEspecialidad, 
+		isnull(pco.Especialidad,'No especificado') as Especialidad from VW_Usuarios 
+		inner join VW_UsuariosConPerfil up on up.IdUsuario = VW_Usuarios.Id
+		left join VW_ProfesionalesConEspecialidad pco on pco.IdUsuario = VW_Usuarios.Id
+		where IdPerfil = 4 AND Id = @IdProfesional
+		Order By Profesional ASC
+END
+GO*/
+
+
 Create procedure SP_ListarHorariosProfesionales (
 	@IdEspecialidad int,
 	@IdProfesional bigint
@@ -67,6 +81,7 @@ Create procedure SP_ListarHorariosProfesionales (
 		from Profesionales_x_Especialidad pe
 		left Join Horario_x_Profesional hp on hp.IdProfesional = pe.IdUsuario and hp.IdEspecialidad = pe.IdEspecialidad
 		left Join Horarios h on h.IdHorario = hp.IdHorario
+		order by Horario asc
 	END ELSE BEGIN
 		Select pe.IdUsuario as IDProfesional, pe.IdEspecialidad, isnull(hp.IdHorario,0) as IdHorario, isnull((
 		h.Día +' de '+ Cast(h.Hora_Inicio as varchar(5)) + ' a ' +  Cast(h.Hora_Fin as varchar(5))),
@@ -76,6 +91,7 @@ Create procedure SP_ListarHorariosProfesionales (
 		left Join Horario_x_Profesional hp on hp.IdProfesional = pe.IdUsuario and hp.IdEspecialidad = pe.IdEspecialidad
 		left Join Horarios h on h.IdHorario = hp.IdHorario
 		where pe.IdUsuario = @IdProfesional AND pe.IdEspecialidad = @IdEspecialidad
+		
 	END
 END
 GO
@@ -107,8 +123,44 @@ AS BEGIN
 END
 GO
 
+create procedure SP_AgregarEspecialidad(
+	@IdUsuario bigint,
+	@IdEspecialidad int
+)
+AS BEGIN
+	BEGIN TRY
+		BEGIN TRANSACTION
+			Insert into Profesionales_x_Especialidad(IdUsuario, IdEspecialidad)
+			VALUES (@IdUsuario, @IdEspecialidad)
+		COMMIT TRANSACTION
+	END TRY
+	BEGIN CATCH
+		ROLLBACK TRANSACTION
+		RAISERROR ('ERROR',16,1)
+	END CATCH
+END
+GO
 
-create procedure SP_AltaUsuario(
+create procedure SP_AgregarHorario(
+	@IdUsuario bigint,
+	@IdEspecialidad int,
+	@IdHorario int
+)
+AS BEGIN
+	BEGIN TRY
+		BEGIN TRANSACTION
+			Insert into Horario_x_Profesional(IdProfesional, IdEspecialidad,IdHorario)
+			VALUES (@IdUsuario, @IdEspecialidad,@IdHorario)
+		COMMIT TRANSACTION
+	END TRY
+	BEGIN CATCH
+		ROLLBACK TRANSACTION
+		RAISERROR ('ERROR',16,1)
+	END CATCH
+END
+GO
+
+Create procedure SP_AltaUsuario(
 	@Apellidos varchar(100),
 	@Nombres varchar(100),
 	@FechaNacimiento date,
@@ -119,7 +171,9 @@ create procedure SP_AltaUsuario(
 	@Mail varchar(100),
 	@IdObraSocial int,
 	---------
-	@IdPerfilUsuario smallint
+	@IdPerfilUsuario smallint,
+	@IdEspecialidad int,
+	@IdHorario bigint
 )
 AS BEGIN
 	BEGIN TRY
@@ -131,6 +185,12 @@ AS BEGIN
 		SET @IdUsuario = @@IDENTITY
 
 			EXEC SP_AgregarPerfil @IdUsuario, @IdPerfilUsuario
+
+			IF (@IdEspecialidad != -1) BEGIN
+				EXEC SP_AgregarPerfil @IdUsuario, @IdEspecialidad
+				EXEC SP_AgregarHorario @IdUsuario, @IdEspecialidad,@IdHorario
+			END
+
 		COMMIT TRANSACTION
 	END TRY
 	BEGIN CATCH
@@ -177,7 +237,46 @@ AS BEGIN
 END
 GO
 
-create procedure SP_ModificarUsuario(
+create procedure SP_ModificarEspecialidad(
+	@IdUsuario bigint,
+	@IdEspecialidad int
+)
+AS BEGIN
+	BEGIN TRY
+		BEGIN TRANSACTION
+			UPDATE Profesionales_x_Especialidad
+			SET IdEspecialidad = @IdEspecialidad
+			WHERE IdUsuario = @IdUsuario
+		COMMIT TRANSACTION
+	END TRY
+	BEGIN CATCH
+		ROLLBACK TRANSACTION
+		RAISERROR ('ERROR',16,1)
+	END CATCH
+END
+GO
+
+create procedure SP_ModificarHorario(
+	@IdUsuario bigint,
+	@IdEspecialidad int,
+	@IdHorario bigint
+)
+AS BEGIN
+	BEGIN TRY
+		BEGIN TRANSACTION
+			UPDATE Horario_x_Profesional
+			SET IdEspecialidad = @IdEspecialidad,IdHorario =@IdHorario
+			WHERE IdProfesional = @IdUsuario
+		COMMIT TRANSACTION
+	END TRY
+	BEGIN CATCH
+		ROLLBACK TRANSACTION
+		RAISERROR ('ERROR',16,1)
+	END CATCH
+END
+GO
+
+Create procedure SP_ModificarUsuario(
 	@IdUsuario bigint,
 	@Apellidos varchar(100),
 	@Nombres varchar(100),
@@ -189,7 +288,9 @@ create procedure SP_ModificarUsuario(
 	@Mail varchar(100),
 	@IdObraSocial int,
 	---------
-	@IdPerfilUsuario smallint
+	@IdPerfilUsuario smallint,
+	@IdEspecialidad int,
+	@IdHorario bigint
 )
 AS BEGIN
 	BEGIN TRY
@@ -207,6 +308,11 @@ AS BEGIN
 			WHERE ID = @IdUsuario
 
 			EXEC SP_ModificarPerfil @IdUsuario, @IdPerfilUsuario
+
+			IF (@IdEspecialidad != -1) BEGIN
+				EXEC SP_AgregarPerfil @IdUsuario, @IdEspecialidad
+				EXEC SP_AgregarHorario @IdUsuario, @IdEspecialidad,@IdHorario
+			END
 		COMMIT TRANSACTION
 	END TRY
 	BEGIN CATCH
@@ -399,31 +505,21 @@ END
 GO
 
 create procedure sp_idusuario_idingresos(
-		@dni bigint
-	)
-as begin
+	@dni bigint
+) as begin
 		
 	select us.Id from Usuarios us where us.NroDocumento=@dni
 		
 end
-
 GO
 
-
-
-
-
 create procedure sp_agregaringreso(
-	
 	@usuario varchar(50),
 	@pass varchar(50),
 	@idusuario bigint
-	)
-as begin
-		
-	
-	insert into Ingresos (Usuario,Pass,IdUsuario)
-				values (@usuario,@pass,@idusuario)
-end
+)as begin
 
+	insert into Ingresos (Usuario,Pass,IdUsuario)
+	values (@usuario,@pass,@idusuario)
+end
 GO

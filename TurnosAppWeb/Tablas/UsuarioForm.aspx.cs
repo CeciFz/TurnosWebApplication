@@ -64,9 +64,15 @@ namespace TurnosAppWeb
                         ddlSexo.SelectedValue = seleccionado.sexo;
                         ddlTipoDocumento.SelectedValue = seleccionado.tipoDocumento.id.ToString();
                         txtNroDocumento.Text = seleccionado.nroDocumento.ToString();
-                        txtTelefono.Text = seleccionado.telefono;
-                        txtMail.Text = seleccionado.mail;
+                        if(seleccionado.telefono != "no informado") txtTelefono.Text = seleccionado.telefono;
+                        if (seleccionado.mail != "no informado") txtMail.Text = seleccionado.mail;
                         ddlObraSocial.SelectedValue = seleccionado.obraSocial.id.ToString();
+
+                        /*if (seleccionado.perfileslUsuario[0].id == 4)
+                        {
+                            ddlEspecialidad.SelectedValue = seleccionado.tipoDocumento.id.ToString();
+                            ddlHorarios.SelectedValue = seleccionado.nroDocumento.ToString();
+                        }*/
 
                         perfil = (List<PerfilUsuario>)((List<Usuario>)Session["listaUsuarios"]).Find(x => x.id == id).perfileslUsuario;
                         ddlPerfilusuario.SelectedValue = perfil[0].id.ToString();
@@ -110,7 +116,17 @@ namespace TurnosAppWeb
                 perfil.id = Int16.Parse(ddlPerfilusuario.SelectedValue);
                 Int16 idPerfil = perfil.id;
 
-                negocio.agregarUsuarioConSP(usuario, idPerfil);
+                if (idPerfil == 4)
+                {
+                    Int32 IdEsp = Int32.Parse(ddlEspecialidad.SelectedValue);
+                    Int64 horario = Int64.Parse(ddlHorarios.SelectedValue);
+                    negocio.agregarUsuarioConSP(usuario, idPerfil, IdEsp, horario);
+
+                }
+                else
+                {
+                    negocio.agregarUsuarioConSP(usuario, idPerfil);
+                }
 
                 Session["listaUsuarios"] = null;
 
@@ -149,7 +165,17 @@ namespace TurnosAppWeb
                 perfil.id = Int16.Parse(ddlPerfilusuario.SelectedValue);
                 Int16 id = perfil.id;
 
-                negocio.modificarUsuarioConSP(usuario, id);
+                if (id == 4)
+                {
+                    Int32 IdEsp = Int32.Parse(ddlEspecialidad.SelectedValue);
+                    Int64 horario = Int64.Parse(ddlHorarios.SelectedValue);
+                    negocio.modificarUsuarioConSP(usuario, id, IdEsp, horario);
+
+                }
+                else
+                {
+                    negocio.modificarUsuarioConSP(usuario, id);
+                }
 
                 Session["listaUsuarios"] = null;
 
@@ -161,7 +187,43 @@ namespace TurnosAppWeb
                 throw;
             }
         }
-    
+
+        protected void ddlPerfilusuario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Int16 idPerfil = Int16.Parse(ddlPerfilusuario.SelectedValue);
+            if (idPerfil == 4)
+            {
+
+                EspecialidadNegocio negocio = new EspecialidadNegocio();
+                List<Especialidad> listaEspecialidades = negocio.listarEspecialidades();
+                HorarioNegocio negocioH = new HorarioNegocio();
+                List<Horario> listaHorarios = negocioH.listarHorariosConSP();
+
+                ddlEspecialidad.DataSource = listaEspecialidades;
+                ddlEspecialidad.DataValueField = "id";
+                ddlEspecialidad.DataTextField = "descripcion";
+                ddlEspecialidad.DataBind();
+                ddlEspecialidad.Items.Insert(0, new ListItem("Seleccione especialidad", "0"));
+                lblEspecialidad.Visible = true;
+                ddlEspecialidad.Visible = true;
+
+                ddlHorarios.DataSource = listaHorarios;
+                ddlHorarios.DataValueField = "idHorario";
+                ddlHorarios.DataTextField = "descripcion";
+                ddlHorarios.DataBind();
+                ddlHorarios.Items.Insert(0, new ListItem("Seleccione horario", "0"));
+                ddlHorarios.Visible = true;
+                ddlHorarios.Visible = true;
+            }
+            else
+            {
+                lblEspecialidad.Visible = false;
+                ddlEspecialidad.Visible = false;
+                ddlHorarios.Visible = false;
+                ddlHorarios.Visible = false;
+            }
+
+        }
     }
 }
 

@@ -59,12 +59,12 @@ Go
 
 /* Vista para listar las especialidades de cada profesional  */ 
 create View VW_ProfesionalesConEspecialidad AS
-	select u.Id as IdUsuario, u.Apellidos + ', ' + u.Nombres as Profesional, pe.IdEspecialidad as IdEspecialidad,
-	esp.Descripcion as Especialidad, pe.Habilitado from VW_Usuarios u
+	select u.Id as IdUsuario, u.Apellidos + ', ' + u.Nombres as Profesional, isnull(pe.IdEspecialidad,0)  as IdEspecialidad,
+	isnull(esp.Descripcion,'No especificado') as Especialidad, isnull(pe.Habilitado,0) as Habilitado from VW_Usuarios u
 	inner join Perfil_X_Usuario pxu on pxu.IdUsuario = u.Id
-	inner join Profesionales_X_Especialidad pe on pe.IdUsuario = u.Id
-	inner join Especialidades esp on esp.Id = pe.IdEspecialidad
-	where pxu.IdPerfilUsuario = 4
+	left join Profesionales_X_Especialidad pe on pe.IdUsuario = u.Id
+	left join Especialidades esp on esp.Id = pe.IdEspecialidad
+	where pxu.IdPerfilUsuario = 4   
 Go
 
 /* Vista para listar los horarios de cada profesional  */ 
