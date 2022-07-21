@@ -28,17 +28,12 @@ namespace TurnosNegocio
                     Horario aux = new Horario();
                     aux.idHorario = (Int64)datos.Lector["IdHorario"];
 
-                    if(idProfesional > -1)
-                    {
-                        aux.dia = (string)datos.Lector["Horario"];
-                    }
-                    else
-                    {
+                    aux.descripcion = (string)datos.Lector["Horario"];
                     aux.dia = (string)datos.Lector["Día"];
                     aux.horaInicio = (TimeSpan)datos.Lector["Hora_Inicio"];
                     aux.horaFin = (TimeSpan)datos.Lector["Hora_Fin"];
 
-                    }
+                   
 
                     aux.frecuencia = (Int16)datos.Lector["Frecuencia"];
                     if (aux.activo = (bool)datos.Lector["Activo"]) lista.Add(aux);

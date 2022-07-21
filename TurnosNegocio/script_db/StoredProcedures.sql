@@ -40,8 +40,8 @@ Create procedure SP_ListarProfesionales (
 	@IdEspecialidad int
 ) AS BEGIN
 	IF (@IdEspecialidad=-1) BEGIN
-		select Id, Apellidos, Nombres,Genero,Telefono,Mail
-		from VW_Usuarios 
+		select Id, Apellidos, Nombres, Apellidos + ', ' + Nombres as NombreCompleto,
+		Genero,Telefono,Mail		from VW_Usuarios 
 		inner join VW_UsuariosConPerfil up on up.IdUsuario = VW_Usuarios.Id
 		where IdPerfil = 4
 		Order By Apellidos
@@ -55,22 +55,25 @@ Create procedure SP_ListarProfesionales (
 	END
 END
 GO
-
-create procedure SP_ListarHorariosProfesionales (
+Create procedure SP_ListarHorariosProfesionales (
 	@IdEspecialidad int,
 	@IdProfesional bigint
 ) AS BEGIN
 	IF (@IdProfesional=-1) BEGIN
-		Select pe.IdUsuario as IDProfesional, h.IdHorario, h.Día, h.Hora_Inicio, h.Hora_Fin, h.Frecuencia, h.Activo
+		Select pe.IdUsuario as IDProfesional, pe.IdEspecialidad, isnull(hp.IdHorario,0) as IdHorario, isnull((
+		h.Día +' de '+ Cast(h.Hora_Inicio as varchar(5)) + ' a ' +  Cast(h.Hora_Fin as varchar(5))),
+		'Sin atención') as Horario, isnull(h.Frecuencia,0) as Frecuencia, pe.Habilitado as Activo,
+		isnull(h.Día,0)as Día, isnull(h.Hora_Inicio,'00:00') as Hora_Inicio, isnull(h.Hora_Fin,'00:00') as Hora_Fin
 		from Profesionales_x_Especialidad pe
-		left Join Horario_x_Profesional hp on hp.IdProfesional = pe.IdUsuario
+		left Join Horario_x_Profesional hp on hp.IdProfesional = pe.IdUsuario and hp.IdEspecialidad = pe.IdEspecialidad
 		left Join Horarios h on h.IdHorario = hp.IdHorario
 	END ELSE BEGIN
-		Select pe.IdUsuario as IDProfesional, isnull(h.IdHorario,0) as IdHorario, isnull((
+		Select pe.IdUsuario as IDProfesional, pe.IdEspecialidad, isnull(hp.IdHorario,0) as IdHorario, isnull((
 		h.Día +' de '+ Cast(h.Hora_Inicio as varchar(5)) + ' a ' +  Cast(h.Hora_Fin as varchar(5))),
-		'Sin atención') as Horario, isnull(h.Frecuencia,0) as Frecuencia, pe.Habilitado as Activo
+		'Sin atención') as Horario, isnull(h.Frecuencia,0) as Frecuencia, pe.Habilitado as Activo,
+		isnull(h.Día,0)as Día, isnull(h.Hora_Inicio,'00:00') as Hora_Inicio, isnull(h.Hora_Fin,'00:00') as Hora_Fin
 		from Profesionales_x_Especialidad pe
-		left Join Horario_x_Profesional hp on hp.IdProfesional = pe.IdUsuario
+		left Join Horario_x_Profesional hp on hp.IdProfesional = pe.IdUsuario and hp.IdEspecialidad = pe.IdEspecialidad
 		left Join Horarios h on h.IdHorario = hp.IdHorario
 		where pe.IdUsuario = @IdProfesional AND pe.IdEspecialidad = @IdEspecialidad
 	END
@@ -232,7 +235,26 @@ create procedure SP_AltaTurno(
 END
 GO
 
-Create procedure SP_ModificarTurno(
+Create procedure SP_ModificarTurno(  --Especialidad y paciente no cambian!
+	@IdTurno bigint,
+	@Fecha date,
+	@Hora time,
+	@IdProfesional bigint,
+	@IdHorario bigint,
+	@Observaciones varchar(max)
+) AS BEGIN
+	Update Turnos SET 
+		Fecha = @Fecha,
+		Hora = @Hora,
+		IdProfesional = @IdProfesional,
+		IdHorario = @IdHorario,
+		IdEstado = 2,
+		Observaciones = @Observaciones
+		where IdTurno = @IdTurno
+END
+GO
+
+Create procedure SP_ActualizaTurno(
 	@IdTurno bigint,
 	@IdEstado smallint,
 	@Observaciones varchar(max)
@@ -244,32 +266,72 @@ Create procedure SP_ModificarTurno(
 END
 GO
 
+Create procedure SP_CancelaTurno(
+	@IdTurno bigint,
+	@Observaciones varchar(max)
+) AS BEGIN
+	Update Turnos SET 
+		IdEstado =  4,
+		Observaciones = @Observaciones
+		where IdTurno = @IdTurno
+END
+GO
 
-Create procedure SP_ListarTurnos (
+
+Create procedure SP_ListarTurnos (  
 	@IdProfesional bigint,
-	@IdEspecialidad int
+	@IdEspecialidad int   
 	--@IdHorario bigint
 )AS BEGIN
 	IF (@IdProfesional=-1) BEGIN
 		select t.IdTurno,t.IdPaciente, u.Apellidos + ', ' + u.Nombres as Paciente, t.Fecha, t.Hora, t.IdProfesional,
-		pe.Profesional, t.IdEspecialidad, pe.Especialidad, t.idHorario, t.IdEstado, et.Descripcion as Estado, 
+		t.IdEspecialidad, t.idHorario, t.IdEstado, pe.Profesional, pe.Especialidad, et.Descripcion as Estado, 
 		t.Observaciones	from Turnos t
 			inner join Usuarios u on u.id = t.IdPaciente
-			inner join VW_ProfesionalesConEspecialidad pe on pe.IdUsuario = t.IdProfesional
+			inner join VW_ProfesionalesConEspecialidad pe on pe.IdUsuario = t.IdProfesional AND pe.IdEspecialidad = t.IdEspecialidad
 			inner join Estados_Turnos  et on et.Id = t.IdEstado
-		order by t.Fecha, t.Hora, pe.Profesional,pe.Especialidad, Paciente, t.IdTurno
+		order by t.Fecha, t.Hora, pe.Profesional, pe.Especialidad,Paciente, t.IdTurno
 	END ELSE BEGIN
 		select t.IdTurno,t.IdPaciente, u.Apellidos + ', ' + u.Nombres as Paciente, t.Fecha, t.Hora, t.IdProfesional,
-		pe.Profesional, t.IdEspecialidad, pe.Especialidad, t.idHorario, t.IdEstado, et.Descripcion as Estado,
-		t.Observaciones from Turnos t
+		t.IdEspecialidad, t.idHorario, t.IdEstado, pe.Profesional, pe.Especialidad, et.Descripcion as Estado, 
+		t.Observaciones	from Turnos t
 			inner join Usuarios u on u.id = t.IdPaciente
-			inner join VW_ProfesionalesConEspecialidad pe on pe.IdUsuario = t.IdProfesional
+			inner join VW_ProfesionalesConEspecialidad pe on pe.IdUsuario = t.IdProfesional AND pe.IdEspecialidad = t.IdEspecialidad
 			inner join Estados_Turnos  et on et.Id = t.IdEstado
-		where pe.IdUsuario = @IdProfesional AND pe.IdEspecialidad = @IdEspecialidad
+		where t.IdProfesional = @IdProfesional AND t.IdEspecialidad = @IdEspecialidad
 		order by t.Fecha, t.Hora, pe.Profesional,pe.Especialidad, Paciente, t.IdTurno
 	END
 END
 GO
+
+
+Create procedure SP_ListarTurnosPaciente (  
+	@IdPaciente bigint,
+	@ConHistorial bit
+)AS BEGIN
+	IF (@ConHistorial = 1) BEGIN
+		select t.IdTurno,t.IdPaciente, u.Apellidos + ', ' + u.Nombres as Paciente, t.Fecha, t.Hora, t.IdProfesional,
+		pe.Profesional, t.IdEspecialidad, pe.Especialidad, t.idHorario, t.IdEstado, et.Descripcion as Estado
+		from Turnos t
+			inner join Usuarios u on u.id = t.IdPaciente
+			inner join VW_ProfesionalesConEspecialidad pe on pe.IdUsuario = t.IdProfesional
+			inner join Estados_Turnos  et on et.Id = t.IdEstado
+		where t.IdPaciente = @IdPaciente AND T.Fecha < GETDATE()
+		order by t.Fecha, t.Hora, pe.Profesional,pe.Especialidad
+	END ELSE BEGIN
+			select t.IdTurno,t.IdPaciente, u.Apellidos + ', ' + u.Nombres as Paciente, t.Fecha, t.Hora, t.IdProfesional,
+		pe.Profesional, t.IdEspecialidad, pe.Especialidad, t.idHorario, t.IdEstado, et.Descripcion as Estado
+		from Turnos t
+			inner join Usuarios u on u.id = t.IdPaciente
+			inner join VW_ProfesionalesConEspecialidad pe on pe.IdUsuario = t.IdProfesional
+			inner join Estados_Turnos  et on et.Id = t.IdEstado
+		where t.IdPaciente = @IdPaciente AND t.IdEstado != 4  AND T.Fecha >= GETDATE()
+		order by t.Fecha, t.Hora, pe.Profesional,pe.Especialidad
+	END
+END
+GO
+
+
 
 --exec SP_ListarTurnos -1,-1
 --select * from Turnos
@@ -301,8 +363,7 @@ Create procedure SP_FiltroTurnos(
 END
 GO
 
-
-Create procedure SP_ListarTurnosPacientes(
+Create procedure SP_ControlTurnosPacientes(
 	@IdPaciente bigint,
 	@Fecha date,
 	@Hora time(7)

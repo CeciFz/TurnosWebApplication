@@ -25,15 +25,9 @@ namespace TurnosNegocio
                     Profesional aux = new Profesional();
                     
                     aux.id = (Int64)datos.Lector["Id"];
-                    if (idEspecialidad == -1)
-                    {
-                        aux.apellidos = (string)datos.Lector["Apellidos"];
-                        aux.nombres = (string)datos.Lector["Nombres"];
-                    }
-                    else
-                    {
-                        aux.nombres = (string)datos.Lector["NombreCompleto"];
-                    }
+
+                    aux.nombres = (string)datos.Lector["NombreCompleto"];
+                    
                     aux.sexo = (string)datos.Lector["Genero"];
                     aux.telefono = (string)datos.Lector["Telefono"];
                     aux.mail = (string)datos.Lector["Mail"];

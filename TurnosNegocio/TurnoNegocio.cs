@@ -86,14 +86,57 @@ namespace TurnosNegocio
                 datos.cerrarConexion();
             }
         }
-
-        public void modificarTurnoConSP(Int64 idTurno, Int16 idEstado, String observaciones)
+        
+        public void modificarTurnoConSP(Turno turno)
         {
             try
             {
                 datos.setearSP("SP_ModificarTurno");
+                datos.SetearParametro("@IdTurno", turno.id);
+                datos.SetearParametro("@Fecha", turno.fecha);
+                datos.SetearParametro("@Hora", turno.hora);
+                datos.SetearParametro("@IdProfesional", turno.profesional.id);
+                datos.SetearParametro("@IdHorario", turno.idHorario);
+                datos.SetearParametro("@Observaciones", turno.observaciones);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void actualizarTurnoConSP(Int64 idTurno, Int16 idEstado, String observaciones)
+        {
+            try
+            {
+                datos.setearSP("SP_ActualizaTurno");
                 datos.SetearParametro("@IdTurno", idTurno);
                 datos.SetearParametro("@IdEstado", idEstado);
+                datos.SetearParametro("@Observaciones", observaciones);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void cancelarTurnoConSP(Int64 idTurno, String observaciones)
+        {
+            try
+            {
+                datos.setearSP("SP_CancelaTurno");
+                datos.SetearParametro("@IdTurno", idTurno);
                 datos.SetearParametro("@Observaciones", observaciones);
                 datos.ejecutarAccion();
             }
@@ -154,13 +197,13 @@ namespace TurnosNegocio
             }
         }
         
-        public List<Turno> listaTurnosPacienteConSP(Int64 idPaciente,DateTime fecha, TimeSpan hora)
+        public List<Turno> controlTurnosPacienteConSP(Int64 idPaciente,DateTime fecha, TimeSpan hora)
         {
             List<Turno> lista = new List<Turno>();
 
             try
             {
-                datos.setearSP("SP_ListarTurnosPacientes");
+                datos.setearSP("SP_ControlTurnosPacientes");
                 datos.SetearParametro("@IdPaciente", idPaciente);
                 datos.SetearParametro("@Fecha", fecha);
                 datos.SetearParametro("@Hora", hora);
@@ -196,5 +239,52 @@ namespace TurnosNegocio
                 datos.cerrarConexion();
             }
         }
-    }
+
+        public List<Turno> listaTurnosPacienteConSP(Int64 idPaciente, bool historial = false)
+        {
+            List<Turno> lista = new List<Turno>();
+
+            try
+            {
+                datos.setearSP("SP_ListarTurnosPaciente");
+                datos.SetearParametro("@IdPaciente", idPaciente);
+                datos.SetearParametro("@ConHistorial", historial);
+                datos.lecturaDatos();
+
+                while (datos.Lector.Read())
+                {
+                    Turno aux = new Turno();
+                    aux.id = (Int64)datos.Lector["IdTurno"];
+                    aux.paciente = new Usuario();
+                    aux.paciente.id = (Int64)datos.Lector["IdPaciente"];
+                    aux.paciente.nombres = (String)datos.Lector["Paciente"];
+                    aux.fecha = (DateTime)datos.Lector["Fecha"];
+                    aux.hora = (TimeSpan)datos.Lector["Hora"];
+                    aux.profesional = new Profesional();
+                    aux.profesional.id = (Int64)datos.Lector["IdProfesional"];
+                    aux.profesional.nombres = (String)datos.Lector["Profesional"];
+                    aux.especialidad = new Especialidad();
+                    aux.especialidad.id = (Int32)datos.Lector["IdEspecialidad"];
+                    aux.especialidad.descripcion = (String)datos.Lector["Especialidad"];
+                    aux.estado = new EstadoTurno();
+                    aux.estado.id = (Int16)datos.Lector["IdEstado"];
+                    aux.estado.descripcion = (string)datos.Lector["Estado"];
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        }
 }

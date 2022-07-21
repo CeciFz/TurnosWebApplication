@@ -15,15 +15,18 @@ namespace TurnosAppWeb.Tablas
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            Int64 idUsuario = (Int64)Session["IdUsuario"];
-            ProfesionalNegocio profNeg = new ProfesionalNegocio();
-            infoProfesional = profNeg.buscarProfesionalConSP(idUsuario);
+            if (!IsPostBack)
+            {
+                Int64 idUsuario = (Int64)Session["IdUsuario"];
+                ProfesionalNegocio profNeg = new ProfesionalNegocio();
+                infoProfesional = profNeg.buscarProfesionalConSP(idUsuario);
+                Session.Add("InfoProfesional", infoProfesional);
 
-            List<Especialidad> especialidades = infoProfesional.especialidades;
+                List<Especialidad> especialidades = infoProfesional.especialidades;
 
-
-            repSeleccionEspecialidad.DataSource = especialidades;
-            repSeleccionEspecialidad.DataBind();
+                repSeleccionEspecialidad.DataSource = especialidades;
+                repSeleccionEspecialidad.DataBind();
+            }
 
         }
 
