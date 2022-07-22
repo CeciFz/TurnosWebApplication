@@ -49,9 +49,9 @@
                                     <%} %>
                                 </div>
                             </div>
-                            <div>
+<%--                            <div>
                                 <asp:Button Text="Modificar" runat="server" CssClass="btn btn-primary my border-secondary mt-4" ID="btnModificar" CommandArgument='<%#Eval("Id")%>' CommandName="UsuarioId" OnClick="btnModificar_Click" />
-                            </div>
+                            </div>--%>
                         </div>
                     </div>
                     </div>

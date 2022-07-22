@@ -65,7 +65,18 @@
     </div>
   </div>
 </div>
-              
+    <div class="col-sm-4">
+    <div class="card border-light mb-3" style="max-width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">PROFESIONALES</h5>
+        <p class="card-text">Ver/modificar profesional registrado</p>
+        <div class="d-grid gap-2 col-6 mx-auto">
+              <a href="../Tablas/ProfesionalListado.aspx" class="btn btn-primary">Ingresar</a>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>          
 
         <br />
 

@@ -48,7 +48,7 @@ namespace TurnosAppWeb
                     ddlPerfilusuario.DataValueField = "id";
                     ddlPerfilusuario.DataTextField = "descripcion";
                     ddlPerfilusuario.DataBind();
-                    
+
 
                     if (Request.QueryString["id"] != null && btnModificar.Visible == false)
                     {   //captura el id 
@@ -64,12 +64,13 @@ namespace TurnosAppWeb
                         ddlSexo.SelectedValue = seleccionado.sexo;
                         ddlTipoDocumento.SelectedValue = seleccionado.tipoDocumento.id.ToString();
                         txtNroDocumento.Text = seleccionado.nroDocumento.ToString();
-                        if(seleccionado.telefono != "no informado") txtTelefono.Text = seleccionado.telefono;
+                        if (seleccionado.telefono != "no informado") txtTelefono.Text = seleccionado.telefono;
                         if (seleccionado.mail != "no informado") txtMail.Text = seleccionado.mail;
                         ddlObraSocial.SelectedValue = seleccionado.obraSocial.id.ToString();
 
-                        /*if (seleccionado.perfileslUsuario[0].id == 4)
+                       /* if (seleccionado.perfileslUsuario[0].id == 4)
                         {
+                   
                             ddlEspecialidad.SelectedValue = seleccionado.tipoDocumento.id.ToString();
                             ddlHorarios.SelectedValue = seleccionado.nroDocumento.ToString();
                         }*/
